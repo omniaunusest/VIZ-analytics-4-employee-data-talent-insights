@@ -229,7 +229,8 @@ propuesta de mejora:
 > . 
 
 
-**relationshipsatisfaction** Satisfacción con relaciones interpersonales en el trabajo
+**relationshipsatisfaction** 
+Satisfacción con relaciones interpersonales en el trabajo
 > . 
 
 propuesta de mejora: 
@@ -277,6 +278,7 @@ propuesta de mejora:
 
 
 **yearsatcompany**  
+Años en la empresa actual.
 > .
 
 propuesta de mejora:
@@ -284,6 +286,7 @@ propuesta de mejora:
 
 
 **yearsincurrentrole**
+Años en el rol actual.
 > .
 
 propuesta de mejora:
@@ -291,6 +294,7 @@ propuesta de mejora:
   
 
 **yearssincelastpromotion**
+Años desde la última promoción recibida.
 > .
 
 propuesta de mejora:
@@ -298,6 +302,7 @@ propuesta de mejora:
 
 
 **yearswithcurrmanager**
+Años trabajando con el mismo gerente.
 > .
 
 propuesta de mejora:
@@ -305,6 +310,7 @@ propuesta de mejora:
 
 
 **sameasmonthlyincome**  
+Columna no definida
 > .
 
 propuesta de mejora:
