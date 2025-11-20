@@ -48,6 +48,16 @@ El archivo *.csv* proporcionado para el proyecto presenta las siguientes columna
 
 En las que se observan los siguientes patrones y características:
 
+*patrones globales* 
+> valores numericos de $  - 
+.str.replace() - cambiando , por . y $ por ""
+.to_numeric() - convertir de objeto a int/float
+.round() - elegir decimal (creo que los centimos no dan peso)
+anadir $ con metodos que desconocemos ahora que no afectan dtype int/float
+
+> valores objeto
+.lower() - todo
+
 **age**     
 Edad del empleado
 > presenta números y ('51', '52'...) y palabras ('fifty-five').
@@ -278,39 +288,71 @@ ej: 1: 'Insatisfecho',
 
 **maritalstatus**
 Estado civil (e.g., Single, Married)
-> .
+> . Values total 1678 | Unique 5 + NaN | dtype - objects. (incluye NaN - 675 - muchos) **Null - TBD**
+NaN         675
+Married     419
+Single      343
+Divorced    194
+Marreid      36
+divorced     11
+Name: count, dtype: int64
 
 propuesta de mejora:
-> . 
+> . lower() todos | replace Marrieid por Married | **Null - TBD**
+df["maritalstatus"] = df["maritalstatus"].str.lower()
+df["maritalstatus"] = df["maritalstatus"].str.replace("marreid", "married")
 
 **monthlyincome**
 Ingreso mensual estimado en base al salario anual
-> .
+> . Values U1678 | Unique 493 + NaN | dtype - int. (incluye NaN - 498 - muchos) | **Null - TBD**
+muestra de valores:
+NaN          489
+2342,59$     228
+4492,84$     227
 
 propuesta de mejora:
-> . 
+> . replace() , por . y quitar/replace $ con "". cambiar a numerico, float
+df["monthlyincome"] = df["monthlyincome"].str.replace("$", "", regex=False).str.replace(",", ".", regex=False) 
+-->regex false - pandas puede pensar que es una funcion regex
+df["monthlyincome"] = df["monthlyincome"] = pd.to_numeric(df["monthlyincome"], errors="coerce")
+--> errors="coerce" asegura que si no se cumple convierte en NaN ie. 40 esta como 'forty'
+muestra monthlyincome limpio:
+0       16280.83
+1            NaN
+2            NaN
+3       14307.50
+4       12783.92
+
 
 **monthlyrate**
 Tarifa mensual estimada en función de la tarifa diaria
-> .
+> . Values 1678 | Unique 673 | NaN 0 | dtype Object | 
 
 propuesta de mejora:
-> . 
+> . mismo que en "monthlyincome"
+df["monthlyrate"] = df["monthlyrate"].str.replace("$", "", regex=False).str.replace(",", ".", regex=False) 
+-->regex false - pandas puede pensar que es una funcion regex
+df["monthlyrate"] = df["monthlyrate"] = pd.to_numeric(df["monthlyrate"], errors="coerce")
+--> errors="coerce" asegura que si no se cumple convierte en NaN ie. 40 esta como 'forty'
 
 **numcompaniesworked**
 Número de empresas previas en las que ha trabajado
-> .
+> . Values 1678 | Unique 10 (0-9) | NaN 0 | dtype float
 
 propuesta de mejora:
-> . 
-
+> . no se. entiendo que son la cantidad de empresas donde el trabajador ha trabajado. cv - empleos en companias anteriores.
   
 **over18**  
-Columna no definida
-> .
+Columna no definida - employees mayores de edad?
+> . Values 1678 | dtype Object | Unique 1 | NaN 1 (938 valores NaN -- muchos, la mayoria)
+no existe valor N (No), solo Y (Yes) o NaN.
+interpreto que es muy incompleto, con 56% NaN, para darle peso en el analysis global. 
+muestra de valores y counts:
+NaN    938
+Y      740
 
 propuesta de mejora: 
-> .
+> . propongo omitirlo por falta de valor/peso analytico.
 
 **overtime**  MAYKA
 Indica si el empleado trabaja horas extras (Yes/No)
@@ -318,7 +360,6 @@ Indica si el empleado trabaja horas extras (Yes/No)
 
 propuesta de mejora: 
 > . Clase: Gestion de Nulos
-
 
 **percentsalaryhike** MAYKA
 Incremento porcentual en el salario
