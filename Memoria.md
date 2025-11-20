@@ -346,20 +346,34 @@ df["performancerating"] = df["performancerating"].astype(float)
 Quedaría: array([3., 4., 0.]) // dtype('float64')
 
 
-**relationshipsatisfaction** 
+**relationshipsatisfaction** PATRICIA
 Satisfacción con relaciones interpersonales en el trabajo
-> . 
+> Valores = array([3, 1, 4, 2])
+dtype('int64')
+
+propuesta de mejora:
+> Mantener sin cambios  
+
+NOTA: como next steps, poder definir y documentar explícitamente el significado de cada valor: 
+    1: 'Insatisfecho',
+    2: 'Poco satisfecho',
+    3: 'Satisfecho',
+    4: 'Muy satisfecho'
 
 propuesta de mejora: 
 > . 
 
 
-**standardhours**  
+**standardhours** PATRICIA
 Clasificación de jornada (Full Time/Part Time)
-> . 
+> Valores = array(['Full Time', nan, 'Part Time'], 
+dtype=object)
+
+- Faltan valores: nan 
 
 propuesta de mejora: 
-> . 
+> Mirar la relacion con otras columnas para asegurarnos si el nan es por falta de informacion, o por otro tipo de clasificacion de jornada (ej: 'Freelance'?, 'Otro', 'No Especificado') 
+EJ: df['standardhours'] = df['standardhours'].replace(np.nan, 'No especificado')
 
 
 **stockoptionlevel** MAYKA 2.0 
