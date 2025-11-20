@@ -77,33 +77,59 @@ Tarifa diaria estimada para clientes, calculada en base al salario
 propuesta de mejora:
 > 
 
-**department**
+**department** MAYKA
 Departamento en el que trabaja el empleado
-> .
+> . Valores = array([nan, ' Research & Development ', ' Sales ', ' Human Resources '],
+      dtype=object)
+
+Cantidad: department
+NaN                         1366
+Research & Development      203
+Sales                        93
+Human Resources              16
+Name: count, dtype: int64
 
 propuesta de mejora:
 > .
+# 1. Convertir a minuscula todos los nombres
+ df["department"] = df["department"].str.lower()
+ array([nan, ' research & development ', ' sales ', ' human resources '],
+      dtype=object)
 
-**distancefromhome**
+**distancefromhome** MAYKA 
 Distancia en millas o kilómetros desde el hogar al trabajo
-> .
+> . Valores = array([  6,   1,   4,   2,   3,  22,  25,   9,   7,  23,  10,  12,  14,
+       -13,  15,   8, -42,  28, -37,   5,  16, -35,  26, -26,  24,  29,
+       -25,  17,  21, -18, -10, -30, -27,  20, -31, -29, -39,  18, -21,
+       -15,  11,  13, -14,  19, -33, -34, -46, -36, -19,  27, -12, -23,
+       -45, -28, -47, -32, -24, -16, -22, -41, -49, -11, -48, -38, -20,
+       -17, -43, -40, -44])
+dtype('int64')
 
 propuesta de mejora:
 > .
+# 1. Convertimos en absolutos para eliminar el negativo
+df["distancefromhome"] = df["distancefromhome"].abs()
 
-**education**   
+**education**   MAYKA
 Nivel educativo del empleado en escala numérica
-> .
+> . Valores = array([3, 4, 2, 1, 5])
+ dtype('int64')
 
 propuesta de mejora:
-> .
+> . En principio nada
 
-**educationfield**  
+**educationfield**  MAYKA
 Campo de estudio académico del empleado
-> .
+> . Valores = array([nan, 'Life Sciences', 'Technical Degree', 'Medical', 'Other',
+       'Marketing', 'Human Resources'], dtype=object)
 
 propuesta de mejora:
-> .
+> . 
+# 1. Convertir a minuscula todos los nombres
+df["educationfield"] = df["educationfield"].str.lower()
+array([nan, 'life sciences', 'technical degree', 'medical', 'other',
+       'marketing', 'human resources'], dtype=object)
 
 **employeecount**   
 Valor constante de "1", indicando un solo empleado por registro
@@ -212,19 +238,28 @@ ej: 1: 'Bajo compromiso',
     3: 'Compromiso alto',
     4: 'Compromiso excepcional'
 
-**joblevel**
+**joblevel** MAYKA
 Nivel jerárquico del puesto del empleado
-> .
+> . Valores = array([5, 4, 3, 2, 1])
+dtype('int64')
 
 propuesta de mejora:
-> .
+> . En principio nada
 
-**jobrole**
+**jobrole** MAYKA
 Función o rol específico del empleado
-> .
+> . Valores = array([' resEArch DIREcToR ', ' ManAGeR ', ' ManaGER ', ...,
+       ' sAlES ExECUTivE ', ' SaLes ExecUtIVe ',
+       ' mAnUfactURInG DiRECTOr '], dtype=object)
 
 propuesta de mejora:
 > . 
+# 1. Convertir a minuscula todos los nombres
+df["jobrole"] = df["jobrole"].str.lower()
+array([' research director ', ' manager ', ' sales executive ',
+       ' manufacturing director ', ' research scientist ',
+       ' healthcare representative ', ' laboratory technician ',
+       ' sales representative ', ' human resources '], dtype=object)
 
 
 **jobsatisfaction**
@@ -277,28 +312,37 @@ Columna no definida
 propuesta de mejora: 
 > .
 
-**overtime**  
+**overtime**  MAYKA
 Indica si el empleado trabaja horas extras (Yes/No)
-> . 
+> . Valores = array(['No', nan, 'Yes'], dtype=object)
 
 propuesta de mejora: 
-> . 
+> . Clase: Gestion de Nulos
 
 
-**percentsalaryhike** 
+**percentsalaryhike** MAYKA
 Incremento porcentual en el salario
-> . 
+> . Valores = array([13, 14, 11, 19, 12, 25, 16, 17, 22, 23, 20, 15, 21, 24, 18])
+dtype('int64')
 
 propuesta de mejora: 
-> . 
+> . En principio nada
 
 
-**performancerating** 
+**performancerating** MAYKA
 Evaluación de desempeño en una escala numérica 
-> . 
+> .  Valores = array(['3,0', '4,0', nan], dtype=object)
 
 propuesta de mejora: 
-> . 
+> .  
+# 1. Reemplazar "," por "."
+df["performancerating"] = df["performancerating"].str.replace(',', '.')
+# 2. Rellenar los vacíos con 0
+df["performancerating"] = df["performancerating"].fillna(0)
+# 3. Convertir a float
+df["performancerating"] = df["performancerating"].astype(float)
+
+Quedaría: array([3., 4., 0.]) // dtype('float64')
 
 
 **relationshipsatisfaction** 
@@ -341,20 +385,33 @@ propuesta de mejora:
 > . 
 
 
-**worklifebalance**  
+**worklifebalance**  MAYKA
 Nivel de balance entre vida personal y laboral
-> . 
+> . Valores = array(['3,0', nan, '2,0', '4,0', '1,0'], dtype=object)
 
 propuesta de mejora: 
-> . 
+> .  
+# 1. Reemplazar la "," por "."
+df["worklifebalance"] = df["worklifebalance"].str.replace(',', '.')
+# 2. Gestión de nulos
+# 3. posibilidad de cambiar a 0 Gestión de nulos
+df["worklifebalance"] = df["worklifebalance"].fillna(0)
+# 4. convertir a float
+df["worklifebalance"] = df["worklifebalance"].astype(float)
+# 5. Ahora sí, pasar a entero sin miedo
+df["worklifebalance"] = df["worklifebalance"].astype(int)
 
+Resultado: array([3, 0, 2, 4, 1])
 
-**yearsatcompany**  
+**yearsatcompany**  MAYKA
 Años en la empresa actual.
-> .
+> . Valores = array([20, 33, 22, 19, 21, 18, 24, 31, 26, 16, 23, 15, 17, 32, 14, 13, 25,
+       12, 11, 37, 40, 36, 27, 29, 10,  9, 30,  8,  7, 34,  6,  5,  4,  2,
+        3,  1,  0])
+dtype('int64')
 
 propuesta de mejora:
-> . 
+> . En principio nada
 
 
 **yearsincurrentrole**
@@ -367,12 +424,14 @@ propuesta de mejora:
 > .  
 # 1. Reemplazar la "," por "."
 df["yearsincurrentrole"] = df["yearsincurrentrole"].str.replace(',', '.')
-# 2. Convertir a numérico (los errores se vuelven NaN)
-df["yearsincurrentrole"] = pd.to_numeric(df["yearsincurrentrole"], errors='coerce')
-# 3. Rellenar los vacíos con 0
+# 3. Rellenar los vacíos con 0, Gestión de nulos
 df["yearsincurrentrole"] = df["yearsincurrentrole"].fillna(0)
-# 4. Ahora sí, pasar a entero sin miedo
+# 4. convertir a float
+df["yearsincurrentrole"] = df["yearsincurrentrole"].astype(float)
+# 5. Ahora sí, pasar a entero sin miedo
 df["yearsincurrentrole"] = df["yearsincurrentrole"].astype(int)
+
+Resultado: array([ 0, 13, 12, 11,  7,  6,  4,  3,  2,  1])
   
 
 **yearssincelastpromotion**
@@ -432,11 +491,20 @@ df["salary"] = df["salary"].astype(float)
 
 **roledepartament**  
 Combinación de rol y departamento.
-> . df["roledepartament"].value_counts().sum() el resultado es 312 nombres distintos pero hay muchos que son lo mismo pero cambiando mayusculas y minusculas
+> . Valores = array([nan, ' manager  -  research & development ',
+       ' healthcare representative  -  research & development ',
+       ' sales executive  -  sales ',
+       ' laboratory technician  -  research & development ',
+       ' manufacturing director  -  research & development ',
+       ' research scientist  -  research & development ',
+       ' research director  -  research & development ',
+       ' human resources  -  human resources ', ' manager  -  sales ',
+       ' sales representative  -  sales ',
+       ' manager  -  human resources '], dtype=object)
 
 propuesta de mejora:
 
-> .df["roledepartament"].str.lower()
+> . df["roledepartament"] = df["roledepartament"].str.lower() 
     
     [nan, ' manager  -  research & development ',
        ' healthcare representative  -  research & development ',
@@ -463,5 +531,6 @@ Empleado trabaja de forma remota Si/No
 > . Valores =[ 'Yes', '1', 'False', '0', 'True']
 
 Todos son str aunque haya número de por medio. Quizás el 0 signifique Si/Yes y el 1 signifique No. También es posible que el True sea igual a Si/Yes y el False sea No
+
 propuesta de mejora:
 > . unificar datos
