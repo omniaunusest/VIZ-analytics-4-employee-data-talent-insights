@@ -65,9 +65,10 @@ El archivo *.csv* proporcionado para el proyecto presenta las siguientes columna
 
 - Valores objeto     
 ``.lower()`` - todo
+
 ---
-#### RAW_DATA.CSV 
-#### age
+### RAW_DATA.CSV 
+### age
 (dtype: int64)       
 *Edad del empleado*
 
@@ -76,7 +77,7 @@ El archivo *.csv* proporcionado para el proyecto presenta las siguientes columna
 Propuesta de mejora:
 - Homogeneizar al mismo formato numérico.
 #
-#### attrition
+### attrition
 (dtype: object)      
 *Indica si el empleado dejó la empresa (Yes/No)*
 
@@ -84,8 +85,9 @@ Propuesta de mejora:
 
 Propuesta de mejora:  
 Sin Anomalías.
+
 ---
-#### businesstravel
+### businesstravel
 (dtype: object)      
 *Frecuencia de viajes*
 
@@ -95,8 +97,9 @@ Hay que investigar si el ``nan`` tiene más valores ``nan`` asociados al mismo e
 
 Propuesta de mejora:        
 - Sustituir ``nan`` por ``None`` o ``null`` según queramos procesar los datos más adelante (o si hay paso a SQL).
+
 ---
-#### dailyrate
+### dailyrate
 (dtype: int64)       
 *Tarifa diaria estimada para clientes, calculada en base al salario*
 
@@ -107,7 +110,7 @@ Propuesta de mejora:
 
 - Asegurarse de aplicar el mismo criterio a todas las columnas numéricas relativas al salario en el dataset (puntuación y redondeo).
 ---
-#### department
+### department
 (dtype: object)   
 *Departamento en el que trabaja el empleado*
 
@@ -140,7 +143,7 @@ Propuesta de mejora:
     ``.str.replace(r'\s+', ' ', regex=True)``
 
 ---
-#### distancefromhome
+### distancefromhome
 (dtype: int64)       
 *Distancia en millas o kilómetros desde el hogar al trabajo*
        
@@ -152,8 +155,9 @@ Propuesta de mejora:
 Propuesta de mejora:
 - Convertimos en absolutos para eliminar el negativo    
 ``df["distancefromhome"] = df["distancefromhome"].abs()``
+
 ---
-#### education
+### education
 (dtype: int64)     
 *Nivel educativo del empleado en escala numérica*
 
@@ -161,8 +165,9 @@ Propuesta de mejora:
 
 Propuesta de mejora:        
 Sin anomalías.
+
 ---
-#### educationfield
+### educationfield
 (dtype: object)      
 *Campo de estudio académico del empleado*
 
@@ -176,8 +181,9 @@ Propuesta de mejora:
 
        Ejemplo
        array([nan, 'life sciences', 'technical degree', 'medical', 'other', 'marketing', 'human resources'], dtype=object)
+       
 ---
-#### employeecount
+### employeecount
 (dtype: int64)       
 *Valor constante de "1", indicando un solo empleado por registro*
 
@@ -189,7 +195,7 @@ Propuesta de mejora:
 - Eliminar columna:  
 ``df.drop(columns='employeecount', inplace=True)``
 ---
-#### employeenumber
+### employeenumber
 (dtype: int64)       
 *Número de identificación del empleado*
 
@@ -197,10 +203,11 @@ Propuesta de mejora:
 
 La columna cumple su función como identificador único y correlativo para cada empleado.
 
-Propuesta de mejora:
-- Mantener sin cambios
+Propuesta de mejora  
+Mantener sin cambios
+
 ---
-#### environmentsatisfaction
+### environmentsatisfaction
 (dtype: int64)   
 *Nivel de satisfacción con el ambiente laboral*
 
@@ -209,8 +216,9 @@ Propuesta de mejora:
 Propuesta de mejora:
 - ¿Mantener sin cambios?
 - Plantearnos si es un formato tan raro, si podemos apostar por aplanarlo o simplificarlo, por ejemplo: decidir acortar las distancias entre 0 y 50 pasándolos a decimal entre 0-5.
+
 ---
-#### gender
+### gender
 (dtype: int64)       
 *Género del empleado*
        
@@ -227,7 +235,7 @@ Propuesta de mejora:
        NOTA: No incluye opciones no binarias o diversidad de género, podría ser interesante que se pudieran añadir más valores y tenerlo en cuenta de cara a la presentación como next steps? 
 
 ---
-#### hourlyrate
+### hourlyrate
 (dtype: float64)
 *Tarifa por hora calculada*
        
@@ -251,8 +259,9 @@ Propuesta de mejora:
 - Convertir a numérico (los errores se vuelven NaN)     
 ``df["hourlyrate"] = pd.to_numeric(df["hourlyrate"], errors='coerce')``
 - ¿Compararlo con el resto de valores salariales para comprobar si el punto que aparece es realmente una coma?
+
 ---
-#### jobinvolvement
+### jobinvolvement
 (dtype: int64)       
 *Nivel de compromiso del empleado en el trabajo*
 
@@ -269,8 +278,9 @@ O:
        3: 'Compromiso alto',
        4: 'Compromiso excepcional'
 ¿Incluimos 0 y 5?
+
 ---
-#### joblevel
+### joblevel
 (dtype: int64)       
 *Nivel jerárquico del puesto del empleado*
        
@@ -279,7 +289,8 @@ O:
 Propuesta de mejora:        
 Sin anomalías.
 
-#### jobrole
+---
+### jobrole
 (dtype: object)      
 Función o rol específico del empleado
 
@@ -299,7 +310,7 @@ Propuesta de mejora:
        ' healthcare representative ', ' laboratory technician ',
        ' sales representative ', ' human resources ']
 ---
-#### jobsatisfaction
+### jobsatisfaction
 (dtype: int64)       
 *Satisfacción general en el puesto*
 
@@ -317,8 +328,9 @@ O:
        4: 'Muy satisfecho'
 
 ¿Incluimos 0 y 5?
+
 ---
-#### maritalstatus
+### maritalstatus
 (dtype: object)      
 *Estado civil (e.g., Single, Married)*
 
@@ -338,7 +350,7 @@ Propuesta de mejora:
 ``df["maritalstatus"] = df["maritalstatus"].str.replace("marreid", "married")``
 - Null - TBD
 ---
-#### monthlyincome
+### monthlyincome
 (dtype: object)       
 *Ingreso mensual estimado en base al salario anual*
 
@@ -367,7 +379,7 @@ Propuesta de mejora:
               3       14307.50
               4       12783.92
 ---
-#### monthlyrate
+### monthlyrate
 (dtype: object)      
 *Tarifa mensual estimada en función de la tarifa diaria*
 
@@ -384,7 +396,7 @@ Propuesta de mejora:
        
        ie. 40 esta como 'forty'
 
-#### numcompaniesworked
+### numcompaniesworked
 (dtype: int64)       
 *Número de empresas previas en las que ha trabajado*
 
@@ -396,7 +408,7 @@ Propuesta de mejora:
 - Entiendo que son la cantidad de empresas donde el trabajador ha trabajado. cv - empleos en companias anteriores.
 - ¿Igual podemos llamarlo experiencia en diferentes empresas? ¿Score empleos previos?
 ---
-#### over18
+### over18
 (dtype: object)       
 *columna no definida*
 
@@ -416,7 +428,7 @@ Propuesta de mejora:
 - Clase: Gestion de Nulos propongo omitirlo por falta de valor/peso analytico.
 - ¿Comprobar si coinciden con los valores de la columna [overtime](#overtime)?
 ---
-#### overtime
+### overtime
 (dtype: object)      
 *Indica si el empleado trabaja horas extras (Yes/No)*
 
@@ -426,16 +438,17 @@ Propuesta de mejora:
 - Clase: Gestion de Nulos.
 - ¿Atribuir ``NaN`` como ``Desconocido`` y darle valor a la información de quien tiene un claro Yes?
 ---
-#### percentsalaryhike
+### percentsalaryhike
 (dtype: int64)       
 *Incremento porcentual en el salario*
 
        Valores = array([13, 14, 11, 19, 12, 25, 16, 17, 22, 23, 20, 15, 21, 24, 18])
 
-Propuesta de mejora: 
--Mantener sin cambios.
+Propuesta de mejora:        
+Mantener sin cambios.
+
 ---
-#### performancerating
+### performancerating
 (dtype: object)      
 *Evaluación de desempeño en una escala numérica* 
 
@@ -454,7 +467,7 @@ Propuesta de mejora:
 
 - Otra sugerencia: para evitar que el nuevo valor ``0`` baje la media del *performance rating*, ¿sustituir por ``Desconocido``?
 ---
-#### relationshipsatisfaction
+### relationshipsatisfaction
 (dtype: int64)       
 *Satisfacción con relaciones interpersonales en el trabajo*
 
@@ -472,8 +485,9 @@ O:
        4: 'Muy satisfecho'
 
 ¿Incluimos 0 y 5?
+
 ---
-#### standardhours
+### standardhours
 (dtype: object)      
 *Clasificación de jornada (Full Time/Part Time)*
 
@@ -487,7 +501,7 @@ Propuesta de mejora:
  ``df['standardhours'] = df['standardhours'].replace(np.nan, 'No especificado')``
 
 ---
-#### stockoptionlevel
+### stockoptionlevel
 (dtype: int64)       
 *Nivel de opciones sobre acciones asignadas.*
 
@@ -495,8 +509,9 @@ Propuesta de mejora:
 
 Propuesta de mejora:
 Mantener sin cambios.
+
 ---
-#### totalworkingyears
+### totalworkingyears
 (dtype: object)      
 *Años totales de experiencia laboral*
 
@@ -520,7 +535,7 @@ Propuesta de mejora:
 
 - Comprobar si el nulo en años de experiencia laboral es dispar con la columna [numcompaniesworked](#numcompaniesworked).
 ---
-#### trainingtimeslastyear
+### trainingtimeslastyear
 (dtype: int64)       
 *Número de sesiones de entrenamiento en el último año.*
 
@@ -530,7 +545,7 @@ Propuesta de mejora:
 Mantener sin cambios.
 
 ---
-#### worklifebalance
+### worklifebalance
 (dtype: object)      
 *Nivel de balance entre vida personal y laboral.*
 
@@ -549,7 +564,7 @@ Propuesta de mejora:
 
        Resultado: array([3, 0, 2, 4, 1])
 ---
-#### yearsatcompany
+### yearsatcompany
 (dtype: int64)   
 *Años en la empresa actual.*
 
@@ -560,7 +575,7 @@ Mantener sin cambios.
 
 - Sería interesante comparar los años en la empresa actual con los valores nulos en la columna [totalworkingyears](#numcompaniesworked) para comprobar qué relato/perfil nos devuelve.
 ---
-#### yearsincurrentrole
+### yearsincurrentrole
 (dtype: object)      
 
        Valores = array([nan, '13,0', '12,0', '11,0', '7,0', '6,0', '4,0', '3,0', '2,0',
@@ -580,7 +595,7 @@ Propuesta de mejora:
        array([ 0, 13, 12, 11,  7,  6,  4,  3,  2,  1])
   
 ---
-#### yearssincelastpromotion
+### yearssincelastpromotion
 (dtype: int64)       
 
        Valores = [15, 11,  5,  2,  4,  7,  0,  1, 13, 14,  8, 12,  3,  6, 10,  9]
@@ -588,7 +603,7 @@ Propuesta de mejora:
 Propuesta de mejora:        
 Mantener sin cambios.
 ---
-#### yearswithcurrmanager
+### yearswithcurrmanager
 (dtype: int64)       
 *Años trabajando con el mismo gerente.*
 
@@ -597,8 +612,9 @@ Mantener sin cambios.
 
 Propuesta de mejora:        
 Mantener sin cambios.
+
 ---
-#### sameasmonthlyincome
+### sameasmonthlyincome
 (dtype: object)     
 *columna sin especificar*
 
@@ -615,7 +631,7 @@ Propuesta de mejora:
 
 - ¿Comprobar si esta columna es una copia redundante de [monthlyincome](#monthlyincome)?
 ---
-#### datebirth
+### datebirth
 (dtype: int64)       
 *Año de nacimiento del empleado*
 
@@ -625,7 +641,7 @@ Propuesta de mejora:
 Mantener sin cambios.
 
 ---
-#### salary
+### salary
 (dtype: object)        
 *Salario anual calculado para el empleado*
 
@@ -641,7 +657,7 @@ Propuesta de mejora:
 ``df["salary"] = df["salary"].astype(float)``
 
 ---
-#### roledepartament
+### roledepartament
 (dtype: object)      
 *Combinación de rol y departamento.*
 
@@ -674,7 +690,7 @@ Propuesta de mejora:
 - ¿Comprobar si esta columna es redundante o si contiene los datos que faltan en [department](#department) y [jobrole](#jobrole)?
 - ¿Destinarla a eliminación una vez reubicados todos los valores?
 ---
-#### numberchildren
+### numberchildren
 (dtype: float64)     
 *Número de hijos del empleado*
 
@@ -685,7 +701,7 @@ Propuesta de mejora:
 - ¿Es información la ausencia de información al respecto?
 
 ---
-#### remotework
+### remotework
 (dtype: object)      
 *Indica si el empleado trabaja de forma remota (Yes/No).*
 
