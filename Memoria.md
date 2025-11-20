@@ -286,73 +286,110 @@ propuesta de mejora:
 
 
 **yearsincurrentrole**
-Años en el rol actual.
-> .
+> . Valores = array([nan, '13,0', '12,0', '11,0', '7,0', '6,0', '4,0', '3,0', '2,0',
+       '1,0', '0,0'], dtype=object)
+
+Tipo de dato = Object
 
 propuesta de mejora:
-> . 
+> .  
+# 1. Reemplazar la "," por "."
+df["yearsincurrentrole"] = df["yearsincurrentrole"].str.replace(',', '.')
+# 2. Convertir a numérico (los errores se vuelven NaN)
+df["yearsincurrentrole"] = pd.to_numeric(df["yearsincurrentrole"], errors='coerce')
+# 3. Rellenar los vacíos con 0
+df["yearsincurrentrole"] = df["yearsincurrentrole"].fillna(0)
+# 4. Ahora sí, pasar a entero sin miedo
+df["yearsincurrentrole"] = df["yearsincurrentrole"].astype(int)
   
 
 **yearssincelastpromotion**
-Años desde la última promoción recibida.
-> .
+> . Valores = [15, 11,  5,  2,  4,  7,  0,  1, 13, 14,  8, 12,  3,  6, 10,  9]
+
+Tipo de dato = float
 
 propuesta de mejora:
-> . 
+> . En principio nada
 
 
 **yearswithcurrmanager**
-Años trabajando con el mismo gerente.
-> .
+> . Valores = [15,  9,  6,  8,  7, 11, 10, 12,  4,  0,  5, 17,  2, 14,  1, 13,  3, 16]
+
+Tipo de dato = float
 
 propuesta de mejora:
-> . 
+> . En principio nada
 
 
 **sameasmonthlyincome**  
-Columna no definida
-> .
+> . Valores = Datos tipo objeto, con simbolo en "Español" para los decimales y además incluido en el dato el simbolo $
 
 propuesta de mejora:
-> .
+> .  Cambiar la "," por ".", eliminar también el simbolo "$". Por último cambiar el dato str en float
+
+df["sameasmonthlyincome"] = df["sameasmonthlyincome"].str.replace(',', '.')
+df["sameasmonthlyincome"] = df["sameasmonthlyincome"].str.replace('$', '', regex=False)
+df["sameasmonthlyincome"] = df["sameasmonthlyincome"].astype(float)
+
 
 
 **datebirth**  
 Año de nacimiento del empleado
-> .
+> . Valores = [1972, 1971, 1981, 1976, 1977, 1975, 1964, 1982, 1967, 1985, 1968,
+       1983, 1965, 1988, 1978, 1990, 1987, 1989, 1970, 1980, 1963, 1991,
+       1986, 1974, 1984, 1973, 1979, 1993, 1994, 1992, 1969, 1966, 1996,
+       1995, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005]
+
+Tipo de dato = float
 
 propuesta de mejora:
-> .
+> . En principio nada
 
 
 **salary**  
 Salario anual calculado para el empleado
-> .
+> . Valores = Datos tipo objeto, con simbolo en "Español" para los decimales y además incluido en el dato el simbolo $
 
 propuesta de mejora:
-> .
+> . Cambiar la "," por ".", eliminar también el simbolo "$". Por último cambiar el dato str en float
+
+df["salary"] = df["salary"].str.replace(',', '.')
+df["salary"] = df["salary"].str.replace('$', '', regex=False)
+df["salary"] = df["salary"].astype(float)
 
 
 **roledepartament**  
 Combinación de rol y departamento.
-> .
+> . df["roledepartament"].value_counts().sum() el resultado es 312 nombres distintos pero hay muchos que son lo mismo pero cambiando mayusculas y minusculas
 
 propuesta de mejora:
 
-> .
+> .df["roledepartament"].str.lower()
+    
+    [nan, ' manager  -  research & development ',
+       ' healthcare representative  -  research & development ',
+       ' sales executive  -  sales ',
+       ' laboratory technician  -  research & development ',
+       ' manufacturing director  -  research & development ',
+       ' research scientist  -  research & development ',
+       ' research director  -  research & development ',
+       ' human resources  -  human resources ', ' manager  -  sales ',
+       ' sales representative  -  sales ',
+       ' manager  -  human resources ']
 
 
 **numberchildren**  
 Número de hijos del empleado
-> .
+> . Valores = [nan]
 
 propuesta de mejora:
-> . 
+> . Posible columna a eliminar
 
 
 **remotework**  
 Empleado trabaja de forma remota Si/No
-> .
+> . Valores =[ 'Yes', '1', 'False', '0', 'True']
 
+Todos son str aunque haya número de por medio. Quizás el 0 signifique Si/Yes y el 1 signifique No. También es posible que el True sea igual a Si/Yes y el False sea No
 propuesta de mejora:
-> .
+> . unificar datos
