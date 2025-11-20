@@ -1,6 +1,6 @@
 # Memoria Proyecto ABC Corporation
 
-### Conclusiones del Análisis Exploratorio de Datos (**EDA**)
+### Conclusiones del Análisis Exploratorio de Datos (EDA)
 
 El archivo *.csv* proporcionado para el proyecto presenta las siguientes columnas con datos:
 
@@ -46,527 +46,571 @@ El archivo *.csv* proporcionado para el proyecto presenta las siguientes columna
     'numberchildren',
     'remotework']
 
-En las que se observan los siguientes patrones y características:
+### En las que se observan los siguientes patrones y características:
 
-*patrones globales* 
-> valores numericos de $  - 
-.str.replace()  - cambiando "," por "." y $ por ""
-.to_numeric() - convertir de objeto a int/float
-.round() - elegir decimal (creo que los centimos no dan peso)
-anadir $ con metodos que desconocemos ahora que no afectan dtype int/float
+#### Patrones globales:
 
-> valores objeto
-.lower() - todo
+- Valores numericos junto al símbolo '$'
 
-**age**     
-Edad del empleado
-> presenta números y ('51', '52'...) y palabras ('fifty-five').
+  ``.str.replace()`` ("," por ".") y $ por ' ' 
 
-propuesta de mejora:
-> .
+  Ejemplo de solución para estandarizar los valores numéricos que lo requieran:
 
-**attrition**   
-Indica si el empleado dejó la empresa (Yes/No)
-> .
+  ``.to_numeric()`` - para convertir de objeto a int/float     
+  ``.round()`` - redondear a entero o a dos decimales   
 
-propuesta de mejora:
-> .
+  ¿Añadir $ con metodos que desconocemos ahora que no afectan dtype int/float?
 
-**businesstravel**  
-Frecuencia de viajes
-> .
+- Valores objeto     
+``.lower()`` - todo
+#
+#### RAW_DATA.CSV 
+**age** dtype('int64')      
+*Edad del empleado*
 
-propuesta de mejora:
-> .
+       Valores numéricos ('51', '52'...) y palabras ('fifty-five').
 
-**dailyrate**   
-Tarifa diaria estimada para clientes, calculada en base al salario
+Propuesta de mejora:
+- Homogeneizar al mismo formato numérico.
+#
+**attrition** dtype('O')   
+*Indica si el empleado dejó la empresa (Yes/No)*
 
-> .
+       Objetos: Yes/No. Sin nulos.
 
-propuesta de mejora:
-> 
+Propuesta de mejora:  
+Sin Anomalías.
+#
+**businesstravel** dtype('O')  
+*Frecuencia de viajes*
 
-**department** MAYKA
-Departamento en el que trabaja el empleado
-> . Valores = array([nan, ' Research & Development ', ' Sales ', ' Human Resources '],
+       Valores nulos (2) y objetos: ('nan'), 'travel_rarely', 'travel_frequently', 'non-travel'.
+
+Hay que investigar si el ``nan`` tiene más valores ``nan`` asociados al mismo empleado.
+
+Propuesta de mejora:        
+- Sustituir ``nan`` por ``None`` o ``null`` según queramos procesar los datos más adelante (o si hay paso a SQL).
+#
+**dailyrate** dtype('int64')   
+*Tarifa diaria estimada para clientes, calculada en base al salario*
+
+       Valores únicos (673) con decimales largos y variados.
+
+Propuesta de mejora:        
+- Usar ``round()`` para estandarizar la precisión.
+
+- Asegurarse de aplicar el mismo criterio a todas las columnas numéricas relativas al salario en el dataset (puntuación y redondeo).
+#
+**department** dtype('O')      
+*Departamento en el que trabaja el empleado*
+
+       Valores nulos y objetos: 'nan', ' Research & Development ', ' Sales ', ' Human Resources '
+
+       En cantidad: 
+       NaN                         1366
+       Research & Development      203
+       Sales                        93
+       Human Resources              16
+
+Propuesta de mejora:        
+- Convertir a minuscula todos los nombres        
+``df["department"] = df["department"].str.lower()``
+
+       Ejemplo:
+       array([nan, ' research & development ', ' sales ', ' human resources '],
       dtype=object)
 
-Cantidad: department
-NaN                         1366
-Research & Development      203
-Sales                        93
-Human Resources              16
-Name: count, dtype: int64
+- Comparar los valores nulos con las columnas que incluyen datos aparentemente reiterados, que pueden contener este valor en ausencia de estar presentes en esta columna. 
 
-propuesta de mejora:
-> .
-# 1. Convertir a minuscula todos los nombres
- df["department"] = df["department"].str.lower()
- array([nan, ' research & development ', ' sales ', ' human resources '],
-      dtype=object)
+  -> **referencia**: columna ``'roledepartament'``      
 
-**distancefromhome** MAYKA 
-Distancia en millas o kilómetros desde el hogar al trabajo
-> . Valores = array([  6,   1,   4,   2,   3,  22,  25,   9,   7,  23,  10,  12,  14,
-       -13,  15,   8, -42,  28, -37,   5,  16, -35,  26, -26,  24,  29,
-       -25,  17,  21, -18, -10, -30, -27,  20, -31, -29, -39,  18, -21,
-       -15,  11,  13, -14,  19, -33, -34, -46, -36, -19,  27, -12, -23,
-       -45, -28, -47, -32, -24, -16, -22, -41, -49, -11, -48, -38, -20,
-       -17, -43, -40, -44])
-dtype('int64')
+  En caso de doble ausencia: recomiendo conservar el nulo en el formato que nos requiera el proyecto para procesarlo, si no es un empleado con todos los valores nulos:   
+  ``df['department'] = df['department'].fillna('None')``
 
-propuesta de mejora:
-> .
-# 1. Convertimos en absolutos para eliminar el negativo
-df["distancefromhome"] = df["distancefromhome"].abs()
+- Sustituir espacios innecesarios al inicio, final y entre las palabras del valor (``' Human Resources '``) por valores estandarizados y sin espacios innecesarios:         
+``df['department'] = df['department'].str.strip()``
 
-**education**   MAYKA
-Nivel educativo del empleado en escala numérica
-> . Valores = array([3, 4, 2, 1, 5])
- dtype('int64')
+    ``.str.replace(r'\s+', ' ', regex=True)``
 
-propuesta de mejora:
-> . En principio nada
+#
+**distancefromhome** dtype('int64')        
+*Distancia en millas o kilómetros desde el hogar al trabajo*
+       
+       Valores numéricos positivos, negativos y espaciados extra entre caracteres.
+       
+        ([  6,   1,   4,   2,   3,  22,  25,   9,   7,  23,  10,  12,  14, -13,  15,   8, -42,  28, -37,   5,  16, -35, 26, -26,  24,  29, -25,  17,  21, -18, -10, -30, -27, 20, -31, -29 -39,  18, -21, -15,  11,  13, -14,  19, -33 -34, -46, -36, -19,  27, -12, -23, -45, -28, -47, -32, -24, -16, -22, -41, -49, -11, -48, -38, -20, -17, -43, -40, -44])
 
-**educationfield**  MAYKA
-Campo de estudio académico del empleado
-> . Valores = array([nan, 'Life Sciences', 'Technical Degree', 'Medical', 'Other',
-       'Marketing', 'Human Resources'], dtype=object)
 
-propuesta de mejora:
-> . 
-# 1. Convertir a minuscula todos los nombres
-df["educationfield"] = df["educationfield"].str.lower()
-array([nan, 'life sciences', 'technical degree', 'medical', 'other',
-       'marketing', 'human resources'], dtype=object)
+Propuesta de mejora:
+- Convertimos en absolutos para eliminar el negativo    
+``df["distancefromhome"] = df["distancefromhome"].abs()``
+#
+**education** (dtype('int64'))       
+*Nivel educativo del empleado en escala numérica*
 
-**employeecount**   
-Valor constante de "1", indicando un solo empleado por registro
-> Valor = [1]
-dtype('int64')
+       Valores numéricos: ([3, 4, 2, 1, 5])
 
-- Este campo es redundante, ya que cada registro corresponde a un único empleado (valor siempre igual a 1).
+Propuesta de mejora:        
+Sin anomalías.
 
-propuesta de mejora:
-> # 1. Eliminar columna
-df.drop(columns='employeecount', inplace=True)
+**educationfield** dtype('O')       
+*Campo de estudio académico del empleado*
 
-**employeenumber**
-Número de identificación del empleado
-> Valores = [   1,    2,    3, ..., 1612, 1613, 1614], shape=(1614,)
-dtype('int64')
+       Valores nulos y objetos: 'Life Sciences', 'Technical Degree', 'Medical', 'Other',
+       'Marketing', 'Human Resources'.
+
+Propuesta de mejora:
+- Misma propuesta para los nulos que para la columna ``department``.
+- Convertir a minuscula todos los nombres        
+``df["educationfield"] = df["educationfield"].str.lower()``
+
+       Ejemplo
+       array([nan, 'life sciences', 'technical degree', 'medical', 'other', 'marketing', 'human resources'], dtype=object)
+#
+**employeecount** dtype('int64')   
+*Valor constante de "1", indicando un solo empleado por registro*
+
+       Valor = [1]
+
+Este campo es redundante, ya que cada registro corresponde a un único empleado (valor siempre igual a 1).
+
+Propuesta de mejora:
+- Eliminar columna:  
+``df.drop(columns='employeecount', inplace=True)``
+#
+**employeenumber** dtype('int64')   
+*Número de identificación del empleado*
+
+       Valores = [   1,    2,    3, ..., 1612, 1613, 1614], shape=(1614,)
 
 La columna cumple su función como identificador único y correlativo para cada empleado.
 
-propuesta de mejora:
-> Mantener sin cambios
+Propuesta de mejora:
+- Mantener sin cambios
+#
+**environmentsatisfaction** dtype('int64')  
+*Nivel de satisfacción con el ambiente laboral*
 
-**environmentsatisfaction** 
-Nivel de satisfacción con el ambiente laboral
-> Valores = ([ 1,  3,  4,  2, 42, 37, 35, 25, 27, 31, 39, 21, 15, 14, 33, 19, 12, 13, 28, 47, 36, 29, 24, 46, 16, 22, 41, 49, 11, 48, 18, 10, 45, 38, 17, 20, 26, 43])
+       Valores = ([ 1,  3,  4,  2, 42, 37, 35, 25, 27, 31, 39, 21, 15, 14, 33, 19, 12, 13, 28, 47, 36, 29, 24, 46, 16, 22, 41, 49, 11, 48, 18, 10, 45, 38, 17, 20, 26, 43])
 
-dtype('int64')
-
-propuesta de mejora:
-> Mantener sin cambios?
-  
-**gender**  
-Género del empleado
-> . Valores = array([0, 1])
-
-
-- No está documentado qué significa cada valor (ej: 0=Femenino?, 1=Masculino?)
-
-propuesta de mejora:
-> # 1. Definir explícitamente el significado de cada valor: 
-df.rename()
-
-- NOTA: No incluye opciones no binarias o diversidad de género, podría ser interesante que se pudieran añadir más valores y tenerlo en cuenta de cara a la presentación como next steps? 
+Propuesta de mejora:
+- ¿Mantener sin cambios?
+- Plantearnos si es un formato tan raro, si podemos apostar por aplanarlo o simplificarlo, por ejemplo: decidir acortar las distancias entre 0 y 50 pasándolos a decimal entre 0-5.
+#
+**gender** dtype('int64')   
+*Género del empleado*
+       
+       Valores = array([0, 1])
 
 
-**hourlyrate**  
-Tarifa por hora calculada
-> . array([         nan,  69.53208262, 172.84325397, 216.04761905,
+No está documentado qué significa cada valor (ej: 0=Femenino?, 1=Masculino?)
+
+Propuesta de mejora:
+- Definir explícitamente el significado de cada valor:  
+``df.rename()``
+- ¿Tendremos que referirnos al exponer los datos simplemente al primer género y al segundo género?
+
+       NOTA: No incluye opciones no binarias o diversidad de género, podría ser interesante que se pudieran añadir más valores y tenerlo en cuenta de cara a la presentación como next steps? 
+
+#
+**hourlyrate** dtype('float64')  
+*Tarifa por hora calculada*
+       
+       Valores nulos y decimales.
+
+        array([nan,  69.53208262, 172.84325397, 216.04761905,
         79.97321429, 129.06091077, 246.74801587, 207.17460317,
         60.8859127 ,  36.25443872, 139.99503968,  86.24107143,
-       197.84641831,  61.06646825, 245.62003968, 123.97718254,
-       148.44246032, 255.96329365, 134.41071429,  71.92559524,
-       113.78869048, 175.10019841, 247.49007937, 220.83234127,
-        91.34821429,  37.77480159, 198.9593254 , 124.05456349,
-       247.58035714, 108.48809524,  43.17857143,  68.46924603,
-        32.48710317,  55.26289683,  83.46825397,  79.26388889,
-        72.28670635,  45.96428571,  31.66170635,  65.19345238,
-        52.24503968, 143.9156746 , 113.40178571, 143.19345238,
-       139.86607143,  70.57142857,  97.04861111,  45.02281746,
-       223.47619048, 134.9781746 ,  74.40178571,  67.14087302,
-        58.06150794,  35.05357143,  73.18948413, 164.33134921,
-        43.53968254,  54.79861111, 252.59722222,  83.81646825,
-        46.71230159,  33.00297619,  70.77777778,  69.23015873,
-        54.55357143,  81.53373016, 217.76289683,  50.76190476,
-        88.24007937,  57.36507937, 115.2718254 ,  35.77579365,
-        59.95734127,  28.20535714,  54.91468254, 227.48710317,
-        78.18055556,  54.08928571, 177.0218254 ,  52.9672619 ,
-        46.38988095,  80.88888889, 118.70238095,  56.39781746,
-        31.33928571,  38.35515873,  35.67261905,  83.99702381,
-        55.25      ,  28.70833333,  69.29464286,  69.7718254 ,
-        50.86507937,  38.17460317, 244.35615079,  83.37797619,
-        25.97420635, 243.02777778,  26.1031746 ,  76.60714286,
-...
-        36.60119048, 108.02380952, 226.55853175,  68.27579365,
-        31.42956349,  59.94444444,  14.07043651,  66.43154762,
-        27.65079365,  26.69642857,  35.99503968,  74.96924603,
-        34.76984127,  29.12103175, 108.23015873, 247.47718254,
-        67.42460317,  34.82142857, 133.15972222])
-dtype('float64')
+       ... 67.42460317,  34.82142857, 133.15972222])
 
-Tipo de dato: float
 
-- Algunos valores son extremadamente altos (ej: 255.96) o bajos (ej: 14.07). ¿Son reales o errores de cálculo/entrada?
+Algunos valores son extremadamente altos (ej: 255.96) o bajos (ej: 14.07). ¿Son reales o errores de cálculo/entrada?
 
-- Algunos valores son NAN. ¿Es un error de recolección o hay empleados sin tarifa asignada?
+Algunos valores son NaN. ¿Es un error de recolección o hay empleados sin tarifa asignada?
 
-- Los valores tienen hasta 10 decimales (ej: 69.53208262)
+Los valores tienen hasta 10 decimales (ej: 69.53208262)
 
-propuesta de mejora:
-# 1. Redondear a 2 decimales (estándar para monedas): 
-df['hourlyrate'] = df['hourlyrate'].round(2)
-# 2. Convertir a numérico (los errores se vuelven NaN)
-df["hourlyrate"] = pd.to_numeric(df["hourlyrate"], errors='coerce')
+Propuesta de mejora:
+- Redondear a 2 decimales (estándar para monedas):       
+``df['hourlyrate'] = df['hourlyrate'].round(2)``
+- Convertir a numérico (los errores se vuelven NaN)     
+``df["hourlyrate"] = pd.to_numeric(df["hourlyrate"], errors='coerce')``
+- ¿Compararlo con el resto de valores salariales para comprobar si el punto que aparece es realmente una coma?
+#
+**jobinvolvement** dtype('int64')  
+*Nivel de compromiso del empleado en el trabajo*
 
-**jobinvolvement**
-Nivel de compromiso del empleado en el trabajo
-> Valores = array([3, 2, 4, 1])
-dtype('int64')
+       Valores = array([3, 2, 4, 1])
 
-propuesta de mejora:
-> Mantener sin cambios  
+Propuesta de mejora:        
+Mantener sin cambios. 
 
-NOTA: como next steps, poder definir y documentar explícitamente el significado de cada valor: 
-ej: 1: 'Bajo compromiso',
-    2: 'Compromiso moderado',
-    3: 'Compromiso alto',
-    4: 'Compromiso excepcional'
+O:
 
-**joblevel** MAYKA
-Nivel jerárquico del puesto del empleado
-> . Valores = array([5, 4, 3, 2, 1])
-dtype('int64')
+       NOTA: como next steps, poder definir y documentar explícitamente el significado de cada valor: 
+       ej: 1: 'Bajo compromiso',
+       2: 'Compromiso moderado',
+       3: 'Compromiso alto',
+       4: 'Compromiso excepcional'
+¿Incluimos 0 y 5?
+#
 
-propuesta de mejora:
-> . En principio nada
+**joblevel** dtype('int64')        
+*Nivel jerárquico del puesto del empleado*
+       
+       Valores = array([5, 4, 3, 2, 1])
 
-**jobrole** MAYKA
+Propuesta de mejora:        
+Sin anomalías.
+
+**jobrole** dtype('O')    
 Función o rol específico del empleado
-> . Valores = array([' resEArch DIREcToR ', ' ManAGeR ', ' ManaGER ', ...,
+
+       Valores = array([' resEArch DIREcToR ', ' ManAGeR ', ' ManaGER ', ...,
        ' sAlES ExECUTivE ', ' SaLes ExecUtIVe ',
        ' mAnUfactURInG DiRECTOr '], dtype=object)
 
-propuesta de mejora:
-> . 
-# 1. Convertir a minuscula todos los nombres
-df["jobrole"] = df["jobrole"].str.lower()
-array([' research director ', ' manager ', ' sales executive ',
+Objetos como valores con escritura irregular.
+
+Propuesta de mejora:
+- Convertir a minuscula todos los nombres        
+``df["jobrole"] = df["jobrole"].str.lower()``
+
+       Ejemplo:
+       array([' research director ', ' manager ', ' sales executive ',
        ' manufacturing director ', ' research scientist ',
        ' healthcare representative ', ' laboratory technician ',
-       ' sales representative ', ' human resources '], dtype=object)
+       ' sales representative ', ' human resources ']
+#
+**jobsatisfaction** dtype('int64')        
+*Satisfacción general en el puesto*
 
+       Valores = array([3, 4, 1, 2])
 
-**jobsatisfaction**
-Satisfacción general en el puesto
-> Valores = array([3, 4, 1, 2])
-dtype('int64')
+Propuesta de mejora:        
+Mantener sin cambios.  
 
-propuesta de mejora:
-> > Mantener sin cambios  
+O:
 
-NOTA: como next steps, poder definir y documentar explícitamente el significado de cada valor: 
-ej: 1: 'Insatisfecho',
-    2: 'Poco satisfecho',
-    3: 'Satisfecho',
-    4: 'Muy satisfecho'
+       NOTA: como next steps, poder definir y documentar explícitamente el significado de cada valor: 
+       ej: 1: 'Insatisfecho',
+       2: 'Poco satisfecho',
+       3: 'Satisfecho',
+       4: 'Muy satisfecho'
 
-**maritalstatus**
+¿Incluimos 0 y 5?
+#
+
+**maritalstatus** dtype('O')     
 Estado civil (e.g., Single, Married)
-> . Values total 1678 | Unique 5 + NaN | dtype - objects. (incluye NaN - 675 - muchos) **Null - TBD**
-NaN         675
-Married     419
-Single      343
-Divorced    194
-Marreid      36
-divorced     11
-Name: count, dtype: int64
 
-propuesta de mejora:
-> . lower() todos | replace Marrieid por Married | **Null - TBD**
-df["maritalstatus"] = df["maritalstatus"].str.lower()
-df["maritalstatus"] = df["maritalstatus"].str.replace("marreid", "married")
+       Values total 1678 | Unique 5 + NaN | dtype - objects. (incluye NaN - 675 - muchos) Null - TBD
 
-**monthlyincome**
-Ingreso mensual estimado en base al salario anual
-> . Values U1678 | Unique 493 + NaN | dtype - int. (incluye NaN - 498 - muchos) | **Null - TBD**
-muestra de valores:
-NaN          489
-2342,59$     228
-4492,84$     227
+              NaN         675
+              Married     419
+              Single      343
+              Divorced    194
+              Marreid      36
+              divorced     11
 
-propuesta de mejora:
-> . replace() , por . y quitar/replace $ con "". cambiar a numerico, float
-df["monthlyincome"] = df["monthlyincome"].str.replace("$", "", regex=False).str.replace(",", ".", regex=False) 
--->regex false - pandas puede pensar que es una funcion regex
-df["monthlyincome"] = df["monthlyincome"] = pd.to_numeric(df["monthlyincome"], errors="coerce")
---> errors="coerce" asegura que si no se cumple convierte en NaN ie. 40 esta como 'forty'
-muestra monthlyincome limpio:
-0       16280.83
-1            NaN
-2            NaN
-3       14307.50
-4       12783.92
+Propuesta de mejora:
+- lower() todos      
+´´df["maritalstatus"] = df["maritalstatus"].str.lower()´´
+- replace ``Marrieid`` por ``Married``    
+``df["maritalstatus"] = df["maritalstatus"].str.replace("marreid", "married")``
+- Null - TBD
+#
 
+**monthlyincome** dtype('O')    
+*Ingreso mensual estimado en base al salario anual*
 
-**monthlyrate**
-Tarifa mensual estimada en función de la tarifa diaria
-> . Values 1678 | Unique 673 | NaN 0 | dtype Object | 
+       Values U1678 | Unique 493 + NaN | dtype - int. (incluye NaN - 498 - muchos) | **Null - TBD**
 
-propuesta de mejora:
-> . mismo que en "monthlyincome"
-df["monthlyrate"] = df["monthlyrate"].str.replace("$", "", regex=False).str.replace(",", ".", regex=False) 
--->regex false - pandas puede pensar que es una funcion regex
-df["monthlyrate"] = df["monthlyrate"] = pd.to_numeric(df["monthlyrate"], errors="coerce")
---> errors="coerce" asegura que si no se cumple convierte en NaN ie. 40 esta como 'forty'
+              muestra de valores:
+              NaN          489
+              2342,59$     228
+              4492,84$     227
 
-**numcompaniesworked** MAYKA 2.0 - CLAUDIA combo-git
-Número de empresas previas en las que ha trabajado
-> . Valores = array([7, 0, 1, 3, 2, 4, 8, 9, 5, 6])
-dtype('int64') 
-> . Values 1678 | Unique 10 (0-9) | NaN 0 | dtype int
+Propuesta de mejora:
+- Usar ``replace()`` ``,`` por ``.`` y usar ``replace()`` ``$`` por ``""``:
+``df["monthlyincome"] = df["monthlyincome"].str.replace("$", "", regex=False).str.replace(",", ".", regex=False)``
 
-propuesta de mejora:
-> . no se. entiendo que son la cantidad de empresas donde el trabajador ha trabajado. cv - empleos en companias anteriores.
+       -->regex false - pandas puede pensar que es una funcion regex
+- Cambiar a numérico de tipo float:        
+``df["monthlyincome"] = df["monthlyincome"] = pd.to_numeric(df["monthlyincome"], errors="coerce")``
+       
+       --> errors="coerce" asegura que, si no se cumple, convierte en NaN
+       
+       ie. 40 esta como 'forty'
+              muestra monthlyincome limpio:
+              0       16280.83
+              1            NaN
+              2            NaN
+              3       14307.50
+              4       12783.92
+#
+
+**monthlyrate** dtype('O')
+*Tarifa mensual estimada en función de la tarifa diaria*
+
+       Values 1678 | Unique 673 | NaN 0 | dtype Object  
+
+Propuesta de mejora:
+- Mismo que en ``monthlyincome``   
+``df["monthlyrate"] = df["monthlyrate"].str.replace("$", "", regex=False).str.replace(",", ".", regex=False)``
+
+       -->regex false - pandas puede pensar que es una funcion regex
+- ``df["monthlyrate"] = df["monthlyrate"] = pd.to_numeric(df["monthlyrate"], errors="coerce")``
+
+       --> errors="coerce" asegura que si no se cumple convierte en NaN
+       
+       ie. 40 esta como 'forty'
+
+**numcompaniesworked** dtype('int64')     
+*Número de empresas previas en las que ha trabajado*
+
+       Valores = array([7, 0, 1, 3, 2, 4, 8, 9, 5, 6])
+
+       Values 1678 | Unique 10 (0-9) | NaN 0 | dtype int
+
+Propuesta de mejora:
+- Entiendo que son la cantidad de empresas donde el trabajador ha trabajado. cv - empleos en companias anteriores.
+- ¿Igual podemos llamarlo experiencia en diferentes empresas? ¿Score empleos previos?
   
-**over18**  MAYKA 2.0 - CLAUDIA combo-git
-Columna no definida
-> . Valores = array(['Y', nan], dtype=object)
-> . Values 1678 | dtype Object | Unique 1 | NaN 1 (938 valores NaN -- muchos, la mayoria)
-no existe valor N (No), solo Y (Yes) o NaN.
-interpreto que es muy incompleto, con 56% NaN, para darle peso en el analysis global. 
-muestra de valores y counts:
-NaN    938
-Y      740
+**over18** dtype('O')       
+*columna no definida*
 
-propuesta de mejora: 
-> . Clase: Gestion de Nulos propongo omitirlo por falta de valor/peso analytico.
-> . propongo omitirlo por falta de valor/peso analytico.
+       Valores = array(['Y', nan], dtype=object)
 
-**overtime**  MAYKA
-Indica si el empleado trabaja horas extras (Yes/No)
-> . Valores = array(['No', nan, 'Yes'], dtype=object)
+       Values 1678 | dtype Object | Unique 1 | NaN 1 (938 valores NaN -- muchos, la mayoria)
 
-propuesta de mejora: 
-> . Clase: Gestion de Nulos
+No existe valor N (No), solo Y (Yes) o NaN.
 
-**percentsalaryhike** MAYKA
-Incremento porcentual en el salario
-> . Valores = array([13, 14, 11, 19, 12, 25, 16, 17, 22, 23, 20, 15, 21, 24, 18])
-dtype('int64')
+Interpreto que es muy incompleto, con 56% NaN, para darle peso en el analysis global.
 
-propuesta de mejora: 
-> . En principio nada
+       Muestra de valores y counts:
+       NaN    938
+       Y      740
 
+Propuesta de mejora:
+- Clase: Gestion de Nulos propongo omitirlo por falta de valor/peso analytico.
+- ¿Comprobar si coinciden con los valores de la columna ``overtime``?
+#
+**overtime** dtype('O')     
+*Indica si el empleado trabaja horas extras (Yes/No)*
 
-**performancerating** MAYKA
-Evaluación de desempeño en una escala numérica 
-> .  Valores = array(['3,0', '4,0', nan], dtype=object)
+       Valores = array(['No', nan, 'Yes'], dtype=object)
 
-propuesta de mejora: 
-> .  
-# 1. Reemplazar "," por "."
-df["performancerating"] = df["performancerating"].str.replace(',', '.')
-# 2. Rellenar los vacíos con 0
-df["performancerating"] = df["performancerating"].fillna(0)
-# 3. Convertir a float
-df["performancerating"] = df["performancerating"].astype(float)
+Propuesta de mejora: 
+- Clase: Gestion de Nulos.
+- ¿Atribuir ``NaN`` como ``Desconocido`` y darle valor a la información de quien tiene un claro Yes?
 
-Quedaría: array([3., 4., 0.]) // dtype('float64')
+**percentsalaryhike** dtype('int64')      
+*Incremento porcentual en el salario*
 
+       Valores = array([13, 14, 11, 19, 12, 25, 16, 17, 22, 23, 20, 15, 21, 24, 18])
 
-**relationshipsatisfaction** PATRICIA
-Satisfacción con relaciones interpersonales en el trabajo
-> Valores = array([3, 1, 4, 2])
-dtype('int64')
+Propuesta de mejora: 
+-Mantener sin cambios.
+#
+**performancerating** dtype('O')   
+*Evaluación de desempeño en una escala numérica* 
 
-propuesta de mejora:
-> Mantener sin cambios  
+       Valores = array(['3,0', '4,0', nan], dtype=object)
 
-NOTA: como next steps, poder definir y documentar explícitamente el significado de cada valor: 
-    1: 'Insatisfecho',
-    2: 'Poco satisfecho',
-    3: 'Satisfecho',
-    4: 'Muy satisfecho'
+Propuesta de mejora:
+- Reemplazar ``,`` por ``.``:      
+``df["performancerating"] = df["performancerating"].str.replace(',', '.')``
+- Rellenar los vacíos con 0:       
+``df["performancerating"] = df["performancerating"].fillna(0)``
+- Convertir a float:        
+``df["performancerating"] = df["performancerating"].astype(float)``
 
-propuesta de mejora: 
-> . 
+       Ejemplo:
+       array([3., 4., 0.]) // dtype('float64')
+
+- Otra sugerencia: para evitar que el nuevo valor ``0`` baje la media del *performance rating*, ¿sustituir por ``Desconocido``?
 
 
-**standardhours** PATRICIA
-Clasificación de jornada (Full Time/Part Time)
-> Valores = array(['Full Time', nan, 'Part Time'], 
-dtype=object)
+**relationshipsatisfaction** dtype('int64')      
+*Satisfacción con relaciones interpersonales en el trabajo*
 
-- Faltan valores: nan 
+       Valores = array([3, 1, 4, 2])
 
-propuesta de mejora: 
-> Mirar la relacion con otras columnas para asegurarnos si el nan es por falta de informacion, o por otro tipo de clasificacion de jornada (ej: 'Freelance'?, 'Otro', 'No Especificado') 
-EJ: df['standardhours'] = df['standardhours'].replace(np.nan, 'No especificado')
+Propuesta de mejora:        
+Mantener sin cambios.  
 
+O:
 
-**stockoptionlevel** MAYKA 2.0 
-Nivel de opciones sobre acciones asignadas 
-> . Valores = array([0, 1, 2, 3])
+       NOTA: como next steps, poder definir y documentar explícitamente el significado de cada valor: 
+       1: 'Insatisfecho',
+       2: 'Poco satisfecho',
+       3: 'Satisfecho',
+       4: 'Muy satisfecho'
 
-propuesta de mejora: 
-> . En principio nada
+¿Incluimos 0 y 5?
+#
 
+**standardhours** dtype('O')       
+*Clasificación de jornada (Full Time/Part Time)*
 
-**totalworkingyears** MAYKA 2.0
-Años totales de experiencia laboral 
-> . Valores = array([nan, '34,0', '22,0', '28,0', '20,0', '21,0', '33,0', '40,0',
+       Valores = array(['Full Time', nan, 'Part Time'], 
+       dtype=object)
+
+Faltan valores: ``NaN``.
+
+Propuesta de mejora:
+- Mirar la relacion con otras columnas para asegurarnos si el nulo es por falta de informacion, o por otro tipo de clasificacion de jornada (ej: 'Freelance'?, 'Otro', 'No Especificado'). EJ:    
+ ``df['standardhours'] = df['standardhours'].replace(np.nan, 'No especificado')``
+
+#
+**stockoptionlevel** dtype('int64')       
+*Nivel de opciones sobre acciones asignadas.*
+
+       Valores numéricos ([0, 1, 2, 3])
+
+Propuesta de mejora:
+Mantener sin cambios.
+#
+**totalworkingyears** dtype('O')      
+*Años totales de experiencia laboral*
+
+       Valores = array([nan, '34,0', '22,0', '28,0', '20,0', '21,0', '33,0', '40,0',
        '18,0', '25,0', '15,0', '17,0', '26,0', '16,0', '24,0', '14,0',
        '23,0', '27,0', '19,0', '11,0', '38,0', '37,0', '13,0', '12,0',
        '29,0', '10,0', '36,0', '35,0', '9,0', '31,0', '32,0', '8,0',
        '7,0', '30,0', '6,0', '5,0', '4,0', '3,0', '2,0', '1,0', '0,0'],
       dtype=object)
 
-propuesta de mejora: 
-> . 
-# 1. Reemplazar la "," por "."
-df["totalworkingyears"] = df["totalworkingyears"].str.replace(',', '.')
-# 2. posibilidad de cambiar a 0 Gestión de nulos
-df["totalworkingyears"] = df["totalworkingyears"].fillna(0)
-# 3. convertir a float
-df["totalworkingyears"] = df["totalworkingyears"].astype(float)
+Propuesta de mejora: 
+- Reemplazar ``,`` por ``.``       
+``df["totalworkingyears"] = df["totalworkingyears"].str.replace(',', '.')``
+- Posibilidad de cambiar a 0 Gestión de nulos:   
+``df["totalworkingyears"] = df["totalworkingyears"].fillna(0)``
+- Convertir a float:        
+``df["totalworkingyears"] = df["totalworkingyears"].astype(float)``
 
-Resultado: array([ 0, 34, 22, 28, 20, 21, 33, 40, 18, 25, 15, 17, 26, 16, 24, 14, 23,
-       27, 19, 11, 38, 37, 13, 12, 29, 10, 36, 35,  9, 31, 32,  8,  7, 30,
-        6,  5,  4,  3,  2,  1])
-git 
-**trainingtimeslastyear** MAYKA 2.0
-Número de sesiones de entrenamiento en el último año 
-> . array([5, 3, 2, 0, 1, 4, 6])
+                     
+       Resultado: array([ 0, 34, 22, 28, 20, 21, 33, 40, 18, 25, 15, 17, 26, 16, 24, 14, 23, 27, 19, 11, 38, 37, 13, 12, 29, 10, 36, 35,  9, 31, 32,  8,  7, 30, 6,  5,  4,  3,  2,  1])
 
-propuesta de mejora: 
-> . En principio nada 
+- Comprobar si el nulo en años de experiencia laboral es dispar con la columna ``umcompaniesworked``.
+#
+**trainingtimeslastyear** dtype('int64')  
+*Número de sesiones de entrenamiento en el último año.*
 
+       Valores numéricos ([5, 3, 2, 0, 1, 4, 6])
 
+Propuesta de mejora:        
+Mantener sin cambios.
 
+#
+**worklifebalance** dtype('O')     
+*Nivel de balance entre vida personal y laboral.*
 
-**worklifebalance**  MAYKA
-Nivel de balance entre vida personal y laboral
-> . Valores = array(['3,0', nan, '2,0', '4,0', '1,0'], dtype=object)
+       Valores = array(['3,0', nan, '2,0', '4,0', '1,0'], dtype=object)
 
-propuesta de mejora: 
-> .  
-# 1. Reemplazar la "," por "."
-df["worklifebalance"] = df["worklifebalance"].str.replace(',', '.')
-# 2. Gestión de nulos
-# 3. posibilidad de cambiar a 0 Gestión de nulos
-df["worklifebalance"] = df["worklifebalance"].fillna(0)
-# 4. convertir a float
-df["worklifebalance"] = df["worklifebalance"].astype(float)
-# 5. Ahora sí, pasar a entero sin miedo
-df["worklifebalance"] = df["worklifebalance"].astype(int)
+Propuesta de mejora:
+- Reemplazar la ``,`` por ``.``:   
+``df["worklifebalance"] = df["worklifebalance"].str.replace(',', '.')``
+- Gestión de nulos
+- Posibilidad de cambiar a 0 Gestión de nulos:   
+``df["worklifebalance"] = df["worklifebalance"].fillna(0)``
+- Convertir a float:        
+``df["worklifebalance"] = df["worklifebalance"].astype(float)``
+- Ahora sí, pasar a entero sin miedo:     
+``df["worklifebalance"] = df["worklifebalance"].astype(int)``
 
-Resultado: array([3, 0, 2, 4, 1])
+       Resultado: array([3, 0, 2, 4, 1])
 
-**yearsatcompany**  MAYKA
-Años en la empresa actual.
-> . Valores = array([20, 33, 22, 19, 21, 18, 24, 31, 26, 16, 23, 15, 17, 32, 14, 13, 25,
-       12, 11, 37, 40, 36, 27, 29, 10,  9, 30,  8,  7, 34,  6,  5,  4,  2,
-        3,  1,  0])
-dtype('int64')
+**yearsatcompany** dtype('int64')  
+*Años en la empresa actual.*
 
-propuesta de mejora:
-> . En principio nada
+       Valores = array([20, 33, 22, 19, 21, 18, 24, 31, 26, 16, 23, 15, 17, 32, 14, 13, 25, 12, 11, 37, 40, 36, 27, 29, 10,  9, 30,  8,  7, 34,  6,  5,  4,  2, 3,  1,  0])
 
+Propuesta de mejora:        
+Mantener sin cambios.
 
-**yearsincurrentrole**
-> . Valores = array([nan, '13,0', '12,0', '11,0', '7,0', '6,0', '4,0', '3,0', '2,0',
+- Sería interesante comparar los años en la empresa actual con los valores nulos en la columna ``totalworkingyears`` para comprobar qué relato/perfil nos devuelve.
+#
+**yearsincurrentrole** dtype('O')
+
+       Valores = array([nan, '13,0', '12,0', '11,0', '7,0', '6,0', '4,0', '3,0', '2,0',
        '1,0', '0,0'], dtype=object)
 
-Tipo de dato = Object
+Propuesta de mejora:
+- Reemplazar la ``,`` por ``.``:   
+``df["yearsincurrentrole"] = df["yearsincurrentrole"].str.replace(',', '.')``
+- Rellenar los vacíos con 0        
+``df["yearsincurrentrole"] = df["yearsincurrentrole"].fillna(0)``
+- Convertir a float:        
+``df["yearsincurrentrole"] = df["yearsincurrentrole"].astype(float)``
+-Ahora sí, pasar a entero sin miedo:      
+``df["yearsincurrentrole"] = df["yearsincurrentrole"].astype(int)``
 
-propuesta de mejora:
-> .  
-# 1. Reemplazar la "," por "."
-df["yearsincurrentrole"] = df["yearsincurrentrole"].str.replace(',', '.')
-# 3. Rellenar los vacíos con 0, Gestión de nulos
-df["yearsincurrentrole"] = df["yearsincurrentrole"].fillna(0)
-# 4. convertir a float
-df["yearsincurrentrole"] = df["yearsincurrentrole"].astype(float)
-# 5. Ahora sí, pasar a entero sin miedo
-df["yearsincurrentrole"] = df["yearsincurrentrole"].astype(int)
-
-Resultado: array([ 0, 13, 12, 11,  7,  6,  4,  3,  2,  1])
+       Resultado:
+       array([ 0, 13, 12, 11,  7,  6,  4,  3,  2,  1])
   
+#
+**yearssincelastpromotion** dtype('int64')
 
-**yearssincelastpromotion**
-> . Valores = [15, 11,  5,  2,  4,  7,  0,  1, 13, 14,  8, 12,  3,  6, 10,  9]
+       Valores = [15, 11,  5,  2,  4,  7,  0,  1, 13, 14,  8, 12,  3,  6, 10,  9]
 
-Tipo de dato = float
+Propuesta de mejora:        
+Mantener sin cambios.
+#
+**yearswithcurrmanager** dtype('int64')
+*Años trabajando con el mismo gerente.*
 
-propuesta de mejora:
-> . En principio nada
-
-
-**yearswithcurrmanager**
-> . Valores = [15,  9,  6,  8,  7, 11, 10, 12,  4,  0,  5, 17,  2, 14,  1, 13,  3, 16]
-
-Tipo de dato = float
-
-propuesta de mejora:
-> . En principio nada
+       Valores = [15,  9,  6,  8,  7, 11, 10, 12,  4,  0,  5, 17,  2, 14,  1, 13,  3, 16]
 
 
-**sameasmonthlyincome**  
-> . Valores = Datos tipo objeto, con simbolo en "Español" para los decimales y además incluido en el dato el simbolo $
+Propuesta de mejora:        
+Mantener sin cambios.
+#
+**sameasmonthlyincome**     
+*columna sin especificar*
 
-propuesta de mejora:
-> .  Cambiar la "," por ".", eliminar también el simbolo "$". Por último cambiar el dato str en float
+       Valores = Datos tipo objeto, con simbolo en "Español" para los decimales y además incluido en el dato el simbolo $
 
-df["sameasmonthlyincome"] = df["sameasmonthlyincome"].str.replace(',', '.')
-df["sameasmonthlyincome"] = df["sameasmonthlyincome"].str.replace('$', '', regex=False)
-df["sameasmonthlyincome"] = df["sameasmonthlyincome"].astype(float)
+Propuesta de mejora:
+- Cambiar la ``,`` por ``.``, eliminar también el simbolo ``$``. Por último cambiar el valor objeto a float
 
+``df["sameasmonthlyincome"] = df["sameasmonthlyincome"].str.replace(',', '.')``
 
+``df["sameasmonthlyincome"] = df["sameasmonthlyincome"].str.replace('$', '', regex=False)``
 
-**datebirth**  
-Año de nacimiento del empleado
-> . Valores = [1972, 1971, 1981, 1976, 1977, 1975, 1964, 1982, 1967, 1985, 1968,
-       1983, 1965, 1988, 1978, 1990, 1987, 1989, 1970, 1980, 1963, 1991,
-       1986, 1974, 1984, 1973, 1979, 1993, 1994, 1992, 1969, 1966, 1996,
-       1995, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005]
+``df["sameasmonthlyincome"] = df["sameasmonthlyincome"].astype(float)``
 
-Tipo de dato = float
+- ¿Comprobar si esta columna es una copia redundante de ``monthlyincome``?
 
-propuesta de mejora:
-> . En principio nada
+**datebirth** dtype('int64')
+*Año de nacimiento del empleado*
 
+       Valores = [1972, 1971, 1981, 1976, 1977, 1975, 1964, 1982, 1967, 1985, 1968, 1983, 1965, 1988, 1978, 1990, 1987, 1989, 1970, 1980, 1963, 1991, 1986, 1974, 1984, 1973, 1979, 1993, 1994, 1992, 1969, 1966, 1996, 1995, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005]
 
-**salary**  
-Salario anual calculado para el empleado
-> . Valores = Datos tipo objeto, con simbolo en "Español" para los decimales y además incluido en el dato el simbolo $
+Propuesta de mejora:
+Mantener sin cambios.
 
-propuesta de mejora:
-> . Cambiar la "," por ".", eliminar también el simbolo "$". Por último cambiar el dato str en float
+#
+**salary** dtype('O')       
+*Salario anual calculado para el empleado*
 
-df["salary"] = df["salary"].str.replace(',', '.')
-df["salary"] = df["salary"].str.replace('$', '', regex=False)
-df["salary"] = df["salary"].astype(float)
+       Valores = Datos tipo objeto, con simbolo en "Español" para los decimales y además incluido en el dato el simbolo $
 
+Propuesta de mejora:
+- Cambiar la ``,`` por ``.``, eliminar también el simbolo ``$``. Por último cambiar el valor tipo objeto a float
 
-**roledepartament**  
-Combinación de rol y departamento.
-> . Valores = array([nan, ' manager  -  research & development ',
+``df["salary"] = df["salary"].str.replace(',', '.')``
+
+``df["salary"] = df["salary"].str.replace('$', '', regex=False)``
+
+``df["salary"] = df["salary"].astype(float)``
+
+#
+**roledepartament** dtype('O')     
+``Combinación de rol y departamento.``
+
+       Valores = array([nan, ' manager  -  research & development ',
        ' healthcare representative  -  research & development ',
        ' sales executive  -  sales ',
        ' laboratory technician  -  research & development ',
@@ -577,11 +621,11 @@ Combinación de rol y departamento.
        ' sales representative  -  sales ',
        ' manager  -  human resources '], dtype=object)
 
-propuesta de mejora:
+Propuesta de mejora:
 
-> . df["roledepartament"] = df["roledepartament"].str.lower() 
+- df["roledepartament"] = df["roledepartament"].str.lower() 
     
-    [nan, ' manager  -  research & development ',
+       [nan, ' manager  -  research & development ',
        ' healthcare representative  -  research & development ',
        ' sales executive  -  sales ',
        ' laboratory technician  -  research & development ',
@@ -592,20 +636,25 @@ propuesta de mejora:
        ' sales representative  -  sales ',
        ' manager  -  human resources ']
 
+- ¿Comprobar si esta columna es redundante o si contiene los datos que faltan en ``department`` y ``jobrole``?
+- ¿Destinarla a eliminación una vez reubicados todos los valores?
 
-**numberchildren**  
-Número de hijos del empleado
-> . Valores = [nan]
+**numberchildren** dtype('float64')
+*Número de hijos del empleado*
 
-propuesta de mejora:
-> . Posible columna a eliminar
+       Valores = [nan]
 
+Propuesta de mejora:
+- Posible columna a eliminar.
+- ¿Es información la ausencia de información al respecto?
 
-**remotework**  
-Empleado trabaja de forma remota Si/No
-> . Valores =[ 'Yes', '1', 'False', '0', 'True']
+#
+**remotework** dtype('O')   
+*Indica si el empleado trabaja de forma remota (Yes/No).*
 
-Todos son str aunque haya número de por medio. Quizás el 0 signifique Si/Yes y el 1 signifique No. También es posible que el True sea igual a Si/Yes y el False sea No
+       Valores =[ 'Yes', '1', 'False', '0', 'True']
 
-propuesta de mejora:
-> . unificar datos
+Todos son objetos aunque haya número de por medio. Quizás el 0 signifique Si/Yes y el 1 signifique No. También es posible que el True sea igual a Si/Yes y el False sea No
+
+Propuesta de mejora:
+- Unificar datos.
