@@ -69,13 +69,13 @@ El [archivo con datos crudos](Análisis_y_transformación_datos\raw_data.csv) pr
 ---
 ### RAW_DATA.CSV 
 ### age
-(dtype: int64)       
+(dtype: object)       
 *Edad del empleado*
 
-       Valores numéricos ('51', '52'...) y palabras ('fifty-five').
+       Valores object ('51', '52'...) y palabras ('fifty-five').
 
 Propuesta de mejora:
-- Homogeneizar al mismo formato numérico.
+- Homogeneizar al mismo formato numérico - float o int.
 #
 ### attrition
 (dtype: object)      
@@ -158,6 +158,7 @@ Propuesta de mejora:
 
 ---
 ### education
+LIMPIO | 
 (dtype: int64)     
 *Nivel educativo del empleado en escala numérica*
 
@@ -184,6 +185,7 @@ Propuesta de mejora:
        
 ---
 ### employeecount
+ELIMINAR |
 (dtype: int64)       
 *Valor constante de "1", indicando un solo empleado por registro*
 
@@ -201,10 +203,16 @@ Propuesta de mejora:
 
        Valores = [   1,    2,    3, ..., 1612, 1613, 1614], shape=(1614,)
 
-La columna cumple su función como identificador único y correlativo para cada empleado.
 
 Propuesta de mejora  
-Mantener sin cambios
+- Datos faltantes (trabajos temporales? interpretar)
+- Duplicados
+- Soluciones  
+ ``conteos = df["employeenumber"].value_counts()
+numeros_empleado_duplicados = conteos[conteos > 1].index.tolist()
+print(numeros_empleado_duplicados)
+len(numeros_empleado_duplicados)``
+
 
 ---
 ### environmentsatisfaction
@@ -262,6 +270,7 @@ Propuesta de mejora:
 
 ---
 ### jobinvolvement
+LIMPIO (contemplar)                                        
 (dtype: int64)       
 *Nivel de compromiso del empleado en el trabajo*
 
