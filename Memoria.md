@@ -258,7 +258,7 @@ Propuesta de mejora:
 ``df['hourlyrate'] = df['hourlyrate'].round(2)``
 - Convertir a numérico (los errores se vuelven NaN)     
 ``df["hourlyrate"] = pd.to_numeric(df["hourlyrate"], errors='coerce')``
-- ¿Compararlo con el resto de valores salariales para comprobar si el punto que aparece es realmente una coma?
+- Compararlo con el nivel del puesto.
 
 ---
 ### jobinvolvement
@@ -426,7 +426,6 @@ Interpreto que es muy incompleto, con 56% NaN, para darle peso en el analysis gl
 
 Propuesta de mejora:
 - Clase: Gestion de Nulos propongo omitirlo por falta de valor/peso analytico.
-- ¿Comprobar si coinciden con los valores de la columna [overtime](#overtime)?
 ---
 ### overtime
 (dtype: object)      
@@ -607,6 +606,7 @@ Propuesta de mejora:
 
 Propuesta de mejora:        
 Mantener sin cambios.
+
 ---
 ### yearswithcurrmanager
 (dtype: int64)       
