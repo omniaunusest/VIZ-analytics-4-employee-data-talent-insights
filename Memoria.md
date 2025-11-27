@@ -96,7 +96,7 @@ Sin Anomalías.
 Hay que investigar si el ``nan`` tiene más valores ``nan`` asociados al mismo empleado.
 
 Propuesta de mejora:        
-- Sustituir ``nan`` por ``None`` o ``null`` según queramos procesar los datos más adelante (o si hay paso a SQL).
+- Sustituir ``nan`` por ``non-travel`` 
 
 ---
 ### dailyrate
@@ -141,6 +141,8 @@ Propuesta de mejora:
 ``df['department'] = df['department'].str.strip()``
 
     ``.str.replace(r'\s+', ' ', regex=True)``
+
+- Hemos realizado comparación y llegamos a la conclusión de que sacamos el departamento en función a una palabra clave de jobrole
 
 ---
 ### distancefromhome
@@ -268,6 +270,8 @@ Propuesta de mejora:
 ``df["hourlyrate"] = pd.to_numeric(df["hourlyrate"], errors='coerce')``
 - Compararlo con el nivel del puesto.
 
+- Relleno de nulos hourlyrate = 'dailyrate /8'
+
 ---
 ### jobinvolvement
 LIMPIO (contemplar)                                        
@@ -387,6 +391,9 @@ Propuesta de mejora:
               2            NaN
               3       14307.50
               4       12783.92
+
+- Relleno de nulos = 'monthlyincome = salary / 12'
+
 ---
 ### monthlyrate
 (dtype: object)      
@@ -546,7 +553,7 @@ Propuesta de mejora:
                      
        Resultado: array([ 0, 34, 22, 28, 20, 21, 33, 40, 18, 25, 15, 17, 26, 16, 24, 14, 23, 27, 19, 11, 38, 37, 13, 12, 29, 10, 36, 35,  9, 31, 32,  8,  7, 30, 6,  5,  4,  3,  2,  1])
 
-- Comprobar si el nulo en años de experiencia laboral es dispar con la columna [numcompaniesworked](#numcompaniesworked).
+- Comprobar si el nulo en años de experiencia laboral es dispar con la columna [numcompaniesworked](#numcompaniesworked). Está comprobado y la conclusión es: dejar los valores nulos y los datos float
 ---
 ### trainingtimeslastyear
 (dtype: int64)       
@@ -670,6 +677,8 @@ Propuesta de mejora:
 
 ``df["salary"] = df["salary"].astype(float)``
 
+- Relleno de nulos = 'salary = monthlyincome * 12'
+
 ---
 ### roledepartament
 (dtype: object)      
@@ -703,6 +712,7 @@ Propuesta de mejora:
 
 - ¿Comprobar si esta columna es redundante o si contiene los datos que faltan en [department](#department) y [jobrole](#jobrole)?
 - ¿Destinarla a eliminación una vez reubicados todos los valores?
+- Hemos realizado comparación y determinamos que la columna debe ser eliminada.
 ---
 ### numberchildren
 (dtype: float64)     
