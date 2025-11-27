@@ -570,6 +570,7 @@ Mantener sin cambios.
 *Nivel de balance entre vida personal y laboral.*
 
        Valores = array(['3,0', nan, '2,0', '4,0', '1,0'], dtype=object)
+Hay 114 nulos
 
 Propuesta de mejora:
 - Reemplazar la ``,`` por ``.``:   
@@ -600,6 +601,7 @@ Mantener sin cambios.
 
        Valores = array([nan, '13,0', '12,0', '11,0', '7,0', '6,0', '4,0', '3,0', '2,0',
        '1,0', '0,0'], dtype=object)
+Hay 1643 nulos
 
 Propuesta de mejora:
 - Reemplazar la ``,`` por ``.``:   
