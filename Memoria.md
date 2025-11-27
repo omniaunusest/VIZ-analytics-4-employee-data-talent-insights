@@ -19,7 +19,7 @@ El [archivo con datos crudos](Análisis_y_transformación_datos\raw_data.csv) pr
 - [Hourly Rate](#hourlyrate) NaN por calcular
 - [Job Involvement](#jobinvolvement) Por reflexionar (formato)
 - [Job Level](#joblevel) ✔
-- [Job Role](#jobrole) NaN, espaciados
+- [Job Role](#jobrole) NaN
 - [Job Satisfaction](#jobsatisfaction) Por reflexionar (formato)
 - [Marital Status](#maritalstatus) NaN
 - [Monthly Income](#monthlyincome) NaN por calcular
