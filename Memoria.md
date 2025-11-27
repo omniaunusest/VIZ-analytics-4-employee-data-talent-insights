@@ -4,12 +4,12 @@
 
 El [archivo con datos crudos](Análisis_y_transformación_datos\raw_data.csv) proporcionado para el proyecto presenta las siguientes columnas con datos:
 
-- [Age](#age) Formato
+- [Age](#age) F
 - [Attrition](#attrition) ✔
 - [Business Travel](#businesstravel) ✔
 - [Daily Rate](#dailyrate) ✔
 - [Department](#department) NaN
-- [Distance From Home](#distancefromhome) Corregir distancias negativas
+- [Distance From Home](#distancefromhome) F
 - [Education](#education) ✔
 - [Education Field](#educationfield) NaN
 - [Employee Count](#employeecount) ♻
@@ -44,7 +44,7 @@ El [archivo con datos crudos](Análisis_y_transformación_datos\raw_data.csv) pr
 - [Salary](#salary) NaN por calcular
 - [Role Department](#roledepartament) ♻
 - [Number of Children](#numberchildren) ♻
-- [Remote Work](#remotework) Unificar
+- [Remote Work](#remotework) F
 
 ---
 
