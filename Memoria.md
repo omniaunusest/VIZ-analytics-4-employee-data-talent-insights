@@ -12,10 +12,10 @@ El [archivo con datos crudos](Análisis_y_transformación_datos\raw_data.csv) pr
 - [Distance From Home](#distancefromhome) F
 - [Education](#education) ✔
 - [Education Field](#educationfield) NaN
-- [Employee Count](#employeecount) ♻
-- [Employee Number](#employeenumber) Duplicados
+- [Employee Count](#employeecount) <font color="green">♻</font>
+- [Employee Number](#employeenumber) <font color="red">☎</font> Duplicados
 - [Environment Satisfaction](#environmentsatisfaction) Por reflexionar (formato)
-- [Gender](#gender) Por definir
+- [Gender](#gender) <font color="red">☎</font> Por definir
 - [Hourly Rate](#hourlyrate) NaN por calcular
 - [Job Involvement](#jobinvolvement) Por reflexionar (formato)
 - [Job Level](#joblevel) ✔
@@ -25,8 +25,8 @@ El [archivo con datos crudos](Análisis_y_transformación_datos\raw_data.csv) pr
 - [Monthly Income](#monthlyincome) NaN por calcular
 - [Monthly Rate](#monthlyrate) Nan por calcular
 - [Number of Companies Worked](#numcompaniesworked) ✔
-- [Over 18](#over18) NaN
-- [Overtime](#overtime) NaN
+- [Over 18](#over18) <font color="red">☎</font> NaN
+- [Overtime](#overtime) <font color="red">☎</font> NaN
 - [Percent Salary Hike](#percentsalaryhike) ✔
 - [Performance Rating](#performancerating) NaN
 - [Relationship Satisfaction](#relationshipsatisfaction) A reflexionar
@@ -39,11 +39,11 @@ El [archivo con datos crudos](Análisis_y_transformación_datos\raw_data.csv) pr
 - [Years in Current Role](#yearsincurrentrole) NaN
 - [Years Since Last Promotion](#yearssincelastpromotion) ✔
 - [Years with Current Manager](#yearswithcurrmanager) ✔
-- [Same as Monthly Income](#sameasmonthlyincome) ♻
+- [Same as Monthly Income](#sameasmonthlyincome) <font color="green">♻</font>
 - [Date of Birth](#datebirth) ✔
 - [Salary](#salary) NaN por calcular
-- [Role Department](#roledepartament) ♻
-- [Number of Children](#numberchildren) ♻
+- [Role Department](#roledepartament) <font color="green">♻</font>
+- [Number of Children](#numberchildren) <font color="green">♻</font>
 - [Remote Work](#remotework) F
 
 ---
