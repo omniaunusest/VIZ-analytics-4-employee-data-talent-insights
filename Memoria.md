@@ -1,8 +1,8 @@
-# Memoria Proyecto ABC Corporation
+# Memoria de Proyecto ABC Corporation: Gestión del Talento
 
 ### Conclusiones del Análisis Exploratorio de Datos (EDA)
 
-El [archivo con datos crudos](Análisis_y_transformación_datos\raw_data.csv) proporcionado para el proyecto presenta las siguientes columnas con datos:
+Los [datos proporcionados ](Análisis_y_transformación_datos\raw_data.csv) para el proyecto de análisis presenta índices como columnas:
 
 - [Age](#age) F
 - [Attrition](#attrition) ✔
@@ -13,9 +13,9 @@ El [archivo con datos crudos](Análisis_y_transformación_datos\raw_data.csv) pr
 - [Education](#education) ✔
 - [Education Field](#educationfield) NaN
 - [Employee Count](#employeecount) <font color="green">♻</font>
-- [Employee Number](#employeenumber) <font color="red">☎</font> Duplicados
+- [Employee Number](#employeenumber) ✔
 - [Environment Satisfaction](#environmentsatisfaction) Por reflexionar (formato)
-- [Gender](#gender) <font color="red">☎</font> Por definir
+- [Gender](#gender)
 - [Hourly Rate](#hourlyrate) NaN por calcular
 - [Job Involvement](#jobinvolvement) Por reflexionar (formato)
 - [Job Level](#joblevel) ✔
@@ -25,12 +25,12 @@ El [archivo con datos crudos](Análisis_y_transformación_datos\raw_data.csv) pr
 - [Monthly Income](#monthlyincome) NaN por calcular
 - [Monthly Rate](#monthlyrate) Nan por calcular
 - [Number of Companies Worked](#numcompaniesworked) ✔
-- [Over 18](#over18) <font color="red">☎</font> NaN
-- [Overtime](#overtime) <font color="red">☎</font> NaN
+- [Over 18](#over18) <font color="green">♻</font>
+- [Overtime](#overtime) NaN
 - [Percent Salary Hike](#percentsalaryhike) ✔
 - [Performance Rating](#performancerating) NaN
 - [Relationship Satisfaction](#relationshipsatisfaction) A reflexionar
-- [Standard Hours](#standardhours) NaN
+- [Standard Hours](#standardhours) ✔
 - [Stock Option Level](#stockoptionlevel) ✔
 - [Total Working Years](#totalworkingyears)
 - [Training Times Last Year](#trainingtimeslastyear) ✔
@@ -48,23 +48,20 @@ El [archivo con datos crudos](Análisis_y_transformación_datos\raw_data.csv) pr
 
 ---
 
-### En las que se observan los siguientes patrones y características:
+### En dicho dataset se observan los siguientes patrones y características globales:
 
-#### Patrones globales:
-
-- Valores numericos junto al símbolo '$'
-
-  ``.str.replace()`` ("," por ".") y $ por ' ' 
-
-  Ejemplo de solución para estandarizar los valores numéricos que lo requieran:
-
-  ``.to_numeric()`` - para convertir de objeto a int/float     
-  ``.round()`` - redondear a entero o a dos decimales   
-
-  ¿Añadir $ con metodos que desconocemos ahora que no afectan dtype int/float?
-
-- Valores objeto     
-``.lower()`` - todo
+- Datos personales anonimizados sobre empleados (edad, rango, departamento, género, tipo de contrato...), con presencia de valores nulos.
+- Escalas de valoración (ambiente laboral, satisfacción con el trabajo) sin estandarizar (0-5, 0-50).
+- Valores numericos junto a símbolos de divisa: ``$``.
+- Presencia de ``,`` en valores numéricos que dificultan el procesamiento de los datos, en lugar de ``.``.
+- Valores objeto con entradas de escritura irregular y valores que se agrupan debidamente por errores ortográficos.
+- Valores numéricos en formato negativo para expresar distancias.
+- Columnas duplicadas (1)
+- Columnas que contienen únicamente valores nulos (1)
+- Filas con valores duplicados en toda su serie de columnas.
+- Valores nulos en columnas atribuidas a conceptos salariales. Su distribución admite el cálculo del valor faltante relacionando las cantidades presentes en las otras columnas.
+- 
+- 
 
 ---
 
