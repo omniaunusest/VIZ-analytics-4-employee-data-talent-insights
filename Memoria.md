@@ -77,51 +77,54 @@ nulos para apuntar en otro lado: pero su distribución admite el cálculo del va
 
 ### age
 
-(dtype: object)
-*Edad del empleado*
-
-       Valores object ('51', '52'...) y palabras ('fifty-five').
-
-Propuesta de mejora:
-
-- Homogeneizar al mismo formato numérico - float o int.
+| Tipo | Indica Edad del empleado|
+| ----------- | ----------- |
+| dtype: object | Valores object ('51', '52'...) y ('fifty-five'). |
 
 ---
+**Propuesta de mejora:**
+
+       Homogeneizar al mismo formato numérico, float o int.
+
+---
+#
 
 ### attrition
 
-(dtype: object)      
-*Indica si el empleado dejó la empresa (Yes/No)*
-
-       Objetos: Yes/No. Sin nulos.
-
-Sin Anomalías.
-
+| Tipo | Indica si el empleado dejó la empresa (Yes/No) |
+| ----------- | ----------- |
+| dtype: object | Objetos: Yes/No.<br><br>Sin nulos.|
 ---
+
+Sin anomalías. Mantener sin cambios.
 
 ### businesstravel
 
-(dtype: object)
-*Frecuencia de viajes*
+|  Tipo  |   Indica Frecuencia de viajes   |
+| ----------- | ----------- |
+| dtype: object | NaN 47.74<br><br>travel_rarely   36.71<br><br>travel_frequently    10.01<br><br>non-travel   5.54|
+---
 
-       Valores nulos (2) y objetos: ('nan'), 'travel_rarely', 'travel_frequently', 'non-travel'.
+**Nota:**     
+Comprobar si el ``NaN`` tiene más valores ``NaN`` asociados al mismo empleado.
 
-Hay que investigar si el ``nan`` tiene más valores ``nan`` asociados al mismo empleado.
+**Propuesta de mejora:**
 
-Propuesta de mejora:
+       Sustituir NaN por non-travel, según la información proporcionada por el PO.
 
-- Sustituir ``NaN`` por ``non-travel``.
+**Propuesta ejecutada:**
 
-Propuesta ejecutada:
-
-- Se ha sustituido (2) valores ``NaN`` por ``non-travel``.
+- Se ha sustituido (**2**) valores ``NaN`` por ``non-travel``.
 
 ---
 
 ### dailyrate
 
-(dtype: int64)
-*Tarifa diaria estimada para clientes, calculada en base al salario*
+
+|    Tipo  |   Tarifa diaria estimada para clientes, calculada en base al salario   |
+| ----------- | ----------- |
+| dtype: int64 | 556.256661     19.43<br><br>290.035510     18.36<br><br>1032.487286     8.94<br><br>1582.771346     3.28<br><br>1973.984127     2.26<br><br>(...)<br><br>531.452381      0.06<br><br>295.388889      0.06<br><br>294.873016      0.06<br><br>116.484127      0.06|
+---
 
        Valores únicos (673) con decimales largos y variados.
 
