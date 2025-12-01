@@ -64,12 +64,12 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 
 |       Tipo | Descripción |
 | ----------- | ----------- |
-| Generales     | Datos personales anonimizados sobre empleados (edad, rango, departamento, género, tipo de contrato...), con presencia de valores nulos.<br><br> Escalas de valoración (ambiente laboral, satisfacción con el trabajo) sin estandarizar (0-5, 0-50).<br><br> Columnas duplicadas (1).<br><br> Filas con valores duplicados en toda su serie de columnas.|
-| Valores nulos   | Distribución dispersa de valores nulos en general.<br><br> Columnas que contienen únicamente valores nulos (1).<br><br> Valores nulos en columnas atribuidas a conceptos salariales.|
+| Generales     | Datos personales anonimizados sobre empleados (edad, rango, departamento, género, tipo de contrato...), con presencia de valores nulos.<br><br> Escalas de valoración (ambiente laboral, satisfacción con el trabajo) sin estandarizar (0-5, 0-50).<br><br> Columnas duplicadas (**1**).<br><br> Filas con valores duplicados en toda su serie de columnas.|
+| Valores nulos   | Distribución dispersa de valores nulos en general.<br><br> Columnas que contienen únicamente valores nulos (**1**).<br><br> Valores nulos en columnas atribuidas a conceptos salariales.|
 Valores objeto | Entradas de escritura irregular (alternan aleatoriamente mayúsculas y minúsculas)<br><br> Valores que se agrupan indebidamente por errores ortográficos.<br><br> Espaciado extra|
 Valores numéricos | Valores numericos relativos a información salarial junto a símbolos de divisa: ``$``, que impide realizar cálculos con ellos.<br><br> Presentan ``,`` en su formato, que dificulta el procesamiento de los datos, en lugar de ``.``.<br><br> Formato negativo para expresar distancias.
 
-nulos para apuntar en otro lado: pero su distribución admite el cálculo del valor faltante relacionando las cantidades presentes en las otras columnas.
+Nulos para apuntar en otro lado: pero su distribución admite el cálculo del valor faltante relacionando las cantidades presentes en las otras columnas.
 
 ---
 
@@ -77,27 +77,25 @@ nulos para apuntar en otro lado: pero su distribución admite el cálculo del va
 
 ### age
 
-(dtype: object)
-*Edad del empleado*
+| Tipo | Indica Edad del empleado|
+| ----------- | ----------- |
+| dtype: object | Valores object ('51', '52'...) y ('fifty-five'). |
 
-       Valores object ('51', '52'...) y palabras ('fifty-five').
+---
+**Propuesta de mejora:**
 
-Propuesta de mejora:
-
-- Homogeneizar al mismo formato numérico - float o int.
+       Homogeneizar al mismo formato numérico, float o int.
 
 ---
 
 ### attrition
 
-(dtype: object)      
-*Indica si el empleado dejó la empresa (Yes/No)*
-
-       Objetos: Yes/No. Sin nulos.
-
-Sin Anomalías.
-
+| Tipo | Indica si el empleado dejó la empresa (Yes/No) |
+| ----------- | ----------- |
+| dtype: object | Objetos: Yes/No.<br><br>Sin nulos.|
 ---
+
+Sin anomalías. Mantener sin cambios.
 
 ### businesstravel
 
