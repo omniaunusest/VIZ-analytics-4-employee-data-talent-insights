@@ -1,8 +1,20 @@
 # Memoria de Proyecto ABC Corporation: Gestión del Talento
 
-### Conclusiones del Análisis Exploratorio de Datos (EDA)
+       . breve descripción
 
-Los [datos proporcionados ](Análisis_y_transformación_datos\raw_data.csv) para el proyecto de análisis presenta índices como columnas:
+### Índice
+
+- [1. Estructura/Etiquetas](#1-estructura-y-etiquetas)
+
+- [2. Patrones generales](#2-patrones)
+
+- [3. Análisis Exploratorio de Datos (EDA)](#3-análisis-exploratorio-de-datos-eda)
+
+- [4. Cambios ejecutados](#cambios-ejecutados)
+
+## 1. Estructura y etiquetas
+
+Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para el proyecto de análisis presenta índices como columnas:
 
 - [Age](#age) F
 - [Attrition](#attrition) ✔
@@ -48,28 +60,24 @@ Los [datos proporcionados ](Análisis_y_transformación_datos\raw_data.csv) para
 
 ---
 
-### En dicho dataset se observan los siguientes patrones y características globales:
+## 2. Patrones
 
-- Datos personales anonimizados sobre empleados (edad, rango, departamento, género, tipo de contrato...), con presencia de valores nulos.
-- Escalas de valoración (ambiente laboral, satisfacción con el trabajo) sin estandarizar (0-5, 0-50).
-- Valores numericos junto a símbolos de divisa: ``$``.
-- Presencia de ``,`` en valores numéricos que dificultan el procesamiento de los datos, en lugar de ``.``.
-- Valores objeto con entradas de escritura irregular y valores que se agrupan debidamente por errores ortográficos.
-- Valores numéricos en formato negativo para expresar distancias.
-- Columnas duplicadas (1)
-- Columnas que contienen únicamente valores nulos (1)
-- Filas con valores duplicados en toda su serie de columnas.
-- Valores nulos en columnas atribuidas a conceptos salariales. Su distribución admite el cálculo del valor faltante relacionando las cantidades presentes en las otras columnas.
-- 
-- 
+|       Tipo | Descripción |
+| ----------- | ----------- |
+| Generales     | Datos personales anonimizados sobre empleados (edad, rango, departamento, género, tipo de contrato...), con presencia de valores nulos.<br><br> Escalas de valoración (ambiente laboral, satisfacción con el trabajo) sin estandarizar (0-5, 0-50).<br><br> Columnas duplicadas (1).<br><br> Filas con valores duplicados en toda su serie de columnas.|
+| Valores nulos   | Distribución dispersa de valores nulos en general.<br><br> Columnas que contienen únicamente valores nulos (1).<br><br> Valores nulos en columnas atribuidas a conceptos salariales.|
+Valores objeto | Entradas de escritura irregular (alternan aleatoriamente mayúsculas y minúsculas)<br><br> Valores que se agrupan indebidamente por errores ortográficos.<br><br> Espaciado extra|
+Valores numéricos | Valores numericos relativos a información salarial junto a símbolos de divisa: ``$``, que impide realizar cálculos con ellos.<br><br> Presentan ``,`` en su formato, que dificulta el procesamiento de los datos, en lugar de ``.``.<br><br> Formato negativo para expresar distancias.
+
+nulos para apuntar en otro lado: pero su distribución admite el cálculo del valor faltante relacionando las cantidades presentes en las otras columnas.
 
 ---
 
-### RAW_DATA.CSV 
+## 3. Análisis Exploratorio de Datos (EDA)
 
 ### age
 
-(dtype: object)       
+(dtype: object)
 *Edad del empleado*
 
        Valores object ('51', '52'...) y palabras ('fifty-five').
@@ -93,7 +101,7 @@ Sin Anomalías.
 
 ### businesstravel
 
-(dtype: object)      
+(dtype: object)
 *Frecuencia de viajes*
 
        Valores nulos (2) y objetos: ('nan'), 'travel_rarely', 'travel_frequently', 'non-travel'.
@@ -112,7 +120,7 @@ Propuesta ejecutada:
 
 ### dailyrate
 
-(dtype: int64)       
+(dtype: int64)
 *Tarifa diaria estimada para clientes, calculada en base al salario*
 
        Valores únicos (673) con decimales largos y variados.
@@ -132,7 +140,7 @@ Propuesta ejecutada:
 
 ### department
 
-(dtype: object)   
+(dtype: object)
 *Departamento en el que trabaja el empleado*
 
        Valores nulos y objetos: 'nan', ' Research & Development ', ' Sales ', ' Human Resources '
@@ -145,7 +153,7 @@ Propuesta ejecutada:
 
 Propuesta de mejora:
 
-- Convertir a minuscula todos los nombres        
+- Convertir a minuscula todos los nombres
 ``df["department"] = df["department"].str.lower()``
 
        Ejemplo:
@@ -156,7 +164,7 @@ Propuesta de mejora:
 
 referencia: columna [roledepartament](#roledepartment)
 
-- Sustituir espacios innecesarios al inicio, final y entre las palabras del valor (``' Human Resources '``) por valores estandarizados y sin espacios innecesarios:         
+- Sustituir espacios innecesarios al inicio, final y entre las palabras del valor (``' Human Resources '``) por valores estandarizados y sin espacios innecesarios:
 ``df['department'] = df['department'].str.strip()``
 
     ``.str.replace(r'\s+', ' ', regex=True)``
@@ -172,16 +180,16 @@ Propuesta ejecutada:
 
 ### distancefromhome
 
-(dtype: int64)       
+(dtype: int64)
 *Distancia en millas o kilómetros desde el hogar al trabajo*
-       
+
        Valores numéricos positivos, negativos y espaciados extra entre caracteres.
        
         ([  6,   1,   4,   2,   3,  22,  25,   9,   7,  23,  10,  12,  14, -13,  15,   8, -42,  28, -37,   5,  16, -35, 26, -26,  24,  29, -25,  17,  21, -18, -10, -30, -27, 20, -31, -29 -39,  18, -21, -15,  11,  13, -14,  19, -33 -34, -46, -36, -19,  27, -12, -23, -45, -28, -47, -32, -24, -16, -22, -41, -49, -11, -48, -38, -20, -17, -43, -40, -44])
 
 Propuesta de mejora:
 
-- Convertimos en absolutos para eliminar el negativo    
+- Convertimos en absolutos para eliminar el negativo
 ``df["distancefromhome"] = df["distancefromhome"].abs()``
 
 Propuesta ejecutada:
@@ -192,7 +200,7 @@ Propuesta ejecutada:
 
 ### education
 
-(dtype: int64)     
+(dtype: int64)
 *Nivel educativo del empleado en escala numérica*
 
        Valores numéricos: ([3, 4, 2, 1, 5])
@@ -203,7 +211,7 @@ Sin anomalías.
 
 ### educationfield
 
-(dtype: object)      
+(dtype: object)
 *Campo de estudio académico del empleado*
 
        Valores nulos y objetos: 'Life Sciences', 'Technical Degree', 'Medical', 'Other',
@@ -212,7 +220,7 @@ Sin anomalías.
 Propuesta de mejora:
 
 - Misma propuesta para los nulos que para la columna [department](#department).
-- Convertir a minuscula todos los nombres        
+- Convertir a minuscula todos los nombres
 ``df["educationfield"] = df["educationfield"].str.lower()``
 
        Ejemplo
@@ -227,7 +235,7 @@ Propuestas ejecutadas:
 
 ### employeecount
 
-(dtype: int64)       
+(dtype: int64)
 *Valor constante de "1", indicando un solo empleado por registro*
 
        Valor = [1]
@@ -247,11 +255,10 @@ Propuestas ejecutadas:
 
 ### employeenumber
 
-(dtype: int64)       
+(dtype: int64)
 *Número de identificación del empleado*
 
        Valores = [   1,    2,    3, ..., 1612, 1613, 1614], shape=(1614,)
-
 
 Propuesta de mejora:
 
@@ -271,7 +278,7 @@ Propuestas ejecutadas:
 
 ### environmentsatisfaction
 
-(dtype: int64)   
+(dtype: int64)
 *Nivel de satisfacción con el ambiente laboral*
 
        Valores = ([ 1,  3,  4,  2, 42, 37, 35, 25, 27, 31, 39, 21, 15, 14, 33, 19, 12, 13, 28, 47, 36, 29, 24, 46, 16, 22, 41, 49, 11, 48, 18, 10, 45, 38, 17, 20, 26, 43])
@@ -285,9 +292,9 @@ Propuesta de mejora:
 
 ### gender
 
-(dtype: int64)       
+(dtype: int64)
 *Género del empleado*
-       
+
        Valores = array([0, 1])
 
 **No** está documentado qué significa cada valor (ej: 0 = Femenino, 1 = Masculino)
@@ -312,7 +319,7 @@ Propuestas ejecutadas:
 
 (dtype: float64)
 *Tarifa por hora calculada*
-       
+
        Valores nulos y decimales.
 
         array([nan,  69.53208262, 172.84325397, 216.04761905,
@@ -328,9 +335,9 @@ Los valores tienen hasta 10 decimales (ej: 69.53208262).
 
 Propuesta de mejora:
 
-- Redondear a 2 decimales (estándar para monedas):       
+- Redondear a 2 decimales (estándar para monedas):
 ``df['hourlyrate'] = df['hourlyrate'].round(2)``
-- Convertir a numérico (los errores se vuelven NaN)     
+- Convertir a numérico (los errores se vuelven NaN)
 ``df["hourlyrate"] = pd.to_numeric(df["hourlyrate"], errors='coerce')``
 - Compararlo con el nivel del puesto.
 - Inferior valor de nulos calculando el ``hourlyrate`` = '``dailyrate`` /8'.
@@ -339,7 +346,7 @@ Propuesta de mejora:
 
 ### jobinvolvement
 
-(dtype: int64)       
+(dtype: int64)
 *Nivel de compromiso del empleado en el trabajo*
 
        Valores = array([3, 2, 4, 1])
@@ -362,9 +369,9 @@ Podemos dejarlo perfectamente como está e incluir un GLOSARIO en el que se indi
 
 ### joblevel
 
-(dtype: int64)       
+(dtype: int64)
 *Nivel jerárquico del puesto del empleado*
-       
+
        Valores = array([5, 4, 3, 2, 1])
 
 Sin anomalías.
@@ -375,7 +382,7 @@ Sin anomalías.
 
 ### jobrole
 
-(dtype: object)      
+(dtype: object)
 Función o rol específico del empleado
 
        Valores = array([' resEArch DIREcToR ', ' ManAGeR ', ' ManaGER ', ...,
@@ -386,7 +393,7 @@ Objetos como valores con escritura irregular.
 
 Propuesta de mejora:
 
-- Convertir a minuscula todos los nombres        
+- Convertir a minuscula todos los nombres
 ``df["jobrole"] = df["jobrole"].str.lower()``
 
        Ejemplo:
@@ -406,7 +413,7 @@ Propuestas ejecutadas:
 
 ### jobsatisfaction
 
-(dtype: int64)       
+(dtype: int64)
 *Satisfacción general en el puesto*
 
        Valores = array([3, 4, 1, 2])
@@ -429,7 +436,7 @@ Podemos dejarlo perfectamente como está e incluir un GLOSARIO en el que se indi
 
 ### maritalstatus
 
-(dtype: object)      
+(dtype: object)
 *Estado civil (e.g., Single, Married)*
 
        Values total 1678 | Unique 5 + NaN | dtype - objects. (incluye NaN - 675 - muchos) Null - TBD
@@ -442,9 +449,10 @@ Podemos dejarlo perfectamente como está e incluir un GLOSARIO en el que se indi
               divorced     11
 
 Propuesta de mejora:
-- lower() todos      
+
+- lower() todos
 ´´df["maritalstatus"] = df["maritalstatus"].str.lower()´´
-- replace ``Marrieid`` por ``Married``    
+- replace ``Marrieid`` por ``Married``
 ``df["maritalstatus"] = df["maritalstatus"].str.replace("marreid", "married")``
 - Null - TBD
 
@@ -457,7 +465,7 @@ Propuestas ejecutadas:
 
 ### monthlyincome
 
-(dtype: object)       
+(dtype: object)
 *Ingreso mensual estimado en base al salario anual*
 
        Values U1678 | Unique 493 + NaN | dtype - int. (incluye NaN - 498 - muchos) |  **Null - TBD**
@@ -468,13 +476,14 @@ Propuestas ejecutadas:
               4492,84$     227
 
 Propuesta de mejora:
+
 - Usar ``replace()`` ``,`` por ``.`` y usar ``replace()`` ``$`` por ``""``:
 ``df["monthlyincome"] = df["monthlyincome"].str.replace("$", "", regex=False).str.replace(",", ".", regex=False)``
 
        -->regex false - pandas puede pensar que es una funcion regex
-- Cambiar a numérico de tipo float:        
+- Cambiar a numérico de tipo float:
 ``df["monthlyincome"] = df["monthlyincome"] = pd.to_numeric(df["monthlyincome"], errors="coerce")``
-       
+
        --> errors="coerce" asegura que, si no se cumple, convierte en NaN
        
        ie. 40 esta como 'forty'
@@ -491,13 +500,14 @@ Propuesta de mejora:
 
 ### monthlyrate
 
-(dtype: object)      
+(dtype: object)
 *Tarifa mensual estimada en función de la tarifa diaria*
 
        Values 1678 | Unique 673 | NaN 0 | dtype Object  
 
 Propuesta de mejora:
-- Mismo que en ``monthlyincome``   
+
+- Mismo que en ``monthlyincome``
 ``df["monthlyrate"] = df["monthlyrate"].str.replace("$", "", regex=False).str.replace(",", ".", regex=False)``
 
        -->regex false - pandas puede pensar que es una funcion regex
@@ -509,7 +519,7 @@ Propuesta de mejora:
 
 ### numcompaniesworked
 
-(dtype: int64)       
+(dtype: int64)
 *Número de empresas previas en las que ha trabajado*
 
        Valores = array([7, 0, 1, 3, 2, 4, 8, 9, 5, 6])
@@ -526,7 +536,7 @@ De cara al volcado a SQL:
 
 ### over18
 
-(dtype: object)       
+(dtype: object)
 *columna no definida*
 
        Valores = array(['Y', nan], dtype=object)
@@ -551,7 +561,7 @@ Propuesta de mejora:
 
 ### overtime
 
-(dtype: object)      
+(dtype: object)
 *Indica si el empleado trabaja horas extras (Yes/No)*
 
        Valores = array(['No', nan, 'Yes'], dtype=object)
@@ -566,45 +576,47 @@ Propuesta de mejora:
 
 ### percentsalaryhike
 
-(dtype: int64)       
+(dtype: int64)
 *Incremento porcentual en el salario*
 
        Valores = array([13, 14, 11, 19, 12, 25, 16, 17, 22, 23, 20, 15, 21, 24, 18])
 
-Propuesta de mejora:        
+Propuesta de mejora:
 Mantener sin cambios.
 
 ---
 
 ### performancerating
 
-(dtype: object)      
-*Evaluación de desempeño en una escala numérica* 
+(dtype: object)
+*Evaluación de desempeño en una escala numérica*
 
        Valores = array(['3,0', '4,0', nan], dtype=object)
 
 Propuesta de mejora:
-- Reemplazar ``,`` por ``.``:      
+
+- Reemplazar ``,`` por ``.``:
 ``df["performancerating"] = df["performancerating"].str.replace(',', '.')``
-- Rellenar los vacíos con 0:       
+- Rellenar los vacíos con 0:
 ``df["performancerating"] = df["performancerating"].fillna(0)``
-- Convertir a float:        
+- Convertir a float:
 ``df["performancerating"] = df["performancerating"].astype(float)``
 
        Ejemplo:
        array([3., 4., 0.]) // dtype('float64')
 
 - Otra sugerencia: para evitar que el nuevo valor ``0`` baje la media del *performance rating*, sustituir por ``Desconocido``.
+
 ---
 
 ### relationshipsatisfaction
 
-(dtype: int64)       
+(dtype: int64)
 *Satisfacción con relaciones interpersonales en el trabajo*
 
        Valores = array([3, 1, 4, 2])
 
-Propuesta de mejora:        
+Propuesta de mejora:
 Mantener sin cambios.  
 
 O:
@@ -623,7 +635,7 @@ Podemos dejarlo perfectamente como está e incluir un GLOSARIO en el que se indi
 
 ### standardhours
 
-(dtype: object)      
+(dtype: object)
 *Clasificación de jornada (Full Time/Part Time)*
 
        Valores = array(['Full Time', nan, 'Part Time'], 
@@ -636,15 +648,16 @@ standardhours tiene 927 'part time', 400 full time y 351 nulos
 -dependiendo de lo que sea: 1)Reemplazar nulos por otra catergoría 'desconocido'; 2)Eliminar nulos
 
 Propuesta de mejora:
-- Mirar la relacion con otras columnas para asegurarnos si el nulo es por falta de informacion, o por otro tipo de clasificacion de jornada (ej: 'Freelance'?, 'Otro', 'No Especificado'). EJ:    
+
+- Mirar la relacion con otras columnas para asegurarnos si el nulo es por falta de informacion, o por otro tipo de clasificacion de jornada (ej: 'Freelance'?, 'Otro', 'No Especificado'). EJ:
  ``df['standardhours'] = df['standardhours'].replace(np.nan, 'No especificado')``
- `` df['standardhours'] = df['standardhours'].str.lower()`` # convertir todo a minúsculas para normalizar todas categorías
+ ``df['standardhours'] = df['standardhours'].str.lower()`` # convertir todo a minúsculas para normalizar todas categorías
 
 ---
 
 ### stockoptionlevel
 
-(dtype: int64)       
+(dtype: int64)
 *Nivel de opciones sobre acciones asignadas.*
 
        Valores numéricos ([0, 1, 2, 3])
@@ -656,7 +669,7 @@ Mantener sin cambios.
 
 ### totalworkingyears
 
-(dtype: object)      
+(dtype: object)
 *Años totales de experiencia laboral*
 
        Valores = array([nan, '34,0', '22,0', '28,0', '20,0', '21,0', '33,0', '40,0',
@@ -666,12 +679,13 @@ Mantener sin cambios.
        '7,0', '30,0', '6,0', '5,0', '4,0', '3,0', '2,0', '1,0', '0,0'],
       dtype=object)
 
-Propuesta de mejora: 
-- Reemplazar ``,`` por ``.``       
+Propuesta de mejora:
+
+- Reemplazar ``,`` por ``.``
 ``df["totalworkingyears"] = df["totalworkingyears"].str.replace(',', '.')``
-- Posibilidad de cambiar a 0 Gestión de nulos:   
+- Posibilidad de cambiar a 0 Gestión de nulos:
 ``df["totalworkingyears"] = df["totalworkingyears"].fillna(0)``
-- Convertir a float:        
+- Convertir a float:
 ``df["totalworkingyears"] = df["totalworkingyears"].astype(float)``
 
        Resultado: array([ 0, 34, 22, 28, 20, 21, 33, 40, 18, 25, 15, 17, 26, 16, 24, 14, 23, 27, 19, 11, 38, 37, 13, 12, 29, 10, 36, 35,  9, 31, 32,  8,  7, 30, 6,  5,  4,  3,  2,  1])
@@ -682,7 +696,7 @@ Propuesta de mejora:
 
 ### trainingtimeslastyear
 
-(dtype: int64)       
+(dtype: int64)
 *Número de sesiones de entrenamiento en el último año.*
 
        Valores numéricos ([5, 3, 2, 0, 1, 4, 6])
@@ -693,7 +707,7 @@ Sin anomalías.
 
 ### worklifebalance
 
-(dtype: object)      
+(dtype: object)
 *Nivel de balance entre vida personal y laboral.*
 
        Valores = array(['3,0', nan, '2,0', '4,0', '1,0'], dtype=object)
@@ -701,14 +715,14 @@ Hay 114 nulos
 
 Propuesta de mejora:
 
-- Reemplazar la ``,`` por ``.``:   
+- Reemplazar la ``,`` por ``.``:
 ``df["worklifebalance"] = df["worklifebalance"].str.replace(',', '.')``
 - Gestión de nulos
-- Posibilidad de cambiar a 0 Gestión de nulos:   
+- Posibilidad de cambiar a 0 Gestión de nulos:
 ``df["worklifebalance"] = df["worklifebalance"].fillna(0)``
-- Convertir a float:        
+- Convertir a float:
 ``df["worklifebalance"] = df["worklifebalance"].astype(float)``
-- Ahora sí, pasar a entero sin miedo:     
+- Ahora sí, pasar a entero sin miedo:
 ``df["worklifebalance"] = df["worklifebalance"].astype(int)``
 
        Resultado: array([3, 0, 2, 4, 1])
@@ -717,7 +731,7 @@ Propuesta de mejora:
 
 ### yearsatcompany
 
-(dtype: int64)   
+(dtype: int64)
 *Años en la empresa actual.*
 
        Valores = array([20, 33, 22, 19, 21, 18, 24, 31, 26, 16, 23, 15, 17, 32, 14, 13, 25, 12, 11, 37, 40, 36, 27, 29, 10,  9, 30,  8,  7, 34,  6,  5,  4,  2, 3,  1,  0])
@@ -725,24 +739,26 @@ Propuesta de mejora:
 Sin anomalías.
 
 - Sería interesante comparar los años en la empresa actual con los valores nulos en la columna [totalworkingyears](#numcompaniesworked) para comprobar qué relato/perfil nos devuelve.
+
 ---
 
 ### yearsincurrentrole
 
-(dtype: object)      
+(dtype: object)
 
        Valores = array([nan, '13,0', '12,0', '11,0', '7,0', '6,0', '4,0', '3,0', '2,0',
        '1,0', '0,0'], dtype=object)
 Hay 1643 nulos
 
 Propuesta de mejora:
-- Reemplazar la ``,`` por ``.``:   
+
+- Reemplazar la ``,`` por ``.``:
 ``df["yearsincurrentrole"] = df["yearsincurrentrole"].str.replace(',', '.')``
-- Rellenar los vacíos con 0        
+- Rellenar los vacíos con 0
 ``df["yearsincurrentrole"] = df["yearsincurrentrole"].fillna(0)``
-- Convertir a float:        
+- Convertir a float:
 ``df["yearsincurrentrole"] = df["yearsincurrentrole"].astype(float)``
--Ahora sí, pasar a entero sin miedo:      
+-Ahora sí, pasar a entero sin miedo:
 ``df["yearsincurrentrole"] = df["yearsincurrentrole"].astype(int)``
 
        Resultado:
@@ -752,7 +768,7 @@ Propuesta de mejora:
 
 ### yearssincelastpromotion
 
-(dtype: int64)       
+(dtype: int64)
 
        Valores = [15, 11,  5,  2,  4,  7,  0,  1, 13, 14,  8, 12,  3,  6, 10,  9]
 
@@ -762,7 +778,7 @@ Mantener sin cambios.
 
 ### yearswithcurrmanager
 
-(dtype: int64)       
+(dtype: int64)
 *Años trabajando con el mismo gerente.*
 
        Valores = [15,  9,  6,  8,  7, 11, 10, 12,  4,  0,  5, 17,  2, 14,  1, 13,  3, 16]
@@ -773,7 +789,7 @@ Mantener sin cambios.
 
 ### sameasmonthlyincome
 
-(dtype: object)     
+(dtype: object)
 *columna sin especificar*
 
        Valores = Datos tipo objeto, con simbolo en "Español" para los decimales y además incluido en el dato el simbolo $
@@ -798,7 +814,7 @@ Propuestas ejecutadas:
 
 ### datebirth
 
-(dtype: int64)       
+(dtype: int64)
 *Año de nacimiento del empleado*
 
        Valores = [1972, 1971, 1981, 1976, 1977, 1975, 1964, 1982, 1967, 1985, 1968, 1983, 1965, 1988, 1978, 1990, 1987, 1989, 1970, 1980, 1963, 1991, 1986, 1974, 1984, 1973, 1979, 1993, 1994, 1992, 1969, 1966, 1996, 1995, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005]
@@ -809,12 +825,13 @@ Sin anomalías.
 
 ### salary
 
-(dtype: object)        
+(dtype: object)
 *Salario anual calculado para el empleado*
 
        Valores = Datos tipo objeto, con simbolo en "Español" para los decimales y además incluido en el dato el simbolo $
 
 Propuesta de mejora:
+
 - Cambiar la ``,`` por ``.``, eliminar también el simbolo ``$``. Por último cambiar el valor tipo objeto a float
 
 ``df["salary"] = df["salary"].str.replace(',', '.')``
@@ -829,7 +846,7 @@ Propuesta de mejora:
 
 ### roledepartament
 
-(dtype: object)      
+(dtype: object)
 *Combinación de rol y departamento.*
 
        Valores = array([nan, ' manager  -  research & development ',
@@ -845,8 +862,8 @@ Propuesta de mejora:
 
 Propuesta de mejora:
 
-- df["roledepartament"] = df["roledepartament"].str.lower() 
-    
+- df["roledepartament"] = df["roledepartament"].str.lower()
+
        [nan, ' manager  -  research & development ',
        ' healthcare representative  -  research & development ',
        ' sales executive  -  sales ',
@@ -866,7 +883,7 @@ Propuesta de mejora:
 
 ### numberchildren
 
-(dtype: float64)     
+(dtype: float64)
 *Número de hijos del empleado*
 
        Valores = [nan]
@@ -880,7 +897,7 @@ Propuesta de mejora:
 
 ### remotework
 
-(dtype: object)      
+(dtype: object)
 *Indica si el empleado trabaja de forma remota (Yes/No).*
 
        Valores =[ 'Yes', '1', 'False', '0', 'True']
@@ -890,3 +907,7 @@ Todos son objetos aunque haya número de por medio. Quizás el 0 signifique Si/Y
 Propuesta de mejora:
 
 - Unificar datos.
+
+## 4. Cambios ejecutados
+
+       . referencias
