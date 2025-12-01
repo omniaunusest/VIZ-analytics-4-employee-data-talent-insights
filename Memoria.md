@@ -16,7 +16,7 @@
 
 Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para el proyecto de análisis presenta índices como columnas:
 
-- [Age](#age) F
+- [Age](#age) <font color="green">♻</font>
 - [Attrition](#attrition) ✔
 - [Business Travel](#businesstravel) ✔
 - [Daily Rate](#dailyrate) ✔
@@ -106,6 +106,10 @@ Sin anomalías. Mantener sin cambios.
 
 Hay que investigar si el ``nan`` tiene más valores ``nan`` asociados al mismo empleado.
 
+|  Tipo  |   Indica Frecuencia de viajes   |
+| ----------- | ----------- |
+| dtype: object | Valores nulos (2) y objetos: ('nan'), ``travel_rarely', 'travel_frequently', 'non-travel'. <br><br> Linea |
+
 Propuesta de mejora:
 
 - Sustituir ``NaN`` por ``non-travel``.
@@ -118,11 +122,13 @@ Propuesta ejecutada:
 
 ### dailyrate
 
-(dtype: int64)
-*Tarifa diaria estimada para clientes, calculada en base al salario*
+
+|    Tipo  |   Tarifa diaria estimada para clientes, calculada en base al salario   |
+| ----------- | ----------- |
+| dtype: int64 | Linea <br><br> Linea |
 
        Valores únicos (673) con decimales largos y variados.
-
+       
 Propuesta de mejora:
 
 - Usar ``round()`` para estandarizar la precisión.
