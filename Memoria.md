@@ -24,7 +24,7 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 - [Distance From Home](#distancefromhome) F
 - [Education](#education) ✔
 - [Education Field](#educationfield) NaN
-- [Employee Count](#employeecount) <font color="green">♻</font>
+- [Employee Count](#employeecount) ✔ <font color="green">♻</font>
 - [Employee Number](#employeenumber) ✔
 - [Environment Satisfaction](#environmentsatisfaction) Por reflexionar (formato)
 - [Gender](#gender)
@@ -37,7 +37,7 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 - [Monthly Income](#monthlyincome) NaN por calcular
 - [Monthly Rate](#monthlyrate) Nan por calcular
 - [Number of Companies Worked](#numcompaniesworked) ✔
-- [Over 18](#over18) <font color="green">♻</font>
+- [Over 18](#over18) ✔ <font color="green">♻</font>
 - [Overtime](#overtime) NaN
 - [Percent Salary Hike](#percentsalaryhike) ✔
 - [Performance Rating](#performancerating) NaN
@@ -48,14 +48,14 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 - [Training Times Last Year](#trainingtimeslastyear) ✔
 - [Work Life Balance](#worklifebalance) NaN
 - [Years at Company](#yearsatcompany) ✔
-- [Years in Current Role](#yearsincurrentrole) NaN
+- [Years in Current Role](#yearsincurrentrole) ✔ <font color="green">♻</font>
 - [Years Since Last Promotion](#yearssincelastpromotion) ✔
 - [Years with Current Manager](#yearswithcurrmanager) ✔
-- [Same as Monthly Income](#sameasmonthlyincome) <font color="green">♻</font>
+- [Same as Monthly Income](#sameasmonthlyincome) ✔<font color="green">♻</font>
 - [Date of Birth](#datebirth) ✔
 - [Salary](#salary) NaN por calcular
 - [Role Department](#roledepartament) <font color="green">♻</font>
-- [Number of Children](#numberchildren) <font color="green">♻</font>
+- [Number of Children](#numberchildren) ✔ <font color="green">♻</font>
 - [Remote Work](#remotework) F
 
 ---
@@ -87,6 +87,7 @@ Nulos para apuntar en otro lado: pero su distribución admite el cálculo del va
        Homogeneizar al mismo formato numérico, float o int.
 
 ---
+#
 
 ### attrition
 
@@ -99,24 +100,21 @@ Sin anomalías. Mantener sin cambios.
 
 ### businesstravel
 
-(dtype: object)
-*Frecuencia de viajes*
-
-       Valores nulos (2) y objetos: ('nan'), 'travel_rarely', 'travel_frequently', 'non-travel'.
-
-Hay que investigar si el ``nan`` tiene más valores ``nan`` asociados al mismo empleado.
-
 |  Tipo  |   Indica Frecuencia de viajes   |
 | ----------- | ----------- |
-| dtype: object | Valores nulos (2) y objetos: ('nan'), ``travel_rarely', 'travel_frequently', 'non-travel'. <br><br> Linea |
+| dtype: object | NaN 47.74<br><br>travel_rarely   36.71<br><br>travel_frequently    10.01<br><br>non-travel   5.54|
+---
 
-Propuesta de mejora:
+**Nota:**     
+Comprobar si el ``NaN`` tiene más valores ``NaN`` asociados al mismo empleado.
 
-- Sustituir ``NaN`` por ``non-travel``.
+**Propuesta de mejora:**
 
-Propuesta ejecutada:
+       Sustituir NaN por non-travel, según la información proporcionada por el PO.
 
-- Se ha sustituido (2) valores ``NaN`` por ``non-travel``.
+**Propuesta ejecutada:**
+
+- Se ha sustituido (**2**) valores ``NaN`` por ``non-travel``.
 
 ---
 
@@ -125,15 +123,16 @@ Propuesta ejecutada:
 
 |    Tipo  |   Tarifa diaria estimada para clientes, calculada en base al salario   |
 | ----------- | ----------- |
-| dtype: int64 | Linea <br><br> Linea |
+| dtype: int64 | 556.256661     19.43<br><br>290.035510     18.36<br><br>1032.487286     8.94<br><br>1582.771346     3.28<br><br>1973.984127     2.26<br><br>(...)<br><br>531.452381      0.06<br><br>295.388889      0.06<br><br>294.873016      0.06<br><br>116.484127      0.06|
+---
 
-       Valores únicos (673) con decimales largos y variados.
+673 entradas con extensión decimal variada. 
        
-Propuesta de mejora:
+**Propuesta de mejora:**
 
-- Usar ``round()`` para estandarizar la precisión.
+       - Usar round() para estandarizar la precisión.
 
-- Asegurarse de aplicar el mismo criterio a todas las columnas numéricas relativas al salario en el dataset (puntuación y redondeo).
+       - Asegurarse de aplicar el mismo criterio a todas las columnas numéricas relativas al salario en el dataset (puntuación y redondeo).
 
 Propuesta ejecutada:
 
