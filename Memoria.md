@@ -16,7 +16,7 @@
 
 Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para el proyecto de análisis presenta índices como columnas:
 
-- [Age](#age) <font color="green">♻</font>
+- [Age](#age) F
 - [Attrition](#attrition) ✔
 - [Business Travel](#businesstravel) ✔
 - [Daily Rate](#dailyrate) ✔
@@ -24,7 +24,7 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 - [Distance From Home](#distancefromhome) F
 - [Education](#education) ✔
 - [Education Field](#educationfield) NaN
-- [Employee Count](#employeecount) ✔ <font color="green">♻</font>
+- [Employee Count](#employeecount) <font color="green">♻</font>
 - [Employee Number](#employeenumber) ✔
 - [Environment Satisfaction](#environmentsatisfaction) Por reflexionar (formato)
 - [Gender](#gender)
@@ -37,7 +37,7 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 - [Monthly Income](#monthlyincome) NaN por calcular
 - [Monthly Rate](#monthlyrate) Nan por calcular
 - [Number of Companies Worked](#numcompaniesworked) ✔
-- [Over 18](#over18) ✔ <font color="green">♻</font>
+- [Over 18](#over18) <font color="green">♻</font>
 - [Overtime](#overtime) NaN
 - [Percent Salary Hike](#percentsalaryhike) ✔
 - [Performance Rating](#performancerating) NaN
@@ -48,14 +48,14 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 - [Training Times Last Year](#trainingtimeslastyear) ✔
 - [Work Life Balance](#worklifebalance) NaN
 - [Years at Company](#yearsatcompany) ✔
-- [Years in Current Role](#yearsincurrentrole) ✔ <font color="green">♻</font>
+- [Years in Current Role](#yearsincurrentrole) NaN
 - [Years Since Last Promotion](#yearssincelastpromotion) ✔
 - [Years with Current Manager](#yearswithcurrmanager) ✔
-- [Same as Monthly Income](#sameasmonthlyincome) ✔<font color="green">♻</font>
+- [Same as Monthly Income](#sameasmonthlyincome) <font color="green">♻</font>
 - [Date of Birth](#datebirth) ✔
 - [Salary](#salary) NaN por calcular
 - [Role Department](#roledepartament) <font color="green">♻</font>
-- [Number of Children](#numberchildren) ✔ <font color="green">♻</font>
+- [Number of Children](#numberchildren) <font color="green">♻</font>
 - [Remote Work](#remotework) F
 
 ---
@@ -64,12 +64,12 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 
 |       Tipo | Descripción |
 | ----------- | ----------- |
-| Generales     | Datos personales anonimizados sobre empleados (edad, rango, departamento, género, tipo de contrato...), con presencia de valores nulos.<br><br> Escalas de valoración (ambiente laboral, satisfacción con el trabajo) sin estandarizar (0-5, 0-50).<br><br> Columnas duplicadas (**1**).<br><br> Filas con valores duplicados en toda su serie de columnas.|
-| Valores nulos   | Distribución dispersa de valores nulos en general.<br><br> Columnas que contienen únicamente valores nulos (**1**).<br><br> Valores nulos en columnas atribuidas a conceptos salariales.|
+| Generales     | Datos personales anonimizados sobre empleados (edad, rango, departamento, género, tipo de contrato...), con presencia de valores nulos.<br><br> Escalas de valoración (ambiente laboral, satisfacción con el trabajo) sin estandarizar (0-5, 0-50).<br><br> Columnas duplicadas (1).<br><br> Filas con valores duplicados en toda su serie de columnas.|
+| Valores nulos   | Distribución dispersa de valores nulos en general.<br><br> Columnas que contienen únicamente valores nulos (1).<br><br> Valores nulos en columnas atribuidas a conceptos salariales.|
 Valores objeto | Entradas de escritura irregular (alternan aleatoriamente mayúsculas y minúsculas)<br><br> Valores que se agrupan indebidamente por errores ortográficos.<br><br> Espaciado extra|
 Valores numéricos | Valores numericos relativos a información salarial junto a símbolos de divisa: ``$``, que impide realizar cálculos con ellos.<br><br> Presentan ``,`` en su formato, que dificulta el procesamiento de los datos, en lugar de ``.``.<br><br> Formato negativo para expresar distancias.
 
-Nulos para apuntar en otro lado: pero su distribución admite el cálculo del valor faltante relacionando las cantidades presentes en las otras columnas.
+nulos para apuntar en otro lado: pero su distribución admite el cálculo del valor faltante relacionando las cantidades presentes en las otras columnas.
 
 ---
 
@@ -77,67 +77,65 @@ Nulos para apuntar en otro lado: pero su distribución admite el cálculo del va
 
 ### age
 
-| Tipo | Indica Edad del empleado|
-| ----------- | ----------- |
-| dtype: object | Valores object ('51', '52'...) y ('fifty-five'). |
+(dtype: object)
+*Edad del empleado*
+
+       Valores object ('51', '52'...) y palabras ('fifty-five').
+
+Propuesta de mejora:
+
+- Homogeneizar al mismo formato numérico - float o int.
 
 ---
-**Propuesta de mejora:**
-
-       Homogeneizar al mismo formato numérico, float o int.
-
----
-#
 
 ### attrition
 
-| Tipo | Indica si el empleado dejó la empresa (Yes/No) |
-| ----------- | ----------- |
-| dtype: object | Objetos: Yes/No.<br><br>Sin nulos.|
----
+(dtype: object)      
+*Indica si el empleado dejó la empresa (Yes/No)*
 
-Sin anomalías. Mantener sin cambios.
+       Objetos: Yes/No. Sin nulos.
+
+Sin Anomalías.
+
+---
 
 ### businesstravel
 
-|  Tipo  |   Indica Frecuencia de viajes   |
-| ----------- | ----------- |
-| dtype: object | NaN 47.74<br><br>travel_rarely   36.71<br><br>travel_frequently    10.01<br><br>non-travel   5.54|
----
+(dtype: object)
+*Frecuencia de viajes*
 
-**Nota:**     
-Comprobar si el ``NaN`` tiene más valores ``NaN`` asociados al mismo empleado.
+       Valores nulos (2) y objetos: ('nan'), 'travel_rarely', 'travel_frequently', 'non-travel'.
 
-**Propuesta de mejora:**
+Hay que investigar si el ``nan`` tiene más valores ``nan`` asociados al mismo empleado.
 
-       Sustituir NaN por non-travel, según la información proporcionada por el PO.
+Propuesta de mejora:
 
-**Propuesta ejecutada:**
+- Sustituir ``NaN`` por ``non-travel``.
 
-- Se ha sustituido (**2**) valores ``NaN`` por ``non-travel``.
+Propuesta ejecutada:
+
+- Se ha sustituido (2) valores ``NaN`` por ``non-travel``.
 
 ---
 
 ### dailyrate
 
+(dtype: int64)
+*Tarifa diaria estimada para clientes, calculada en base al salario*
 
-|    Tipo  |   Tarifa diaria estimada para clientes, calculada en base al salario   |
-| ----------- | ----------- |
-| dtype: int64 | 556.256661     19.43<br><br>290.035510     18.36<br><br>1032.487286     8.94<br><br>1582.771346     3.28<br><br>1973.984127     2.26<br><br>(...)<br><br>531.452381      0.06<br><br>295.388889      0.06<br><br>294.873016      0.06<br><br>116.484127      0.06|
----
+       Valores únicos (673) con decimales largos y variados.
 
-673 entradas con extensión decimal variada. 
-       
-**Propuesta de mejora:**
+Propuesta de mejora:
 
-       - Usar round() para estandarizar la precisión.
+- Usar ``round()`` para estandarizar la precisión.
 
-       - Asegurarse de aplicar el mismo criterio a todas las columnas numéricas relativas al salario en el dataset (puntuación y redondeo).
+- Asegurarse de aplicar el mismo criterio a todas las columnas numéricas relativas al salario en el dataset (puntuación y redondeo).
 
 Propuesta ejecutada:
 
 - Sustitución de ``,`` por ``.``.
 - Redondeado a dos decimales.
+- Calcular datos faltantes
 
 ---
 
@@ -178,6 +176,8 @@ Propuesta ejecutada:
 
 - Estandarización: formato letras minúsculas.
 - El espaciado extra ha sido eliminado.
+- Incluimos información en ``department``, en función a los valores de la columna ``jobrole``
+- Modificamos ``nan`` por ``unknown``
 
 ---
 
@@ -345,6 +345,10 @@ Propuesta de mejora:
 - Compararlo con el nivel del puesto.
 - Inferior valor de nulos calculando el ``hourlyrate`` = '``dailyrate`` /8'.
 
+Propuestas ejecutadas:
+
+- Calculo de valores faltantes
+
 ---
 
 ### jobinvolvement
@@ -499,6 +503,9 @@ Propuesta de mejora:
 
 - Relleno de nulos = 'monthlyincome = salary / 12'
 
+Propuestas ejecutadas:
+
+- Calculo de valores faltantes
 ---
 
 ### monthlyrate
@@ -575,6 +582,9 @@ Propuesta de mejora:
 - ¿Atribuir ``NaN`` como ``Desconocido`` y darle valor a la información de quien tiene un claro Yes?
 - Consultar con nuestro enlace de proyecto, Pilar.
 
+Propuestas ejecutadas:
+
+- Cambio ``nan`` por ``unknown``
 ---
 
 ### percentsalaryhike
@@ -655,6 +665,10 @@ Propuesta de mejora:
 - Mirar la relacion con otras columnas para asegurarnos si el nulo es por falta de informacion, o por otro tipo de clasificacion de jornada (ej: 'Freelance'?, 'Otro', 'No Especificado'). EJ:
  ``df['standardhours'] = df['standardhours'].replace(np.nan, 'No especificado')``
  ``df['standardhours'] = df['standardhours'].str.lower()`` # convertir todo a minúsculas para normalizar todas categorías
+
+Propuestas ejecutadas:
+
+- Cambio de ``nan`` a ``full time``
 
 ---
 
@@ -811,7 +825,7 @@ Propuesta de mejora:
 
 Propuestas ejecutadas:
 
-- ?
+- Eliminación de columna
 
 ---
 
@@ -844,6 +858,10 @@ Propuesta de mejora:
 ``df["salary"] = df["salary"].astype(float)``
 
 - Relleno de nulos = 'salary = monthlyincome * 12'
+
+Propuestas ejecutadas:
+
+- Calculo de valores faltantes
 
 ---
 
@@ -882,6 +900,9 @@ Propuesta de mejora:
 - ¿Destinarla a eliminación una vez reubicados todos los valores?
 - Hemos realizado comparación y determinamos que la columna debe ser eliminada.
 
+Propuestas ejecutadas:
+
+- Eliminación de columna
 ---
 
 ### numberchildren
@@ -894,7 +915,11 @@ Propuesta de mejora:
 Propuesta de mejora:
 
 - Posible columna a eliminar.
-- ¿Es información la ausencia de información al respecto?
+- Incluir comentarios para MySQL
+
+Propuestas ejecutadas:
+
+- Eliminación de columna
 
 ---
 
