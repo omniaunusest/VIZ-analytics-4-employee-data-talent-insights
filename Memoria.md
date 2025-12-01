@@ -102,7 +102,7 @@ Sin anomalías. Mantener sin cambios.
 
 |  Tipo  |   Indica Frecuencia de viajes   |
 | ----------- | ----------- |
-| dtype: object | NaN 47.74<br><br>travel_rarely   36.71<br><br>travel_frequently    10.01<br><br>non-travel   5.54|
+| dtype: object | NaNㅤㅤㅤㅤㅤㅤ 47.74<br>travel_rarelyㅤㅤㅤ36.71<br>travel_frequentlyㅤ10.01<br>non-travelㅤㅤㅤㅤ 5.54
 ---
 
 **Nota:**     
@@ -123,16 +123,15 @@ Comprobar si el ``NaN`` tiene más valores ``NaN`` asociados al mismo empleado.
 
 |    Tipo  |   Tarifa diaria estimada para clientes, calculada en base al salario   |
 | ----------- | ----------- |
-| dtype: int64 | 556.256661     19.43<br><br>290.035510     18.36<br><br>1032.487286     8.94<br><br>1582.771346     3.28<br><br>1973.984127     2.26<br><br>(...)<br><br>531.452381      0.06<br><br>295.388889      0.06<br><br>294.873016      0.06<br><br>116.484127      0.06|
+| dtype: int64 | 556.256661ㅤㅤ19.43<br><br>290.035510ㅤㅤ18.36<br><br>1032.487286ㅤㅤ8.94<br><br>1582.771346ㅤㅤ3.28<br><br>1973.984127ㅤㅤ2.26<br><br>(...)<br><br>531.452381ㅤㅤ  0.06<br><br>295.388889ㅤㅤ 0.06<br><br>294.873016ㅤㅤ 0.06<br><br>116.484127ㅤㅤ 0.06|
 ---
 
        Valores únicos (673) con decimales largos y variados.
 
 Propuesta de mejora:
 
-- Usar ``round()`` para estandarizar la precisión.
-
-- Asegurarse de aplicar el mismo criterio a todas las columnas numéricas relativas al salario en el dataset (puntuación y redondeo).
+       Usar ``round()`` para estandarizar la precisión.
+Asegurarse de aplicar el mismo criterio a todas las columnas numéricas relativas al salario en el dataset (puntuación y redondeo).
 
 Propuesta ejecutada:
 
