@@ -10,7 +10,11 @@
 
 - [3. Análisis Exploratorio de Datos (EDA)](#3-análisis-exploratorio-de-datos-eda)
 
-- [4. Cambios ejecutados](#cambios-ejecutados)
+- [4. Cambios ejecutados](#4-cambios-ejecutados)
+
+- [5. Nuestras cuestiones sobre los datos](#5-nuestras-cuestiones-sobre-los-datos)
+
+- [6. Visualización como respuesta](#6-visualización-como-respuesta:)
 
 ## 1. Estructura y etiquetas
 
@@ -79,203 +83,198 @@ nulos para apuntar en otro lado: pero su distribución admite el cálculo del va
 
 | Tipo | Indica Edad del empleado|
 | ----------- | ----------- |
-| dtype: object | Valores object ('51', '52'...) y ('fifty-five'). |
-
+| dtype: object | 35ㅤ5.24<br>31ㅤ5.24<br>34ㅤ5.13<br>29ㅤ4.89<br>36ㅤ4.71<br>32ㅤ3.93<br>30ㅤ3.87<br>38ㅤ3.81<br>33ㅤ3.75<br>(...)<br>43ㅤ2.50<br>fifty-fiveㅤ0.06<br>twenty-sixㅤ0.06<br>thirty-sevenㅤ0.06.<br><br> Valores únicos: **54**<br>Número de registros: **1678**|
 ---
+ㅤ     
 **Propuesta de mejora:**
 
        Homogeneizar al mismo formato numérico, float o int.
 
+**Propuestas ejecutadas:**
+
+- ?
+
 ---
-#
+---
 
 ### attrition
 
 | Tipo | Indica si el empleado dejó la empresa (Yes/No) |
 | ----------- | ----------- |
-| dtype: object | Objetos: Yes/No.<br><br>Sin nulos.|
----
+| dtype: object |Noㅤ83.79<br>Yesㅤ16.21<br><br>Valores únicos: **2**<br>Número de registros: **1678**.|
 
+---
+ㅤ     
 Sin anomalías. Mantener sin cambios.
+ㅤ     
+
+---
+---
 
 ### businesstravel
 
 |  Tipo  |   Indica Frecuencia de viajes   |
 | ----------- | ----------- |
-| dtype: object | NaNㅤㅤㅤㅤㅤㅤ 47.74<br>travel_rarelyㅤㅤㅤ36.71<br>travel_frequentlyㅤ10.01<br>non-travelㅤㅤㅤㅤ 5.54
----
+| dtype: object | NaNㅤㅤㅤㅤㅤㅤ 47.74<br>travel_rarelyㅤㅤㅤ36.71<br>travel_frequentlyㅤ10.01<br>non-travelㅤㅤㅤㅤ 5.54<br><br>Valores únicos: **3**<br>Número de registros: **1678**|
 
+---
+ㅤ     
 **Nota:**     
 Comprobar si el ``NaN`` tiene más valores ``NaN`` asociados al mismo empleado.
 
 **Propuesta de mejora:**
 
        Sustituir NaN por non-travel, según la información proporcionada por el PO.
-
+ㅤ     
 **Propuesta ejecutada:**
 
 - Se ha sustituido (**2**) valores ``NaN`` por ``non-travel``.
-
+ㅤ     
+ㅤ     
+---
 ---
 
 ### dailyrate
 
-
 |    Tipo  |   Tarifa diaria estimada para clientes, calculada en base al salario   |
 | ----------- | ----------- |
-| dtype: int64 | 556.256661ㅤㅤ19.43<br><br>290.035510ㅤㅤ18.36<br><br>1032.487286ㅤㅤ8.94<br><br>1582.771346ㅤㅤ3.28<br><br>1973.984127ㅤㅤ2.26<br><br>(...)<br><br>531.452381ㅤㅤ  0.06<br><br>295.388889ㅤㅤ 0.06<br><br>294.873016ㅤㅤ 0.06<br><br>116.484127ㅤㅤ 0.06|
+| dtype: int64 | 556.256661ㅤㅤ19.43<br>290.035510ㅤㅤ18.36<br>1032.487286ㅤㅤ8.94<br>1582.771346ㅤㅤ3.28<br>1973.984127ㅤㅤ2.26<br>(...)<br>531.452381ㅤㅤ  0.06<br>295.388889ㅤㅤ 0.06<br>294.873016ㅤㅤ 0.06<br>116.484127ㅤㅤ 0.06<br><br>Valores únicos: **673**<br>Número de registros: **1678**|
+
 ---
+ㅤ     
+**Propuesta de mejora:**
 
-       Valores únicos (673) con decimales largos y variados.
-
-Propuesta de mejora:
-
-       Usar ``round()`` para estandarizar la precisión.
+       Usar round() para estandarizar la precisión.
+       
 Asegurarse de aplicar el mismo criterio a todas las columnas numéricas relativas al salario en el dataset (puntuación y redondeo).
 
-Propuesta ejecutada:
+**Propuesta ejecutada:**
 
 - Sustitución de ``,`` por ``.``.
 - Redondeado a dos decimales.
-- Calcular datos faltantes
+- Calcular datos faltantes.
 
+ㅤ
+
+---
 ---
 
 ### department
 
-(dtype: object)
-*Departamento en el que trabaja el empleado*
+|    Tipo  |  Departamento donde trabaja el empleado   |
+| ----------- | ----------- |
+| dtype: object | NaNㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ 81.41<br>Research & Developmentㅤ12.10<br>Sales ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ 5.54<br>Human Resourcesㅤㅤㅤㅤㅤ0.95<br><br>Valores únicos: **3**<br>Número de registros: **1678**|
+---
+ㅤ     
+**Propuesta de mejora:**
 
-       Valores nulos y objetos: 'nan', ' Research & Development ', ' Sales ', ' Human Resources '
+       > Estandarizar a minúculas todos los nombres.
+ 
+       > Comparar los valores nulos con las columnas que incluyen datos aparentemente reiterados, pueden contener este valor en ausencia de estar presentes en esta columna.
 
-       En cantidad: 
-       NaN                         1366
-       Research & Development      203
-       Sales                        93
-       Human Resources              16
+Columna referenciada: [roledepartament](#roledepartment)
 
-Propuesta de mejora:
+       > Sustituir espacios innecesarios al inicio, final y entre las palabras del valor (' Human Resources ') por valores estandarizados y sin espacios innecesarios.
+ㅤ
+Dados los pocos departamentos que hay, inferiremos el valor de los nulos de la relación entre los valores presentes y los valores de la columna [jobrole](#jobrole).
 
-- Convertir a minuscula todos los nombres
-``df["department"] = df["department"].str.lower()``
-
-       Ejemplo:
-       array([nan, ' research & development ', ' sales ', ' human resources '],
-      dtype=object)
-
-- Comparar los valores nulos con las columnas que incluyen datos aparentemente reiterados, que pueden contener este valor en ausencia de estar presentes en esta columna.
-
-referencia: columna [roledepartament](#roledepartment)
-
-- Sustituir espacios innecesarios al inicio, final y entre las palabras del valor (``' Human Resources '``) por valores estandarizados y sin espacios innecesarios:
-``df['department'] = df['department'].str.strip()``
-
-    ``.str.replace(r'\s+', ' ', regex=True)``
-
-- Dados los pocos departamentos que hay, inferiremos el valor de los nulos de la relación entre los valores presentes y los valores de la columna ``jobrole``.
-
-Propuesta ejecutada:
+**Propuesta ejecutada:**
 
 - Estandarización: formato letras minúsculas.
 - El espaciado extra ha sido eliminado.
 - Incluimos información en ``department``, en función a los valores de la columna ``jobrole``
-- Modificamos ``nan`` por ``unknown``
+- Modificamos ``NaN`` por ``Desconocido``.
 
+---
 ---
 
 ### distancefromhome
 
-(dtype: int64)
-*Distancia en millas o kilómetros desde el hogar al trabajo*
+|    Tipo  |   Distancia en millas o kilómetros desde el hogar al trabajo   |
+| ----------- | ----------- |
+| dtype: int64 | 2 ㅤ 13.59<br>1 ㅤ 12.46<br>9ㅤㅤ5.30<br>10 ㅤ 5.13<br>8ㅤㅤ5.07<br>-21ㅤ0.12<br>-43ㅤ0.12<br>-28ㅤ0.12<br>-39ㅤ0.06<br>-40ㅤ0.06 <br><br> Valores únicos: **69**<br>Número de registros: **1678**|
+---
+ㅤ     
+**Propuesta de mejora:**
 
-       Valores numéricos positivos, negativos y espaciados extra entre caracteres.
-       
-        ([  6,   1,   4,   2,   3,  22,  25,   9,   7,  23,  10,  12,  14, -13,  15,   8, -42,  28, -37,   5,  16, -35, 26, -26,  24,  29, -25,  17,  21, -18, -10, -30, -27, 20, -31, -29 -39,  18, -21, -15,  11,  13, -14,  19, -33 -34, -46, -36, -19,  27, -12, -23, -45, -28, -47, -32, -24, -16, -22, -41, -49, -11, -48, -38, -20, -17, -43, -40, -44])
+       Convertimos en absolutos para eliminar valores numéricos negativos.
 
-Propuesta de mejora:
+**Propuesta ejecutada:**
 
-- Convertimos en absolutos para eliminar el negativo
-``df["distancefromhome"] = df["distancefromhome"].abs()``
-
-Propuesta ejecutada:
-
-- ?
-
+       Sin ejecución.
+---
 ---
 
 ### education
 
 (dtype: int64)
 *Nivel educativo del empleado en escala numérica*
+|    Tipo   |   Nivel educativo del empleado en escala numérica  |
+| ----------- | ----------- |
+| dtype: int64| 3ㅤ38.68<br>4ㅤ27.47<br>2ㅤ19.19<br>1ㅤ11.08<br>5ㅤ3.58<br><br> Valores únicos: **5**<br>Número de registros: **1678**|
 
-       Valores numéricos: ([3, 4, 2, 1, 5])
+Sin anomalías. Mantener sin cambios.
 
-Sin anomalías.
+⚑ Incluir en un glosario el significado de la escala de valores.
 
+---
 ---
 
 ### educationfield
+|    Tipo   |   Campo académico del empleado   |
+| ----------- | ----------- |
+| dtype: object | NaNㅤㅤㅤㅤㅤㅤㅤ46.13<br>Life Sciences ㅤㅤㅤ 21.87<br>Medical ㅤㅤㅤㅤㅤ 17.04<br>Marketing ㅤㅤ ㅤㅤ  6.32<br>Technical Degreeㅤㅤ4.17<br>Otherㅤㅤㅤㅤㅤㅤㅤ3.75<br>Human Resources ㅤ 0.72 <br><br> Valores únicos: **6**<br>Número de registros: **1678**|
+---
+ㅤ     
+**Propuesta de mejora:**
 
-(dtype: object)
-*Campo de estudio académico del empleado*
+       > Estandarizar a minúculas todos los nombres.
 
-       Valores nulos y objetos: 'Life Sciences', 'Technical Degree', 'Medical', 'Other',
-       'Marketing', 'Human Resources'.
+       > Comparar los valores nulos con las columnas que incluyen datos aparentemente reiterados, pueden contener este valor en ausencia de estar presentes en esta columna.
 
-Propuesta de mejora:
+Columna referenciada: [department](#department).
 
-- Misma propuesta para los nulos que para la columna [department](#department).
-- Convertir a minuscula todos los nombres
-``df["educationfield"] = df["educationfield"].str.lower()``
+**Propuestas ejecutadas:**
 
-       Ejemplo
-       array([nan, 'life sciences', 'technical degree', 'medical', 'other', 'marketing', 'human resources'], dtype=object)
-
-Propuestas ejecutadas:
-
-- Estandarización: formato letras minúsculas.
+- Las letras minúsculas ahora son el estándar.
 - El espaciado extra ha sido eliminado.
 
 ---
+---
 
 ### employeecount
+|    Tipo   | Valor constante de ``1``, indicando un solo empleado por registro  |
+| ----------- | ----------- |
+| dtype: int64| 1ㅤㅤ100.0 <br><br> Valores únicos: **1**<br>Número de registros: **1678**|
+---
+ㅤ     
+Este campo es redundante, cada registro corresponde a un único empleado (valor siempre igual a 1).
 
-(dtype: int64)
-*Valor constante de "1", indicando un solo empleado por registro*
+**Propuesta de mejora:**
 
-       Valor = [1]
+       Eliminar columna
 
-Este campo es redundante, ya que cada registro corresponde a un único empleado (valor siempre igual a 1).
-
-Propuesta de mejora:
-
-- Eliminar columna:  
-``df.drop(columns='employeecount', inplace=True)``
-
-Propuestas ejecutadas:
+**Propuestas ejecutadas:**
 
 - ?
 
 ---
+---
 
 ### employeenumber
+|    Tipo   |   Identificación del empleaㅤㅤdo   |
+| ----------- | ----------- |
+| dtype: int64 |528ㅤㅤ0.12<br>300ㅤㅤ0.12<br>168ㅤㅤ0.12<br>644ㅤㅤ0.12<br>271ㅤㅤ0.12<br>(...)<br>1594ㅤㅤ0.06<br>1595ㅤㅤ0.06<br>1596ㅤㅤ0.06<br>1597ㅤㅤ0.06<br>1614ㅤㅤ0.06 <br><br>Valores únicos: **1614**<br>Número de registros: **1678**<br><br>Registros duplicados: **64**|
+---
 
-(dtype: int64)
-*Número de identificación del empleado*
+ㅤㅤ   
+**Propuesta de mejora:**
 
-       Valores = [   1,    2,    3, ..., 1612, 1613, 1614], shape=(1614,)
+       > Consultar la presencia de valores nulos al PO.
 
-Propuesta de mejora:
+       > Gestión de duplicados.
 
-- Valores nulos (¿Trabajos temporales? Consultar al enlace del Proyecto, Pilar)
-- Gestión de duplicados.
-- Soluciones  
- ``conteos = df["employeenumber"].value_counts()
-numeros_empleado_duplicados = conteos[conteos > 1].index.tolist()
-print(numeros_empleado_duplicados)
-len(numeros_empleado_duplicados)``
-
-Propuestas ejecutadas:
+**Propuestas ejecutadas:**
 
 - ?
 
@@ -508,6 +507,7 @@ Propuesta de mejora:
 Propuestas ejecutadas:
 
 - Calculo de valores faltantes
+
 ---
 
 ### monthlyrate
@@ -587,6 +587,7 @@ Propuesta de mejora:
 Propuestas ejecutadas:
 
 - Cambio ``nan`` por ``unknown``
+
 ---
 
 ### percentsalaryhike
@@ -905,6 +906,7 @@ Propuesta de mejora:
 Propuestas ejecutadas:
 
 - Eliminación de columna
+
 ---
 
 ### numberchildren
@@ -940,4 +942,19 @@ Propuesta de mejora:
 
 ## 4. Cambios ejecutados
 
-       . referencias
+       Hipervínculo + parte crucial del código que soluciona
+       Y así sucesivamente
+
+---
+
+## 5. Nuestras cuestiones sobre los datos
+
+*Presentación de preguntas de Patri + enfoque de Andrea*
+
+---
+
+## 6. Visualización como respuesta
+
+**A continuación, la información que hemos obtenido en consecuencia:**
+
+       Visualizaciones 
