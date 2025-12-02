@@ -531,7 +531,7 @@ Propuesta de mejora:
 
        --> errors="coerce" asegura que si no se cumple convierte en NaN
        
-       ie. 40 esta como 'forty'
+       
 
 ### numcompaniesworked
 
