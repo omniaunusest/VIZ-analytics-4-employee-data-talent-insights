@@ -282,71 +282,75 @@ Este campo es redundante, cada registro corresponde a un único empleado (valor 
 
 ### environmentsatisfaction
 
-(dtype: int64)
-*Nivel de satisfacción con el ambiente laboral*
-
-       Valores = ([ 1,  3,  4,  2, 42, 37, 35, 25, 27, 31, 39, 21, 15, 14, 33, 19, 12, 13, 28, 47, 36, 29, 24, 46, 16, 22, 41, 49, 11, 48, 18, 10, 45, 38, 17, 20, 26, 43])
-
-Propuesta de mejora:
-
-- ¿Mantener sin cambios?
-- Plantearnos si es un formato tan raro, si podemos apostar por aplanarlo o simplificarlo, por ejemplo: decidir acortar las distancias entre 0 y 50 pasándolos a float entre 0-5 (0.1, 0.3, 0.4... 3.3, 4.5, 4.9)
-
+|    Tipo   |   Nivel de satisfacción con el ambiente laboral   |
+| ----------- | ----------- |
+| dtype: int64 |4ㅤㅤ28.50<br>3ㅤㅤ28.44<br>1ㅤㅤ18.46<br>2ㅤㅤ18.40<br>12ㅤㅤ0.43<br>35ㅤㅤ0.37<br>13ㅤㅤ0.37<br>24ㅤㅤ0.31<br>47ㅤㅤ0.31<br>14ㅤㅤ0.31<br>41ㅤㅤ0.25<br>42ㅤㅤ0.25<br>46ㅤㅤ0.25<br>36ㅤㅤ0.25<br>48ㅤㅤ0.25<br>20ㅤㅤ0.19<br>22ㅤㅤ0.19<br>11ㅤㅤ0.19<br>18ㅤㅤ0.19<br>45ㅤㅤ0.19<br>(...)<br>10ㅤㅤ0.06<br>26ㅤㅤ0.06<br>43ㅤㅤ0.06<br><br> Valores únicos: **38**<br>Número de registros: **1614** |
 ---
+ㅤㅤ   
+**Propuesta de mejora:**
 
-### gender
+       > Plantearnos si podemos igualar el rango de la escala al resto de escalas de valoración que tenemos, por ejemplo: 
+       
+       Decidir acortar las distancias entre 0 y 50 pasándolos a float entre 0-5 (0.1, 0.3, 0.4... 3.3, 4.5, 4.9)
 
-(dtype: int64)
-*Género del empleado*
-
-       Valores = array([0, 1])
-
-**No** está documentado qué significa cada valor (ej: 0 = Femenino, 1 = Masculino)
-
-Propuesta de mejora:
-
-- Definir explícitamente el significado de cada valor:  
-``df.rename()``
-- ¿Tendremos que referirnos al exponer los datos simplemente al primer género y al segundo género?
-
-       NOTA: No incluye opciones no binarias o diversidad de género, podría ser interesante que se pudieran añadir más valores y tenerlo en cuenta de cara a la presentación como next steps? 
-
-- Consultar las referencias de nuestro enlace con el proyecto, Pilar.
-
-Propuestas ejecutadas:
+**Propuestas ejecutadas:**
 
 - ?
 
 ---
+---
+
+### gender
+
+|    Tipo   |   Género asignado del empleado   |
+| ----------- | ----------- |
+| dtype: int64 | 0ㅤㅤ60.13<br>1ㅤㅤ9.87<br><br> Valores únicos: **2**<br>Número de registros: **1678** |
+---
+ㅤㅤ   
+No está documentado qué significa cada valor (ej: 0 = Femenino, 1 = Masculino)
+
+ㅤㅤ   
+**Propuesta de mejora:**
+
+       > Definir explícitamente el significado de cada valor.
+
+       > Consultar las referencias con PO.
+
+**Nota:**     
+No incluye opciones no binarias o diversidad de género, podría ser interesante que se pudieran añadir más valores y tenerlo en cuenta de cara a la presentación como next steps/sugerencias para la empresa.
+
+
+**Propuestas ejecutadas:**
+
+- 0, másculino. 1, femenino.
+
+---
+---
 
 ### hourlyrate
 
-(dtype: float64)
-*Tarifa por hora calculada*
+|    Tipo   |   Tarifa por hora calculada   |
+| ----------- | ----------- |
+| dtype: float64 | NaNㅤㅤㅤㅤ75.51<br>36.254439ㅤㅤ4.53<br>69.532083ㅤㅤ4.47<br>129.060911 ㅤ 2.44<br>197.846418     0.83<br>(...)<br>108.230159     0.06<br>247.477183     0.06<br>67.424603      0.06<br>34.821429      0.06<br>133.159722     0.06 <br><br> Valores únicos: **194**<br>Número de registros: **1678** |
+---
 
-       Valores nulos y decimales.
+ㅤㅤ   
 
-        array([nan,  69.53208262, 172.84325397, 216.04761905,
-        79.97321429, 129.06091077, 246.74801587, 207.17460317,
-        60.8859127 ,  36.25443872, 139.99503968,  86.24107143,
-       ... 67.42460317,  34.82142857, 133.15972222])
-
-Algunos valores son extremadamente altos (ej: 255.96) o bajos (ej: 14.07). ¿Son reales o errores de cálculo/entrada?
-
-Algunos valores son NaN. ¿Es un error de recolección o hay empleados sin tarifa asignada?
+La mayor parte de los valores son nulos. ¿Es un error de recolección o hay empleados sin tarifa asignada?
 
 Los valores tienen hasta 10 decimales (ej: 69.53208262).
 
-Propuesta de mejora:
+ㅤㅤ   
+**Propuesta de mejora:**
 
-- Redondear a 2 decimales (estándar para monedas):
-``df['hourlyrate'] = df['hourlyrate'].round(2)``
-- Convertir a numérico (los errores se vuelven NaN)
-``df["hourlyrate"] = pd.to_numeric(df["hourlyrate"], errors='coerce')``
-- Compararlo con el nivel del puesto.
-- Inferior valor de nulos calculando el ``hourlyrate`` = '``dailyrate`` /8'.
+       > Redondear a 2 decimales (estándar para monedas).
 
-Propuestas ejecutadas:
+       > Compararlo con el nivel del puesto.
+
+       > Inferir valor de nulos calculando el 'hourlyrate' = 'dailyrate' /8.
+
+ㅤㅤ   
+**Propuestas ejecutadas:**
 
 - Calculo de valores faltantes
 
