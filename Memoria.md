@@ -20,46 +20,46 @@
 
 Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para el proyecto de análisis presenta índices como columnas:
 
-- [Age](#age) F
+- [Age](#age) ?
 - [Attrition](#attrition) ✔
 - [Business Travel](#businesstravel) ✔
 - [Daily Rate](#dailyrate) ✔
-- [Department](#department) NaN
-- [Distance From Home](#distancefromhome) F
+- [Department](#department) ✔
+- [Distance From Home](#distancefromhome) ✔
 - [Education](#education) ✔
 - [Education Field](#educationfield) NaN
-- [Employee Count](#employeecount) <font color="green">♻</font>
+- [Employee Count](#employeecount) ✔
 - [Employee Number](#employeenumber) ✔
-- [Environment Satisfaction](#environmentsatisfaction) Por reflexionar (formato)
-- [Gender](#gender)
-- [Hourly Rate](#hourlyrate) NaN por calcular
-- [Job Involvement](#jobinvolvement) Por reflexionar (formato)
+- [Environment Satisfaction](#environmentsatisfaction) F
+- [Gender](#gender) ✔
+- [Hourly Rate](#hourlyrate) ✔
+- [Job Involvement](#jobinvolvement) ✔
 - [Job Level](#joblevel) ✔
-- [Job Role](#jobrole) NaN
-- [Job Satisfaction](#jobsatisfaction) Por reflexionar (formato)
-- [Marital Status](#maritalstatus) NaN
-- [Monthly Income](#monthlyincome) NaN por calcular
-- [Monthly Rate](#monthlyrate) Nan por calcular
+- [Job Role](#jobrole) ✔
+- [Job Satisfaction](#jobsatisfaction) ✔
+- [Marital Status](#maritalstatus) ✔
+- [Monthly Income](#monthlyincome) ✔
+- [Monthly Rate](#monthlyrate) ✔
 - [Number of Companies Worked](#numcompaniesworked) ✔
-- [Over 18](#over18) <font color="green">♻</font>
-- [Overtime](#overtime) NaN
+- [Over 18](#over18) ✔
+- [Overtime](#overtime) ✔
 - [Percent Salary Hike](#percentsalaryhike) ✔
-- [Performance Rating](#performancerating) NaN
-- [Relationship Satisfaction](#relationshipsatisfaction) A reflexionar
+- [Performance Rating](#performancerating) ✔
+- [Relationship Satisfaction](#relationshipsatisfaction) ✔
 - [Standard Hours](#standardhours) ✔
 - [Stock Option Level](#stockoptionlevel) ✔
-- [Total Working Years](#totalworkingyears)
+- [Total Working Years](#totalworkingyears) ✔
 - [Training Times Last Year](#trainingtimeslastyear) ✔
 - [Work Life Balance](#worklifebalance) NaN
 - [Years at Company](#yearsatcompany) ✔
 - [Years in Current Role](#yearsincurrentrole) NaN
 - [Years Since Last Promotion](#yearssincelastpromotion) ✔
 - [Years with Current Manager](#yearswithcurrmanager) ✔
-- [Same as Monthly Income](#sameasmonthlyincome) <font color="green">♻</font>
+- [Same as Monthly Income](#sameasmonthlyincome) ✔
 - [Date of Birth](#datebirth) ✔
 - [Salary](#salary) NaN por calcular
-- [Role Department](#roledepartament) <font color="green">♻</font>
-- [Number of Children](#numberchildren) <font color="green">♻</font>
+- [Role Department](#roledepartament) ✔
+- [Number of Children](#numberchildren) ✔
 - [Remote Work](#remotework) F
 
 ---
@@ -336,7 +336,7 @@ No incluye opciones no binarias o diversidad de género, podría ser interesante
 
 ㅤㅤ   
 
-La mayor parte de los valores son nulos. ¿Es un error de recolección o hay empleados sin tarifa asignada?
+La mayor parte de los valores son nulos. Puede ser un error de recolección o la existencia de empleados sin tarifa asignada
 
 Los valores tienen hasta 10 decimales (ej: 69.53208262).
 
@@ -358,74 +358,85 @@ Los valores tienen hasta 10 decimales (ej: 69.53208262).
 
 ### jobinvolvement
 
-(dtype: int64)
-*Nivel de compromiso del empleado en el trabajo*
+|    Tipo   |   Nivel de compromiso del empleado en el trabajo   |
+|-----------|---------------|
+| dtype: int64 |3ㅤㅤ59.3<br>2ㅤㅤ25.09<br>4ㅤㅤ10.13<br>1ㅤㅤ5.48<br><br>Valores únicos: **4**<br>Número de registros: **1678**
+---
 
-       Valores = array([3, 2, 4, 1])
+ㅤㅤ   
+Escala de valoración.
 
-Mantener sin cambios.
+Sin anomalías. Mantener sin cambios.
 
-O:
+**Propuesta de mejora:**
 
-       NOTA: como next steps, poder definir y documentar explícitamente el significado de cada valor: 
+       > Definir y documentar explícitamente el significado de cada valor: 
        ej: 1: 'Bajo compromiso',
        2: 'Compromiso moderado',
        3: 'Compromiso alto',
        4: 'Compromiso excepcional'
+       
+       Podemos incluir 0 y 5 en la escala, aunque no aparezcan en las puntuaciones registradas, por convención y estándar.
 
-¿Incluimos 0 y 5 en la escala aunque no aparezcan en la recolección de puntuaciones?
+ㅤㅤ   
+⚑ Incluir en un glosario el significado de la escala de valores.
 
-Podemos dejarlo perfectamente como está e incluir un GLOSARIO en el que se indiquen las equivalencias.
-
+---
 ---
 
 ### joblevel
 
-(dtype: int64)
-*Nivel jerárquico del puesto del empleado*
+|    Tipo   |   Nivel jerárquico del puesto del empleado   |
+|-----------|---------------|
+| dtype: int64 |2ㅤㅤ36.83<br>1ㅤㅤ36.47<br>3ㅤㅤ15.2<br>4 ㅤㅤ 6.79<br>5 ㅤㅤ 4.71<br><br>Valores únicos: **5**<br>Número de registros: **1678**|
+---
 
-       Valores = array([5, 4, 3, 2, 1])
+ㅤㅤ   
+Escala de rangos.
 
-Sin anomalías.
+Sin anomalías. Mantener sin cambios.
 
-- ¿Incluimos sus equivalencias en glosario?
 
+⚑ Incluir en un glosario el significado de los rangos.
+
+ㅤㅤ   
+
+---
 ---
 
 ### jobrole
 
-(dtype: object)
-Función o rol específico del empleado
+|    Tipo   |   jobrole   |
+|-----------|---------------|
+| dtype: object | mANager ㅤㅤ0.3<br><br> mAnageR ㅤㅤ0.18<br> ManagEr ㅤㅤ0.18<br> mAnaGeR ㅤㅤ0.18<br> ManageR ㅤㅤ0.18<br> MANAgER ㅤㅤ0.18<br>maNaGeR ㅤㅤ0.18<br> SALes RePREsEntAtivE ㅤㅤ0.12<br>SALes exeCUtiVE ㅤㅤ0.12<br> LAboRaTorY teChniCiaN ㅤㅤ0.12<br> reseaRCH DIrectOr ㅤㅤ0.12<br> ManUFaCtURInG dIReCToR ㅤㅤ0.12<br> MaNAgeR ㅤㅤ0.12<br> mANAgER ㅤㅤ0.12<br> ManAgEr ㅤㅤ0.12<br>(...)<br> hEAltHCarE REpreSentaTiVe ㅤㅤ0.06<br> mANUFacTURInG DIREctoR ㅤㅤ0.06<br>heALtHCArE RepRESENTATIVE ㅤㅤ0.06<br> maNUFacturing DiRector ㅤㅤ0.06<br><br>Valores únicos: **1579**<br>Número de registros: **1678**<br>Registros duplicados: **99**|
+---
 
-       Valores = array([' resEArch DIREcToR ', ' ManAGeR ', ' ManaGER ', ...,
-       ' sAlES ExECUTivE ', ' SaLes ExecUtIVe ',
-       ' mAnUfactURInG DiRECTOr '], dtype=object)
+ ㅤㅤ  
+Registros con valores de escritura irregular que no se agrupan como debieran: aparecen como 1579 registros únicos.
 
-Objetos como valores con escritura irregular.
+Tras una estandarización el resultado es que los registros únicos son 9:
 
-Propuesta de mejora:
+       [' research director ', ' manager ', ' sales executive ', ' manufacturing director ', ' research scientist ', ' healthcare representative ', ' laboratory technician ', ' sales representative ', ' human resources ']
+ ㅤㅤ  
+**Propuesta de mejora:**
 
-- Convertir a minuscula todos los nombres
-``df["jobrole"] = df["jobrole"].str.lower()``
+       > Estandarizar a formato letras minúsculas.
 
-       Ejemplo:
-       array([' research director ', ' manager ', ' sales executive ',
-       ' manufacturing director ', ' research scientist ',
-       ' healthcare representative ', ' laboratory technician ',
-       ' sales representative ', ' human resources ']
+       > Eliminar espaciado innecesario entre palabras.
 
-- Eliminar espaciado innecesario entre palabras.
 
-Propuestas ejecutadas:
+ ㅤㅤ  
+**Propuestas ejecutadas:**
 
-- Estandarización: formato letras minúsculas.
+- Estandarización a formato letras minúsculas.
 - El espaciado extra ha sido eliminado.
 
 ---
+---
 
-### jobsatisfaction
+### jobsatisfaction 
 
-(dtype: int64)
+(dtype: int64) **PENDIENTE** **14 pendientes de revisar + formato**
 *Satisfacción general en el puesto*
 
        Valores = array([3, 4, 1, 2])
@@ -448,7 +459,7 @@ Podemos dejarlo perfectamente como está e incluir un GLOSARIO en el que se indi
 
 ### maritalstatus
 
-(dtype: object)
+(dtype: object) **PENDIENTE**
 *Estado civil (e.g., Single, Married)*
 
        Values total 1678 | Unique 5 + NaN | dtype - objects. (incluye NaN - 675 - muchos) Null - TBD
@@ -477,7 +488,7 @@ Propuestas ejecutadas:
 
 ### monthlyincome
 
-(dtype: object)
+(dtype: object) **PENDIENTE**
 *Ingreso mensual estimado en base al salario anual*
 
        Values U1678 | Unique 493 + NaN | dtype - int. (incluye NaN - 498 - muchos) |  **Null - TBD**
@@ -516,7 +527,7 @@ Propuestas ejecutadas:
 
 ### monthlyrate
 
-(dtype: object)
+(dtype: object) **PENDIENTE**
 *Tarifa mensual estimada en función de la tarifa diaria*
 
        Values 1678 | Unique 673 | NaN 0 | dtype Object  
@@ -535,7 +546,7 @@ Propuesta de mejora:
 
 ### numcompaniesworked
 
-(dtype: int64)
+(dtype: int64) **PENDIENTE**
 *Número de empresas previas en las que ha trabajado*
 
        Valores = array([7, 0, 1, 3, 2, 4, 8, 9, 5, 6])
@@ -552,7 +563,7 @@ De cara al volcado a SQL:
 
 ### over18
 
-(dtype: object)
+(dtype: object) **PENDIENTE**
 *columna no definida*
 
        Valores = array(['Y', nan], dtype=object)
@@ -577,7 +588,7 @@ Propuesta de mejora:
 
 ### overtime
 
-(dtype: object)
+(dtype: object) **PENDIENTE**
 *Indica si el empleado trabaja horas extras (Yes/No)*
 
        Valores = array(['No', nan, 'Yes'], dtype=object)
@@ -594,7 +605,7 @@ Propuestas ejecutadas:
 
 ---
 
-### percentsalaryhike
+### percentsalaryhike **PENDIENTE**
 
 (dtype: int64)
 *Incremento porcentual en el salario*
@@ -606,7 +617,7 @@ Mantener sin cambios.
 
 ---
 
-### performancerating
+### performancerating **PENDIENTE**
 
 (dtype: object)
 *Evaluación de desempeño en una escala numérica*
@@ -629,9 +640,9 @@ Propuesta de mejora:
 
 ---
 
-### relationshipsatisfaction
+### relationshipsatisfaction 
 
-(dtype: int64)
+(dtype: int64) **PENDIENTE**
 *Satisfacción con relaciones interpersonales en el trabajo*
 
        Valores = array([3, 1, 4, 2])
@@ -655,7 +666,7 @@ Podemos dejarlo perfectamente como está e incluir un GLOSARIO en el que se indi
 
 ### standardhours
 
-(dtype: object)
+(dtype: object) **PENDIENTE**
 *Clasificación de jornada (Full Time/Part Time)*
 
        Valores = array(['Full Time', nan, 'Part Time'], 
@@ -681,7 +692,7 @@ Propuestas ejecutadas:
 
 ### stockoptionlevel
 
-(dtype: int64)
+(dtype: int64) **PENDIENTE**
 *Nivel de opciones sobre acciones asignadas.*
 
        Valores numéricos ([0, 1, 2, 3])
@@ -693,7 +704,7 @@ Mantener sin cambios.
 
 ### totalworkingyears
 
-(dtype: object)
+(dtype: object) **PENDIENTE**
 *Años totales de experiencia laboral*
 
        Valores = array([nan, '34,0', '22,0', '28,0', '20,0', '21,0', '33,0', '40,0',
@@ -720,7 +731,7 @@ Propuesta de mejora:
 
 ### trainingtimeslastyear
 
-(dtype: int64)
+(dtype: int64) **PENDIENTE**
 *Número de sesiones de entrenamiento en el último año.*
 
        Valores numéricos ([5, 3, 2, 0, 1, 4, 6])
@@ -731,218 +742,254 @@ Sin anomalías.
 
 ### worklifebalance
 
-(dtype: object)
-*Nivel de balance entre vida personal y laboral.*
+|    Tipo   |   worklifebalance   |
+|-----------|---------------|
+| dtype: object |3,0ㅤㅤ56.38<br>2,0ㅤㅤ22.29<br>4,0 ㅤㅤ 9.65<br>NaNㅤㅤ6.79<br>1,0 ㅤㅤ 4.89<br><br>Valores únicos: **4**<br>Número de registros: **1678**
+---
 
-       Valores = array(['3,0', nan, '2,0', '4,0', '1,0'], dtype=object)
-Hay 114 nulos
+ㅤㅤ   
+**Propuesta de mejora:**
 
-Propuesta de mejora:
+       > Reemplazar ',' por '.'.
 
-- Reemplazar la ``,`` por ``.``:
-``df["worklifebalance"] = df["worklifebalance"].str.replace(',', '.')``
-- Gestión de nulos
-- Posibilidad de cambiar a 0 Gestión de nulos:
-``df["worklifebalance"] = df["worklifebalance"].fillna(0)``
-- Convertir a float:
-``df["worklifebalance"] = df["worklifebalance"].astype(float)``
-- Ahora sí, pasar a entero sin miedo:
-``df["worklifebalance"] = df["worklifebalance"].astype(int)``
+       > Gestionar nulos.
 
-       Resultado: array([3, 0, 2, 4, 1])
+       > Convertir valores a tipo 'float'.
 
+
+**Propuestas ejecutadas:**
+- Se han reemplazado las comas y la columna ahora contiene valores 'float'.
+- Se han mantenido los nulos.
+
+ㅤㅤ
+
+---
 ---
 
 ### yearsatcompany
 
-(dtype: int64)
-*Años en la empresa actual.*
+|    Tipo   |   Años en la empresa actual  |
+|-----------|---------------|
+| dtype: int64 |5ㅤㅤ12.75<br>1ㅤㅤ10.79<br>3 ㅤㅤ 8.88<br>2 ㅤㅤ 8.64<br>10ㅤㅤ8.28<br>4 ㅤㅤ 6.91<br>7 ㅤㅤ 6.85<br>8 ㅤㅤ 6.73<br>9 ㅤㅤ 5.84<br>6 ㅤㅤ 5.01<br>0 ㅤㅤ 2.8<br>11ㅤㅤ2.21<br>20ㅤㅤ1.79<br>13ㅤㅤ1.61<br>15ㅤㅤ1.31<br>14ㅤㅤ1.13<br>22ㅤㅤ1.07<br>18ㅤㅤ0.95<br>12ㅤㅤ0.89<br>(...)<br>30ㅤㅤ0.06<br>34ㅤㅤ0.06<br><br>Valores únicos: **37**<br>Número de registros: **1678**
+---
 
-       Valores = array([20, 33, 22, 19, 21, 18, 24, 31, 26, 16, 23, 15, 17, 32, 14, 13, 25, 12, 11, 37, 40, 36, 27, 29, 10,  9, 30,  8,  7, 34,  6,  5,  4,  2, 3,  1,  0])
+ㅤㅤ   
+Sin anomalías. Mantener sin cambios.
 
-Sin anomalías.
+Puede ser interesante comparar los años en la empresa actual con los valores nulos en la columna ``totalworkingyears`` para comprobar qué relato/perfil nos devuelve.
 
-- Sería interesante comparar los años en la empresa actual con los valores nulos en la columna [totalworkingyears](#numcompaniesworked) para comprobar qué relato/perfil nos devuelve.
+Ir a **[totalworkingyears](#numcompaniesworked)**.
 
 ---
 
 ### yearsincurrentrole
 
-(dtype: object)
+|   Tipo   |   yearsincurrentrole   |
+|-----------|---------------|
+| dtype: object |NaNㅤㅤ97.91<br>2,0ㅤㅤ0.72<br>7,0ㅤㅤ0.3<br>0,0ㅤㅤ0.24<br>4,0ㅤㅤ0.18<br>1,0ㅤㅤ0.18<br>11,0ㅤㅤ0.12<br>6,0ㅤㅤ0.12<br>3,0ㅤㅤ0.12<br>12,0ㅤㅤ0.06<br>13,0ㅤㅤ0.06<br><br>Valores únicos: **10**<br>Número de registros: **1678**
+---
 
-       Valores = array([nan, '13,0', '12,0', '11,0', '7,0', '6,0', '4,0', '3,0', '2,0',
-       '1,0', '0,0'], dtype=object)
-Hay 1643 nulos
+ㅤㅤ   
+Hay 1643 nulos en una columna con 1678 registros, casi el 98%
 
-Propuesta de mejora:
+**Propuesta de mejora:**
 
-- Reemplazar la ``,`` por ``.``:
-``df["yearsincurrentrole"] = df["yearsincurrentrole"].str.replace(',', '.')``
-- Rellenar los vacíos con 0
-``df["yearsincurrentrole"] = df["yearsincurrentrole"].fillna(0)``
-- Convertir a float:
-``df["yearsincurrentrole"] = df["yearsincurrentrole"].astype(float)``
--Ahora sí, pasar a entero sin miedo:
-``df["yearsincurrentrole"] = df["yearsincurrentrole"].astype(int)``
+       > Eliminar la columna, no es una muestra representativa para obtener información.
+ㅤㅤ   
+**Propuestas ejecutadas:**
 
-       Resultado:
-       array([ 0, 13, 12, 11,  7,  6,  4,  3,  2,  1])
-  
+- La columna ha sido eliminada.
+
+ㅤㅤ
+---
 ---
 
 ### yearssincelastpromotion
 
-(dtype: int64)
+|    Tipo   |   yearssincelastpromotion   |
+|-----------|---------------|
+| dtype: int64 |0ㅤㅤ39.03<br>1ㅤㅤ23.66<br>2ㅤㅤ10.91<br>7ㅤㅤ5.66<br>4ㅤㅤ4.11<br>3ㅤㅤ3.87<br>5ㅤㅤ3.16<br>6ㅤㅤ2.26<br>11ㅤㅤ1.61<br>8ㅤㅤ1.31<br>9ㅤㅤ1.13<br>15ㅤㅤ0.95<br>14ㅤㅤ0.66<br>12ㅤㅤ0.66<br>13ㅤㅤ0.6<br>10ㅤㅤ0.42<br><br>Valores únicos: **16**<br>Número de registros: **1678**
+---
 
-       Valores = [15, 11,  5,  2,  4,  7,  0,  1, 13, 14,  8, 12,  3,  6, 10,  9]
+ㅤㅤ   
+Es una horquilla de años entre 0 a 15.
 
-Mantener sin cambios.
+Sin anomalías. Mantener sin cambios.
 
+---
 ---
 
 ### yearswithcurrmanager
 
-(dtype: int64)
-*Años trabajando con el mismo gerente.*
+|    Tipo   |   Años bajo el mismo manager   |
+|-----------|---------------|
+| dtype: int64 |2ㅤㅤ23.54<br>0ㅤㅤ16.98<br>7ㅤㅤ16.39<br>3 ㅤㅤ 9.06<br>8 ㅤㅤ 7.27<br>4 ㅤㅤ 6.44<br>1 ㅤㅤ 5.18<br>9 ㅤㅤ 4.23<br>5 ㅤㅤ 2.32<br>10ㅤㅤ1.97<br>6 ㅤㅤ 1.85<br>11ㅤㅤ1.31<br>12ㅤㅤ1.19<br>13ㅤㅤ1.01<br>17ㅤㅤ0.48<br>15ㅤㅤ0.3<br>14ㅤㅤ0.3<br>16ㅤㅤ0.18<br><br>Valores únicos: **18**<br>Número de registros: **1678**
+---
 
-       Valores = [15,  9,  6,  8,  7, 11, 10, 12,  4,  0,  5, 17,  2, 14,  1, 13,  3, 16]
+ㅤㅤ   
+Es una horquilla de años entre 0 a 17.
 
-Mantener sin cambios.
+Sin anomalías. Mantener sin cambios.
 
+---
 ---
 
 ### sameasmonthlyincome
 
-(dtype: object)
-*columna sin especificar*
+|    Tipo   |   *columna sin especificar*  |
+|-----------|---------------|
+| dtype: object |NaNㅤㅤ29.14<br>2342,59$ㅤㅤ13.59<br>4492,84$ㅤㅤ13.53<br>8339,32$ㅤㅤ6.26<br>12783,92$ㅤㅤ2.5<br>15943,72$ㅤㅤ1.49<br>4420,00$ㅤㅤ0.3<br>3612,50$ㅤㅤ0.18<br>2949,17$ㅤㅤ0.18<br>(...)<br>2241,67$ㅤㅤ0.06<br>15034,17$ㅤㅤ0.06<br><br>Valores únicos: **493**<br>Número de registros: **1678**
+---
 
-       Valores = Datos tipo objeto, con simbolo en "Español" para los decimales y además incluido en el dato el simbolo $
+ㅤㅤ   
 
-Propuesta de mejora:
+Los registros presentan coma decimal e incluyen en el dato el simbolo ``$``.
 
-- Cambiar la ``,`` por ``.``, eliminar también el simbolo ``$``. Por último cambiar el valor objeto a float
+ㅤ     
+**Propuesta de mejora:**
 
-``df["sameasmonthlyincome"] = df["sameasmonthlyincome"].str.replace(',', '.')``
+       > Cambiar ',' por '.'.
 
-``df["sameasmonthlyincome"] = df["sameasmonthlyincome"].str.replace('$', '', regex=False)``
+       > Eliminar también el símbolo '$'.
 
-``df["sameasmonthlyincome"] = df["sameasmonthlyincome"].astype(float)``
+       > Modificar valor tipo 'objeto' a 'float'.
 
-- Comprobar si esta columna es una copia redundante de [monthlyincome](#monthlyincome), si en efecto lo es, eliminar.
+       > Comprobar si esta columna es una copia redundante de 'monthlyincome', si en efecto lo es, eliminar.
 
-Propuestas ejecutadas:
+ㅤ     
+Ir a **[monthlyincome](#monthlyincome)**
 
-- Eliminación de columna
+**Propuestas ejecutadas:**
 
+- La columna ha sido eliminada.
+
+ㅤ     
+
+---
 ---
 
 ### datebirth
 
-(dtype: int64)
-*Año de nacimiento del empleado*
+|    Tipo   |   Año de nacimiento  |
+|-----------|---------------|
+| dtype: int64 |1992ㅤㅤ5.3<br>1988ㅤㅤ5.24<br>1989ㅤㅤ5.13<br>1994ㅤㅤ4.89<br>1987ㅤㅤ4.77<br>1991ㅤㅤ3.99<br>1993ㅤㅤ3.93<br>1985ㅤㅤ3.81<br>1990ㅤㅤ3.75<br>1983ㅤㅤ3.58<br>1986ㅤㅤ3.34<br>1996ㅤㅤ3.22<br>1995ㅤㅤ3.22<br>1978ㅤㅤ2.98<br>1981ㅤㅤ2.98<br>(...)<br>1964ㅤㅤ0.66<br>2003ㅤㅤ0.66<br>2005ㅤㅤ0.54<br>2004ㅤㅤ0.54<br>1966ㅤㅤ0.36<br>1963ㅤㅤ0.3<br><br>Valores únicos: **43**<br>Número de registros: **1678**
+---
 
-       Valores = [1972, 1971, 1981, 1976, 1977, 1975, 1964, 1982, 1967, 1985, 1968, 1983, 1965, 1988, 1978, 1990, 1987, 1989, 1970, 1980, 1963, 1991, 1986, 1974, 1984, 1973, 1979, 1993, 1994, 1992, 1969, 1966, 1996, 1995, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005]
+ㅤ     
+Presenta el formato para un año de nacimiento.   
 
-Sin anomalías.
+Sin anomalías. Mantener sin modificaciones.
 
 ---
 
 ### salary
 
-(dtype: object)
-*Salario anual calculado para el empleado*
+|    Tipo   |   Salario anual calculado para el empleado   |
+|-----------|---------------|
+| dtype: object |NaNㅤㅤㅤㅤㅤ16.98<br>53914,11$ ㅤㅤ 16.09<br>28111,13$ㅤ   ㅤ 15.2<br>100071,84$ ㅤㅤ 7.27<br>153407,07$ ㅤㅤ 2.68<br>191324,62$ ㅤㅤ 1.67<br>63470,00$ㅤㅤㅤ 0.18<br>20330,00$ㅤㅤㅤ 0.18<br>53040,00$ㅤㅤㅤ 0.18<br>(...)<br>134020,00$ ㅤㅤ 0.06<br>195370,00$ ㅤㅤ 0.06<br>199990,00$ ㅤㅤ 0.06<br>49600,00$ㅤㅤㅤ0.06<br>27410,00$ㅤㅤㅤ0.06<br>24390,00$ㅤㅤㅤ0.06<br>28040,00$ㅤㅤㅤ0.06<br>46480,00$ㅤㅤㅤ0.06<br>29560,00$ㅤㅤㅤ0.06<br><br>Valores únicos: **583**<br>Número de registros: **1678**
+---
 
-       Valores = Datos tipo objeto, con simbolo en "Español" para los decimales y además incluido en el dato el simbolo $
+ㅤㅤ   
 
-Propuesta de mejora:
+Los registros presentan coma decimal e incluyen en el dato el simbolo ``$``.
 
-- Cambiar la ``,`` por ``.``, eliminar también el simbolo ``$``. Por último cambiar el valor tipo objeto a float
+ㅤ     
+**Propuesta de mejora:**
 
-``df["salary"] = df["salary"].str.replace(',', '.')``
+       > Cambiar ',' por '.'.
 
-``df["salary"] = df["salary"].str.replace('$', '', regex=False)``
+       > Eliminar también el símbolo '$'.
+       
+       > Modificar valor tipo ``objeto`` a ``float``.
 
-``df["salary"] = df["salary"].astype(float)``
+       > Relleno de nulos calculando 'salary = monthlyincome * 12'
 
-- Relleno de nulos = 'salary = monthlyincome * 12'
+ㅤ     
+**Propuestas ejecutadas:**
 
-Propuestas ejecutadas:
+- Todas las propuestas han sido ejecutadas.
 
-- Calculo de valores faltantes
+ㅤ     
 
+---
 ---
 
 ### roledepartament
 
-(dtype: object)
-*Combinación de rol y departamento.*
+|    Tipo   |   Combinación de rol y departamento   |
+|-----------|---------------|
+| dtype: object |NaNㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ81.41<br>Sales exECutIVE  -  Salesㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ0.12<br> humAN resoURCEs  -  Human Resources ㅤㅤㅤㅤㅤ ㅤㅤ 0.12<br> labORAtoRy tEcHNICIAN  -  Research & Developmentㅤㅤ0.12<br> hEalthCaRe reprEseNTaTiVe  -  Research & Developmentㅤ0.12<br> LaBoratory TECHnICIAn  -  Research & Development ㅤ ㅤ 0.12<br> LaborAtorY Technician  -  Research & Developmentㅤㅤㅤ 0.12<br> LABOrATOrY TEchnIcIAn  -  Research & Development ㅤㅤ 0.12<br>(...)<br> SALEs REpRESentatIve  -  Sales ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ0.06<br> heaLtHcArE repResENtATiVe  -  Research & Developmentㅤ0.06<br><br>Valores únicos: **301**<br>Número de registros: **1678**
+---
 
-       Valores = array([nan, ' manager  -  research & development ',
-       ' healthcare representative  -  research & development ',
-       ' sales executive  -  sales ',
-       ' laboratory technician  -  research & development ',
-       ' manufacturing director  -  research & development ',
-       ' research scientist  -  research & development ',
-       ' research director  -  research & development ',
-       ' human resources  -  human resources ', ' manager  -  sales ',
-       ' sales representative  -  sales ',
-       ' manager  -  human resources '], dtype=object)
+ㅤㅤ   
+Registros de escritura irregular que no pueden agruparse debidamente y 81.41% de valores nulos.
 
-Propuesta de mejora:
+ㅤㅤ   
+**Propuesta de mejora:**
 
-- df["roledepartament"] = df["roledepartament"].str.lower()
+       > Estandarizar a formato letras minúsculas.
 
-       [nan, ' manager  -  research & development ',
-       ' healthcare representative  -  research & development ',
-       ' sales executive  -  sales ',
-       ' laboratory technician  -  research & development ',
-       ' manufacturing director  -  research & development ',
-       ' research scientist  -  research & development ',
-       ' research director  -  research & development ',
-       ' human resources  -  human resources ', ' manager  -  sales ',
-       ' sales representative  -  sales ',
-       ' manager  -  human resources ']
+       > Comprobar si esta columna es sólo redundante o si contiene los datos que faltan en columnas 'department' y 'jobrole'.
+       
+Ir a **[department](#department)**     
+Ir a **[jobrole](#jobrole)**
 
-- ¿Comprobar si esta columna es redundante o si contiene los datos que faltan en [department](#department) y [jobrole](#jobrole)?
-- ¿Destinarla a eliminación una vez reubicados todos los valores?
-- Hemos realizado comparación y determinamos que la columna debe ser eliminada.
+       > Destinarla a eliminación una vez reubicados todos los valores.
 
-Propuestas ejecutadas:
+ㅤㅤ   
+**Propuestas ejecutadas:**
 
-- Eliminación de columna
+- La columna ha sido eliminada.
 
+ㅤㅤ   
+
+---
 ---
 
 ### numberchildren
 
-(dtype: float64)
-*Número de hijos del empleado*
+|    Tipo   |   Número de hijos   |
+|-----------|---------------|
+| dtype: float64 |NaNㅤㅤ100.0<br><br>Valores únicos: **0**<br>Número de registros: **1678**
+---
 
-       Valores = [nan]
+ㅤㅤ   
+No hay datos recogidos para este campo.
 
-Propuesta de mejora:
+ㅤㅤ   
+**Propuesta de mejora:**
 
-- Posible columna a eliminar.
-- Incluir comentarios para MySQL
+       > Posible columna a eliminar.
+       > Incluir recomendaciones para la empresa.
 
-Propuestas ejecutadas:
+ㅤㅤ   
+**Propuestas ejecutadas:**
 
-- Eliminación de columna
+- La columna se eliminó.
 
+ㅤㅤ
+---
 ---
 
 ### remotework
 
-(dtype: object)
-*Indica si el empleado trabaja de forma remota (Yes/No).*
+|    Tipo   |   El empleado trabaja de forma remota (Yes/No)   |
+|-----------|---------------|
+| dtype: object |1ㅤㅤㅤ 22.3<br>trueㅤㅤ21.38<br>0ㅤㅤㅤ 19.14<br>falseㅤㅤ18.9<br>yes ㅤㅤ 18.28<br><br>Valores únicos: **5**<br>Número de registros: **1614**
+---
 
-       Valores =[ 'Yes', '1', 'False', '0', 'True']
+ㅤㅤ   
+Quizás el 0 signifique Sí/Yes y el 1 signifique No. También es posible que el True sea igual a Sí/Yes y el False sea No.
 
-Todos son objetos aunque haya número de por medio. Quizás el 0 signifique Si/Yes y el 1 signifique No. También es posible que el True sea igual a Si/Yes y el False sea No
+**Propuesta de mejora:**
 
-Propuesta de mejora:
+       > Consultar con PO información respecto a las entradas de registro.
+       > Estandarizar formato.
 
-- Unificar datos.
+ㅤㅤ   
+**Propuestas ejecutadas**:
+
+- Sin ejecutar.
 
 ## 4. Cambios ejecutados
 
