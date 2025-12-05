@@ -1029,6 +1029,85 @@ Quizás el 0 signifique Sí/Yes y el 1 signifique No. También es posible que el
 
 **A continuación, la información que hemos obtenido en consecuencia:**
 
-       Visualizaciones 
+Aquí tienes las correlaciones positivas fuertes (con un valor mayor a 0.5) que he encontrado en tus datos. Parece que hay varias variables con una correlación perfecta o casi perfecta (1.0000 o 0.9701), lo que podría indicar  
+  que son dependientes entre sí o redundantes.
 
-## 7. Next Steps
+ Correlaciones positivas fuertes (> 0.5) encontradas:                                                                             
+- monthlyrate y dailyrate: 1.0000
+- hourlyrate y monthlyrate: 1.0000  
+- dailyrate y hourlyrate: 1.000
+- hourlyrate y joblevel: 0.9701 
+- joblevel y dailyrate: 0.9701 
+- joblevel y monthlyrate: 0.9701 
+- salary y hourlyrate: 0.8528 
+- monthlyrate y salary: 0.8528  
+- dailyrate y salary: 0.8528
+- salary y joblevel: 0.8295    
+- performancerating y percentsalaryhike: 0.7751  
+- joblevel y totalworkingyears: 0.7727
+- totalworkingyears y hourlyrate: 0.7634 
+- totalworkingyears y monthlyrate: 0.7634 
+- dailyrate y totalworkingyears: 0.7634  
+- yearsatcompany y yearswithcurrmanager: 0.7571  
+- monthlyincome y salary: 0.7453
+- totalworkingyears y age: 0.6687
+- yearsatcompany y totalworkingyears: 0.6367  
+- monthlyrate y monthlyincome: 0.6270   
+- hourlyrate y monthlyincome: 0.6270
+- monthlyincome y dailyrate: 0.6270
+- monthlyincome y joblevel: 0.6151  
+- yearsatcompany y yearssincelastpromotion: 0.6118
+- totalworkingyears y monthlyincome: 0.5979  
+- salary y totalworkingyears: 0.5979 
+- joblevel y yearsatcompany: 0.5324
+- yearsatcompany y dailyrate: 0.5221
+- yearsatcompany y hourlyrate: 0.5221 
+- yearsatcompany y monthlyrate: 0.5221
+- age y joblevel: 0.5074
+- yearssincelastpromotion y yearswithcurrmanager: 0.5009 
+- hourlyrate y age: 0.5007
+- age y monthlyrate: 0.5007 
+- dailyrate y age: 0.5007
+
+Aquí tienes un resumen de las variables que presentan un número considerable de valores atípicos, lo que indica una alta dispersión:
+
+   - trainingtimeslastyear: 268 outliers
+   - performancerating: 214 outliers
+   - yearssincelastpromotion: 116 outliers
+   - yearsatcompany: 114 outliers
+
+  Estas variables son las que tienen los datos más dispersos.
+Análisis de outliers (valores atípicos) por variable: 
+
+                               
+- Variable 'dailyrate': Se encontraron 18 outliers. 
+- Variable 'distancefromhome': Se encontraron 40 outliers.   
+- Variable 'hourlyrate': Se encontraron 18 outliers.  
+- Variable 'monthlyincome': Se encontraron 11 outliers.   
+- Variable 'monthlyrate': Se encontraron 18 outliers. 
+- Variable 'numcompaniesworked': Se encontraron 59 outliers. 
+- Variable 'performancerating': Se encontraron 214 outliers. 
+- Variable 'stockoptionlevel': Se encontraron 89 outliers. 
+- Variable 'totalworkingyears': Se encontraron 42 outliers.    
+- Variable 'trainingtimeslastyear': Se encontraron 268 outliers. 
+- Variable 'yearsatcompany': Se encontraron 114 outliers. 
+- Variable 'yearssincelastpromotion': Se encontraron 116 outliers. 
+- Variable 'yearswithcurrmanager': Se encontraron 16 outliers. 
+- Variable 'salary': Se encontraron 15 outliers.    
+
+## 7. Próximos Pasos (Next Steps)
+
+1. Optimización Técnica
+
+- Dinamización de Datos: Investigar la posibilidad de convertir una cifra estática clave en un valor dinámico, calculado automáticamente a partir de la fecha de nacimiento
+2. Validación y Calidad de Datos
+- Refuerzo del Back-end: Implementar validaciones estrictas para prevenir la entrada de datos erróneos o inconsistentes.
+3. Normalización y Documentación
+- Glosario de Valores: Crear un glosario que defina explícitamente el significado de cada valor en las escalas utilizadas (ej. ‘1: Insatisfecho’, ‘4: Muy satisfecho’).
+- Convención de Escala: Documentar formalmente el uso de los valores 0 y 5 en las escalas, aunque no aparezcan en los registros actuales.
+4. Inclusión y Diversidad
+- Ampliación de Género: Incorporar opciones de género no binario y diversidad de género en los campos correspondientes para mejorar la representatividad e inclusividad del proyecto.
+5. Comentarios de la Empresa
+- Recopilar y analizar feedback directo de la empresa para alinear las mejoras con sus expectativas y necesidades.
+6. Visualizaciones
+- Mejorar la presentación de datos mediante gráficos y dashboards interactivos, facilitando la interpretación y toma de decisiones. (editado) 
