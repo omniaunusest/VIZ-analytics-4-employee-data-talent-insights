@@ -1,16 +1,14 @@
 # Módulo 3: Optimización de Talento
 
-{% hint style="info" %}
 Recuerda que este proyecto es un ejercicio académico, ante la duda pregunta a tus profesores.
-{% endhint %}
 
 ## 1. Resumen.
 
 En el entorno empresarial altamente competitivo de hoy en día, la toma de decisiones informadas es esencial para el éxito a largo plazo. La retención de empleados y la satisfacción en el trabajo son cuestiones críticas para cualquier organización, ya que afectan directamente a la productividad, la moral y la rentabilidad.
 
-Con el objetivo de reducir la rotación de empleados y mejorar la satisfacción en el trabajo la empresa ABC Corporation, nos han contratado para desarrollar un proyecto de análisis de datos. Nuestra misión es identificar factores clave que influyen en la satisfacción en el trabajo y, en última instancia, en la retención de empleados.
+Con el objetivo de reducir la rotación de empleados y mejorar la satisfacción en el trabajo la empresa **ABC Corporation**, nos han contratado para desarrollar un proyecto de análisis de datos. Nuestra misión es **identificar factores clave que influyen en la satisfacción en el trabajo y, en última instancia, en la retención de empleados**.
 
-En este proyecto, presentaremos los resultados de nuestro análisis exploratorio de datos y analizaremos los resultados para proporcionar a ABC Corporation información valiosa que informe sus decisiones estratégicas.
+En este proyecto, presentaremos los resultados de nuestro análisis exploratorio de datos y analizaremos los resultados para proporcionar a ABC Corporation** información valiosa** que informe sus decisiones estratégicas.
 
 **¿Quién es ABC Corporation?**
 
@@ -18,9 +16,9 @@ ABC Corporation, fundada en 1980 en California, es una consultora tecnológica e
 
 La empresa se distingue por tener un equipo multidisciplinario que abarca expertos en UX/UI, marketing, analistas, científicos de datos y otros campos relevantes. Esta diversidad permite una sinergia única entre conocimientos técnicos especializados y perspectivas variadas, lo que les permite ofrecer soluciones personalizadas adaptadas a las necesidades individuales de cada cliente.
 
-EL último proyecto donde ha estado implicado la empresa ha sido la optimización de procesos de selección de personal, para ello la empresa ha desarrollado una plataforma de selección inteligente, donde los empleados pueden analizar automáticamente los CV de las posibles candidatas, identificar sus habilidades clave para finalmente clasificar los candidatos según si idoneidad para determinados roles. Además, han creado un sistema de recomendación para sugerir a los reclutadores los mejores candidatos.
+EL último proyecto donde ha estado implicado la empresa ha sido la optimización de procesos de selección de personal, para ello la empresa ha desarrollado una plataforma de selección inteligente, donde los empleados pueden analizar automáticamente los CV de las posibles candidatas, identificar sus habilidades clave para finalmente clasificar los candidatos según su idoneidad para determinados roles. Además, han creado un sistema de recomendación para sugerir a los reclutadores los mejores candidatos.
 
-## Fases del proyecto:
+## Fases del proyecto
 
 **Fase 1: Análisis Exploratorio de Datos(EDA).**
 
@@ -39,9 +37,9 @@ Esto puede incluir la limpieza de datos, la normalización, la conversión de ti
 
 **Fase 3: Visualizando los datos.**
 
-El objetivo de esta fase será proporcionar a ABC Corporation un informe detallado del contexto general de la empresa utilizando visualizaciones en Python. Este informe permitirá una comprensión más profunda de la situación actual y servirá como base para la toma de decisiones informadas.
+El objetivo de esta fase será proporcionar a **ABC Corporation** un informe detallado del contexto general de la empresa utilizando visualizaciones en Python. Este informe permitirá una comprensión más profunda de la situación actual y servirá como base para la toma de decisiones informadas.
 
-Deberás generar un informe completo que incluirá las visualizaciones junto con análisis descriptivos (se presentará el día de la demo). Las visualizaciones ayudarán a resaltar tendencias, áreas de mejora y fortalezas dentro de la empresa.
+Deberás generar **un informe completo que incluirá las visualizaciones junto con análisis descriptivos (se presentará el día de la demo)**. Las visualizaciones ayudarán a resaltar **tendencias, áreas de mejora y fortalezas dentro de la empresa**.
 
 **Fase 4: Diseño de BBDD e Insercción de los Datos (estructura).**
 
@@ -106,9 +104,6 @@ Las columnas que os encontraréis en el DataFrame son:
 * **NUMBERCHILDREN**: Número de hijos del empleado (si está disponible).
 * **RemoteWork**: Indica si el empleado trabaja de forma remota (Yes/No).
 
-{% file src="<https://931940412-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FiDkWIWBqfl4XxuhVbroM%2Fuploads%2Fgit-blob-637cbfca3de8e2bd707c96cdfdeadfc88a07aab0%2Fhr_raw_data.csv?alt=media>" %}
-Descarga este csv para obtener los resultados.
-{% endfile %}
 
 ## Objetivos
 
@@ -128,14 +123,14 @@ También haremos una retro corta revisando los *working agreements* que hemos ac
 
 Al final del segundo **sprint** (que coincidirá con el final del proyecto y del módulo), haremos una sesión de presentación más completa, más allá de lo que sería un *Sprint Review*.
 
-### Criterios de aceptación.
+### Criterios de aceptación
 
 * Crear la infraestructura necesaria: repositorio en GitHub y con acceso para todos los miembros del equipo.
 * Extraer datos de distintas fuentes de datos y creación de una Base de Datos.
 * Tener la extracción de datos, creación de la base de datos e inserción de datos automatizada en funciones(obligatorio) y clases(optativo).
 * Tener en el repositorio de GitHub todo el código del desarrollo del proyecto.
 
-### Historias de usuario.
+### Historias de usuario
 
 Para la gestión del proyecto, usaremos historias de usuario. Las historias de usuario son descripciones breves y concretas de las funcionalidades o características que un usuario espera encontrar en un producto o sistema. Recordemos que, las historias de usuario son una herramienta importante para asegurarse de que el equipo de desarrollo (es decir, nosotras) entienda las necesidades de los usuarios y construya el producto de manera efectiva.
 
@@ -146,7 +141,7 @@ Algunas de las historias de usuario que podemos definir son:
 3. Transformación de los datos.
 4. Decidir que visualizaciones hacer.
 
-## Entrega.
+## Entrega
 
 El formato de entrega de este proyecto será mediante la subida de este a la plataforma de GitHub. Para subirlo, se creará un repositorio en vuestro perfil. El nombre del repositorio deberá estar compuesto de las siguientes partes, todo ello separado por guiones:
 
@@ -164,7 +159,7 @@ En lo relacionado en las fechas de los *sprints* pueden verlo en vuestros calend
 
 En las *sprint review* se revisará que se hayan solucionado todas las tareas técnicas asociadas a la entrega de esos *sprints*, si algo quedara pendiente se arrastraría al siguiente *sprint*.
 
-## 6. Presentación.
+## 6. Presentación
 
 El último día del módulo presentaréis la versión final de este proyecto a vuestras compañeras y al equipo de Adalab. Cada equipo realizará una presentación de 10 minutos y posteriormente habrá 5 minutos de *feedback* por parte del público. En este caso, la audiencia podría ser más variada pues no sólo estarán los profesores.
 
@@ -173,6 +168,7 @@ El objetivo es que practiquéis la realización de las demos de los proyectos qu
 Para que la presentación salga bien es imprescindible una buena preparación. Por ello, durante el primer *sprint* del módulo tendréis que asignar responsabilidades dentro del equipo relacionadas con la preparación de ésta. Algunos tips para preparaos este demo son:
 
 * Todas las participantes del equipo deben hablar en la presentación (sin práctica no hay mejora).
+
 * Identificar los objetivos de la presentación: Debemos tener claro qué es lo que queremos lograr con la presentación. ¿Queremos demostrar la funcionalidad de un producto? ¿Queremos mostrar los resultados de un experimento? ¿Queremos atraer inversores? Dependiendo del objetivo, deberemos enfocar la presentación de manera distinta.
 * Conoce a tu audiencia: La presentación debe estar adaptada al tipo de audiencia que se espera. Si se presentara ante posibles inversores, la presentación debe estar enfocada en los beneficios y la rentabilidad del producto. Si es una presentación para usuarios, deberá enfocarse en la usabilidad y la facilidad de uso.
 * Debéis ser claras y concisas: La presentación debe ser fácil de entender y no debe ser demasiado larga. Es importante presentar la información de manera clara y concisa. Debemos tener en cuenta que los detalles técnicos pueden ser interesantes, pero no deberían opacar la idea principal.
@@ -200,30 +196,19 @@ Descripción breve del proyecto
 Este proyecto tiene como objetivo analizar y optimizar la gestión del talento en ABC Corporation mediante técnicas de análisis de datos, visualización y diseño de bases de datos. A partir de un conjunto de datos de Recursos Humanos, llevamos a cabo un análisis exploratorio, transformamos y limpiamos la información, generamos visualizaciones clave y diseñamos la arquitectura de una base de datos relacional para centralizar y estructurar los datos del personal. Como fase adicional, desarrollamos un proceso ETL automatizado en Python para la extracción, transformación y carga de los datos.
 El proyecto se desarrolla siguiendo metodologías ágiles (Scrum) y buenas prácticas de control de versiones, con el objetivo final de presentar resultados claros que ayuden a comprender los factores que influyen en la satisfacción laboral y la retención del talento dentro de la organización.
 
-Si quieres, puedo generar también una versión aún más corta, una versión más orientada a negocio, o una versión más técnica.
+---
+### Resumen conciso
 
-You said:
-Lo puedes condensar a 4-5 lineas? Creo que hay un limite de texto.
-ChatGPT said:
-Claro, aquí tienes una versión muy condensada (4–5 líneas):
+Este proyecto analiza datos de Recursos Humanos de ABC Corporation para identificar factores que influyen en la satisfacción laboral y la retención del talento. 
 
-Este proyecto analiza datos de Recursos Humanos de ABC Corporation para identificar factores que influyen en la satisfacción laboral y la retención del talento. Incluye un análisis exploratorio, limpieza y transformación de datos, generación de visualizaciones y diseño de una base de datos relacional. Además, se desarrolla un proceso ETL automatizado en Python para asegurar la actualización y coherencia de la información. El trabajo se realiza siguiendo metodologías ágiles y buenas prácticas de control de versiones.
+Incluye un análisis exploratorio, limpieza y transformación de datos, generación de visualizaciones y diseño de una base de datos relacional.
 
-You said:
-Hacerlo mas conciso aun.
-ChatGPT said:
-Perfecto, aquí tienes una versión aún más concisa:
+Además, se desarrolla un proceso ETL automatizado en Python para asegurar la actualización y coherencia de la información. 
 
-Proyecto enfocado en analizar y transformar datos de Recursos Humanos para identificar factores que afectan la satisfacción y retención del personal en ABC Corporation. Incluye EDA, limpieza de datos, visualizaciones, diseño de base de datos y un proceso ETL automatizado en Python, siguiendo metodologías ágiles.
+El trabajo se realiza siguiendo metodologías ágiles y buenas prácticas de control de versiones.
 
-You said:
-se corta en metodol -- acortarlo un poquito mas.
-ChatGPT said:
-Aquí va una versión un poco más corta:
+### Más conciso aún
 
-Proyecto centrado en analizar y transformar datos de Recursos Humanos para identificar factores que influyen en la satisfacción y retención del personal en ABC Corporation. Incluye EDA, limpieza, visualizaciones, diseño de base de datos y un proceso ETL en Python, aplicado con un enfoque ágil.
+Proyecto centrado en analizar y transformar datos de Recursos Humanos para identificar factores que influyen en la satisfacción y retención del personal en ABC Corporation.
 
-
-
-No file chosenNo file chosen
-ChatGPT can make mistakes. Check important info. See .
+Incluye EDA, limpieza, visualizaciones, diseño de base de datos y un proceso ETL en Python, aplicado con un enfoque ágil.
