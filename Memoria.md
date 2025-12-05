@@ -27,10 +27,10 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 - [Department](#department) ✔
 - [Distance From Home](#distancefromhome) ✔
 - [Education](#education) ✔
-- [Education Field](#educationfield) NaN
+- [Education Field](#educationfield) ✔
 - [Employee Count](#employeecount) ✔
 - [Employee Number](#employeenumber) ✔
-- [Environment Satisfaction](#environmentsatisfaction) Formato
+- [Environment Satisfaction](#environmentsatisfaction) ✔
 - [Gender](#gender) ✔
 - [Hourly Rate](#hourlyrate) ✔
 - [Job Involvement](#jobinvolvement) ✔
@@ -159,7 +159,6 @@ Asegurarse de aplicar el mismo criterio a todas las columnas numéricas relativa
 ---
 
 ### department
-
 Cambios ejecutados:
 |    Tipo  |  Departamento donde trabaja el empleado   |
 | ----------- | ----------- |
@@ -239,12 +238,13 @@ Sin anomalías. Mantener sin cambios.
 
        > Comparar los valores nulos con las columnas que incluyen datos aparentemente reiterados, pueden contener este valor en ausencia de estar presentes en esta columna.
 
-Columna referenciada: [department](#department).
+
 
 **Propuestas ejecutadas:**
 
 - Estandarización: formato letras minúsculas.
 - El espaciado extra ha sido eliminado.
+- Imputar ``unknown`` en los nulos.
 
 ---
 ---
@@ -301,9 +301,13 @@ Este campo es redundante, cada registro corresponde a un único empleado (valor 
        
        Decidir acortar las distancias entre 0 y 50 pasándolos a float entre 0-5 (0.1, 0.3, 0.4... 3.3, 4.5, 4.9)
 
+       Tratar los datos altos como si hubieran imputado con decimas, es decir, 24 será un 2,4 y para homogeneizar con la mayoría de respuestas (93,8%) lo imputaremos a 2.
+
+
 **Propuestas ejecutadas:**
 
-- ?
+- Buscamos redondear al primer número de cada valor alto (outlier) ``df["columna"] = ((df["columna"] + 5) // 10).astype(int)``
+
 
 ---
 ---
@@ -758,7 +762,6 @@ Sin anomalías.
 ---
 
 ### worklifebalance
-
 
 |    Tipo   |   worklifebalance   |
 |-----------|---------------|
