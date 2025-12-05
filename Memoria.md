@@ -20,7 +20,7 @@
 
 Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para el proyecto de análisis presenta índices como columnas:
 
-- [Age](#age) ?
+- [Age](#age) Cálculo?
 - [Attrition](#attrition) ✔
 - [Business Travel](#businesstravel) ✔
 - [Daily Rate](#dailyrate) ✔
@@ -30,7 +30,7 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 - [Education Field](#educationfield) NaN
 - [Employee Count](#employeecount) ✔
 - [Employee Number](#employeenumber) ✔
-- [Environment Satisfaction](#environmentsatisfaction) F
+- [Environment Satisfaction](#environmentsatisfaction) Formato
 - [Gender](#gender) ✔
 - [Hourly Rate](#hourlyrate) ✔
 - [Job Involvement](#jobinvolvement) ✔
@@ -52,7 +52,7 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 - [Training Times Last Year](#trainingtimeslastyear) ✔
 - [Work Life Balance](#worklifebalance) NaN
 - [Years at Company](#yearsatcompany) ✔
-- [Years in Current Role](#yearsincurrentrole) NaN
+- [Years in Current Role](#yearsincurrentrole) ✔
 - [Years Since Last Promotion](#yearssincelastpromotion) ✔
 - [Years with Current Manager](#yearswithcurrmanager) ✔
 - [Same as Monthly Income](#sameasmonthlyincome) ✔
@@ -68,7 +68,7 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 
 |       Tipo | Descripción |
 | ----------- | ----------- |
-| Generales     | Datos personales anonimizados sobre empleados (edad, rango, departamento, género, tipo de contrato...), con presencia de valores nulos.<br><br> Escalas de valoración (ambiente laboral, satisfacción con el trabajo) sin estandarizar (0-5, 0-50).<br><br> Columnas duplicadas (1).<br><br> Filas con valores duplicados en toda su serie de columnas.|
+| Generales     | Datos personales anonimizados sobre empleados (edad, rango, departamento, género, tipo de contrato...), con presencia de valores nulos.|| Escalas de valoración (ambiente laboral, satisfacción con el trabajo) sin estandarizar (0-5, 0-50).<br><br> Columnas duplicadas (1).<br><br> Filas con valores duplicados en toda su serie de columnas.|
 | Valores nulos   | Distribución dispersa de valores nulos en general.<br><br> Columnas que contienen únicamente valores nulos (1).<br><br> Valores nulos en columnas atribuidas a conceptos salariales.|
 Valores objeto | Entradas de escritura irregular (alternan aleatoriamente mayúsculas y minúsculas)<br><br> Valores que se agrupan indebidamente por errores ortográficos.<br><br> Espaciado extra|
 Valores numéricos | Valores numericos relativos a información salarial junto a símbolos de divisa: ``$``, que impide realizar cálculos con ellos.<br><br> Presentan ``,`` en su formato, que dificulta el procesamiento de los datos, en lugar de ``.``.<br><br> Formato negativo para expresar distancias.
@@ -92,7 +92,7 @@ nulos para apuntar en otro lado: pero su distribución admite el cálculo del va
 
 **Propuestas ejecutadas:**
 
-- ?
+       > Averiguar si podemos optimizar la cifra estática a una dinámica, de modo que el campo se calcule tomando de referencia la fecha de nacimiento.
 
 ---
 ---
@@ -120,15 +120,15 @@ Sin anomalías. Mantener sin cambios.
 ---
 ㅤ     
 **Nota:**     
-Comprobar si el ``NaN`` tiene más valores ``NaN`` asociados al mismo empleado.
+Comprobar si estos valores nulos tienen más valores nulos asociados al mismo empleado.
 
 **Propuesta de mejora:**
 
-       Sustituir NaN por non-travel, según la información proporcionada por el PO.
+       > Sustituir 'NaN' por 'non-travel', según la información proporcionada por el PO.
 ㅤ     
 **Propuesta ejecutada:**
 
-- Se ha sustituido (**2**) valores ``NaN`` por ``non-travel``.
+- Se han sustituido (**2**) valores ``NaN`` por ``non-travel``.
 ㅤ     
 ㅤ     
 ---
@@ -152,7 +152,6 @@ Asegurarse de aplicar el mismo criterio a todas las columnas numéricas relativa
 
 - Sustitución de ``,`` por ``.``.
 - Redondeado a dos decimales.
-- Calcular datos faltantes.
 
 ㅤ
 
@@ -182,7 +181,7 @@ Dados los pocos departamentos que hay, inferiremos el valor de los nulos de la r
 
 - Estandarización: formato letras minúsculas.
 - El espaciado extra ha sido eliminado.
-- Incluimos información en ``department``, en función a los valores de la columna ``jobrole``
+- Incluimos información faltante en relación a los valores presentes y relacionados de la columna ``jobrole``
 - Modificamos ``NaN`` por ``Desconocido``.
 
 ---
@@ -201,8 +200,10 @@ Dados los pocos departamentos que hay, inferiremos el valor de los nulos de la r
 
 **Propuesta ejecutada:**
 
-       Sin ejecución.
----
+- Los valores negativos han sido transformados.
+
+ ㅤ   
+---      
 ---
 
 ### education
@@ -236,7 +237,7 @@ Columna referenciada: [department](#department).
 
 **Propuestas ejecutadas:**
 
-- Las letras minúsculas ahora son el estándar.
+- Estandarización: formato letras minúsculas.
 - El espaciado extra ha sido eliminado.
 
 ---
@@ -256,12 +257,13 @@ Este campo es redundante, cada registro corresponde a un único empleado (valor 
 
 **Propuestas ejecutadas:**
 
-- ?
+- La columna ha sido eliminada.
 
 ---
 ---
 
 ### employeenumber
+
 |    Tipo   |   Identificación del empleaㅤㅤdo   |
 | ----------- | ----------- |
 | dtype: int64 |528ㅤㅤ0.12<br>300ㅤㅤ0.12<br>168ㅤㅤ0.12<br>644ㅤㅤ0.12<br>271ㅤㅤ0.12<br>(...)<br>1594ㅤㅤ0.06<br>1595ㅤㅤ0.06<br>1596ㅤㅤ0.06<br>1597ㅤㅤ0.06<br>1614ㅤㅤ0.06 <br><br>Valores únicos: **1614**<br>Número de registros: **1678**<br><br>Registros duplicados: **64**|
@@ -276,7 +278,7 @@ Este campo es redundante, cada registro corresponde a un único empleado (valor 
 
 **Propuestas ejecutadas:**
 
-- ?
+- Se han eliminado los registros duplicados, que también presentaban duplicidades en las filas asociadas del resto de columnas: han sido elimnados también.
 
 ---
 
@@ -331,7 +333,7 @@ No incluye opciones no binarias o diversidad de género, podría ser interesante
 
 |    Tipo   |   Tarifa por hora calculada   |
 | ----------- | ----------- |
-| dtype: float64 | NaNㅤㅤㅤㅤ75.51<br>36.254439ㅤㅤ4.53<br>69.532083ㅤㅤ4.47<br>129.060911 ㅤ 2.44<br>197.846418     0.83<br>(...)<br>108.230159     0.06<br>247.477183     0.06<br>67.424603      0.06<br>34.821429      0.06<br>133.159722     0.06 <br><br> Valores únicos: **194**<br>Número de registros: **1678** |
+| dtype: float64 | NaNㅤㅤㅤㅤ75.51<br>36.254439ㅤㅤ4.53<br>69.532083ㅤㅤ4.47<br>129.060911 ㅤ 2.44<br>197.846418     0.83<br>(...)<br>108.230159     0.06<br>247.477183     0.06<br>67.424603      0.06<br>34.821429      0.06||133.159722     0.06 <br><br> Valores únicos: **194**<br>Número de registros: **1678** |
 ---
 
 ㅤㅤ   
@@ -360,7 +362,7 @@ Los valores tienen hasta 10 decimales (ej: 69.53208262).
 
 |    Tipo   |   Nivel de compromiso del empleado en el trabajo   |
 |-----------|---------------|
-| dtype: int64 |3ㅤㅤ59.3<br>2ㅤㅤ25.09<br>4ㅤㅤ10.13<br>1ㅤㅤ5.48<br><br>Valores únicos: **4**<br>Número de registros: **1678**
+| dtype: int64 |3ㅤㅤ59.3||2ㅤㅤ25.09||4ㅤㅤ10.13||1ㅤㅤ5.48<br><br>Valores únicos: **4**<br>Número de registros: **1678**
 ---
 
 ㅤㅤ   
@@ -388,7 +390,11 @@ Sin anomalías. Mantener sin cambios.
 
 |    Tipo   |   Nivel jerárquico del puesto del empleado   |
 |-----------|---------------|
-| dtype: int64 |2ㅤㅤ36.83<br>1ㅤㅤ36.47<br>3ㅤㅤ15.2<br>4 ㅤㅤ 6.79<br>5 ㅤㅤ 4.71<br><br>Valores únicos: **5**<br>Número de registros: **1678**|
+| dtype: int64 |2ㅤㅤ36.83
+||1ㅤㅤ36.47
+||3ㅤㅤ15.2
+||4 ㅤㅤ 6.79
+||5 ㅤㅤ 4.71<br><br>Valores únicos: **5**<br>Número de registros: **1678**|
 ---
 
 ㅤㅤ   
@@ -436,8 +442,13 @@ Tras una estandarización el resultado es que los registros únicos son 9:
 
 ### jobsatisfaction 
 
-(dtype: int64) **PENDIENTE** **14 pendientes de revisar + formato**
-*Satisfacción general en el puesto*
+|    Tipo   |   Satisfacción general en el puesto   |
+|-----------|---------------|
+| dtype: int64 |4ㅤㅤ32.06
+||3ㅤㅤ29.62
+||1ㅤㅤ19.43
+||2ㅤㅤ18.89<br><br>Valores únicos: **4**<br>Número de registros: **1678**|
+---
 
        Valores = array([3, 4, 1, 2])
 
