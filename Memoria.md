@@ -1030,3 +1030,5 @@ Quizás el 0 signifique Sí/Yes y el 1 signifique No. También es posible que el
 **A continuación, la información que hemos obtenido en consecuencia:**
 
        Visualizaciones 
+
+## 7. Next Steps
