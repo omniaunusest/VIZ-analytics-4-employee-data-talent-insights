@@ -50,7 +50,7 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 - [Stock Option Level](#stockoptionlevel) ✔
 - [Total Working Years](#totalworkingyears) ✔
 - [Training Times Last Year](#trainingtimeslastyear) ✔
-- [Work Life Balance](#worklifebalance) NaN
+- [Work Life Balance](#worklifebalance) ✔ (actualizar comprobaciones)
 - [Years at Company](#yearsatcompany) ✔
 - [Years in Current Role](#yearsincurrentrole) ✔
 - [Years Since Last Promotion](#yearssincelastpromotion) ✔
@@ -160,6 +160,12 @@ Asegurarse de aplicar el mismo criterio a todas las columnas numéricas relativa
 
 ### department
 
+Cambios ejecutados:
+|    Tipo  |  Departamento donde trabaja el empleado   |
+| ----------- | ----------- |
+| dtype: object | Sales ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ 28.43<br>Human Resourcesㅤㅤㅤㅤㅤ3.53<br>Unknownㅤㅤㅤㅤㅤㅤ  ㅤ      6.8<br>Research & Developmentㅤ   61.15<br><br>Valores únicos: **4**<br>Número de registros: **1678**|
+---
+Datos originales:
 |    Tipo  |  Departamento donde trabaja el empleado   |
 | ----------- | ----------- |
 | dtype: object | NaNㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ 81.41<br>Research & Developmentㅤ12.10<br>Sales ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ 5.54<br>Human Resourcesㅤㅤㅤㅤㅤ0.95<br><br>Valores únicos: **3**<br>Número de registros: **1678**|
@@ -182,7 +188,7 @@ Dados los pocos departamentos que hay, inferiremos el valor de los nulos de la r
 - Estandarización: formato letras minúsculas.
 - El espaciado extra ha sido eliminado.
 - Incluimos información faltante en relación a los valores presentes y relacionados de la columna ``jobrole``
-- Modificamos ``NaN`` por ``Desconocido``.
+- Modificamos ``NaN`` por ``unknown``.
 
 ---
 ---
@@ -753,6 +759,7 @@ Sin anomalías.
 
 ### worklifebalance
 
+
 |    Tipo   |   worklifebalance   |
 |-----------|---------------|
 | dtype: object |3,0ㅤㅤ56.38<br>2,0ㅤㅤ22.29<br>4,0 ㅤㅤ 9.65<br>NaNㅤㅤ6.79<br>1,0 ㅤㅤ 4.89<br><br>Valores únicos: **4**<br>Número de registros: **1678**
@@ -763,14 +770,14 @@ Sin anomalías.
 
        > Reemplazar ',' por '.'.
 
-       > Gestionar nulos.
+       > Gestionar nulos, sustituir nulos por mediana
 
        > Convertir valores a tipo 'float'.
 
 
 **Propuestas ejecutadas:**
 - Se han reemplazado las comas y la columna ahora contiene valores 'float'.
-- Se han mantenido los nulos.
+- Se imputaron los nulos con la mediana (3.0).
 
 ㅤㅤ
 
