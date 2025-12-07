@@ -50,7 +50,7 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 - [Stock Option Level](#stockoptionlevel)
 - [Total Working Years](#totalworkingyears)
 - [Training Times Last Year](#trainingtimeslastyear)
-- [Work Life Balance](#worklifebalance)(actualizar comprobaciones)
+- [Work Life Balance](#worklifebalance)
 - [Years at Company](#yearsatcompany)
 - [Years in Current Role](#yearsincurrentrole)
 - [Years Since Last Promotion](#yearssincelastpromotion)
@@ -71,6 +71,7 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 | Datos personales anonimizados sobre empleados (edad, rango, departamento, género, tipo de contrato...), con presencia de valores nulos.
 |Escalas de valoración (ambiente laboral, satisfacción con el trabajo) sin estandarizar (0-5, 0-50).
 |Columnas duplicadas (1).
+|Columnas que contienen únicamente valores únicos (1).
 |Filas con valores duplicados en toda su serie de columnas.|
 
 ---
@@ -80,7 +81,6 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 |  Valores nulos  |
 | ----------------|
 |Distribución dispersa de valores nulos en general.
-|Columnas que contienen únicamente valores nulos (1).
 |Valores nulos en columnas atribuidas a conceptos salariales.
 |Nulos cuya distribución admite el cálculo del valor faltante relacionando las cantidades presentes en las otras columnas.|
 
@@ -1114,8 +1114,7 @@ Quizás el 0 signifique Sí/Yes y el 1 signifique No. También es posible que el
 
 **A continuación, la información que hemos obtenido en consecuencia:**
 
-Aquí tienes las correlaciones positivas fuertes (con un valor mayor a 0.5) que he encontrado en tus datos. Parece que hay varias variables con una correlación perfecta o casi perfecta (1.0000 o 0.9701), lo que podría indicar  
-  que son dependientes entre sí o redundantes.
+Aqui mostramos correlaciones positivas fuertes (con un valor mayor a 0.5) que he encontrado en tus datos. Parece que hay varias variables con una correlación perfecta o casi perfecta (1.0000 o 0.9701), lo que podría indicar que son dependientes entre sí o redundantes.
 
  Correlaciones positivas fuertes (> 0.5) encontradas:
 
@@ -1155,14 +1154,14 @@ Aquí tienes las correlaciones positivas fuertes (con un valor mayor a 0.5) que 
 - age y monthlyrate: 0.5007
 - dailyrate y age: 0.5007
 
-Aquí tienes un resumen de las variables que presentan un número considerable de valores atípicos, lo que indica una alta dispersión:
+Aquí mostramos un resumen de las variables que presentan un número considerable de valores atípicos, lo que indica una alta dispersión:
 
 - trainingtimeslastyear: 268 outliers
 - performancerating: 214 outliers
 - yearssincelastpromotion: 116 outliers
 - yearsatcompany: 114 outliers
 
-  Estas variables son las que tienen los datos más dispersos.
+Estas variables son las que tienen los datos más dispersos.
 Análisis de outliers (valores atípicos) por variable:
 
 - Variable 'dailyrate': Se encontraron 18 outliers.
@@ -1179,6 +1178,13 @@ Análisis de outliers (valores atípicos) por variable:
 - Variable 'yearssincelastpromotion': Se encontraron 116 outliers.
 - Variable 'yearswithcurrmanager': Se encontraron 16 outliers.
 - Variable 'salary': Se encontraron 15 outliers.
+
+
+`jobsatisfaction` (satisfacción en el trabajo) es la variable que mejor representa la satisfacción de los empleados en relación con su decisión de marcharse de la empresa.
+
+La correlación entre jobsatisfaction y attrition es de -0.0895. Aunque este número no es extremadamente alto, es la correlación negativa más fuerte entre todas las variables de
+  satisfacción.
+
 
 ## 7. Próximos Pasos (Next Steps)
 
