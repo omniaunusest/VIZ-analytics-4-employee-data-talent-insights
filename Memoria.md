@@ -118,20 +118,20 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 |-----------|---------------|
 ||
 ||**Top 5:**
-||35  5.24%
-||31  5.24%
-||34  5.13%
-||29  4.89%
-||36  4.71%
+||35  ㅤㅤ5.24%
+||31  ㅤㅤ5.24%
+||34  ㅤㅤ5.13%
+||29  ㅤㅤ4.89%
+||36  ㅤㅤ4.71%
 ||<br>
 ||**Bottom 5:**
 ||thirty-one  0.06%
-||thirty  0.06%
-||fifty-five  0.06%
+||thirty  ㅤㅤ0.06%
+||fifty-fiveㅤ0.06%
 ||twenty-six  0.06%
 ||thirty-seven  0.06%
 ||<br>
-||**Media:** 36.94774774774775
+||**Media:** 36.94
 ||**Mediana:** 36.0
 ||**Moda:** 31.0
 ||<br>
@@ -157,12 +157,20 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 
 ### attrition
 
-| Tipo | Indica si el empleado dejó la empresa (Yes/No) |
-| ----------- | ----------- |
-| dtype: object |Noㅤ83.79<br>Yesㅤ16.21<br><br>Valores únicos: **2**<br>Número de registros: **1678**.|
-
+|    dtype: object  |   Indica si el empleado dejó la empresa (Yes/No)   |
+|-----------|---------------|
+||
+||No  ㅤㅤㅤ83.79
+||Yes  ㅤㅤㅤ16.21
+||<br>
+||<br>
+||Valores únicos: **2**
+||Número de registros: **1678**
+||Valores nulos: **0**
+||Registros duplicados: **1676**|
 ---
-ㅤ
+
+ㅤ     
 Sin anomalías. Mantener sin cambios.
 ㅤ
 
@@ -171,13 +179,23 @@ Sin anomalías. Mantener sin cambios.
 
 ### businesstravel
 
-|  Tipo  |   Indica Frecuencia de viajes   |
-| ----------- | ----------- |
-| dtype: object | NaNㅤㅤㅤㅤㅤㅤ 47.74<br>travel_rarelyㅤㅤㅤ36.71<br>travel_frequentlyㅤ10.01<br>non-travelㅤㅤㅤㅤ 5.54<br><br>Valores únicos: **3**<br>Número de registros: **1678**|
-
+|    dtype: object  |   Indica frecuencia de viajes  |
+|-----------|---------------|
+||
+||NaN  ㅤㅤㅤㅤㅤㅤ47.74
+||travel_rarelyㅤㅤㅤ36.71
+||travel_frequentlyㅤ10.01
+||non-travelㅤㅤㅤㅤ5.54
+||<br>
+||<br>
+||Valores únicos: **3**
+||Número de registros: **1678**
+||Valores nulos: **801**
+||Registros duplicados: **1675**|
 ---
-ㅤ
-**Nota:**
+
+ㅤ     
+**Nota:**     
 Comprobar si estos valores nulos tienen más valores nulos asociados al mismo empleado.
 
 **Propuesta de mejora:**
@@ -186,19 +204,41 @@ Comprobar si estos valores nulos tienen más valores nulos asociados al mismo em
 ㅤ
 **Propuesta ejecutada:**
 
-- Se han sustituido (**2**) valores ``NaN`` por ``non-travel``.
-ㅤ
-ㅤ
+- Se han sustituido (**801**) valores ``NaN`` por ``non-travel``.
+
+ㅤ     
+
 
 ---
 ---
 
 ### dailyrate
 
-|    Tipo  |   Tarifa diaria estimada para clientes, calculada en base al salario   |
-| ----------- | ----------- |
-| dtype: int64 | 556.256661ㅤㅤ19.43<br>290.035510ㅤㅤ18.36<br>1032.487286ㅤㅤ8.94<br>1582.771346ㅤㅤ3.28<br>1973.984127ㅤㅤ2.26<br>(...)<br>531.452381ㅤㅤ  0.06<br>295.388889ㅤㅤ 0.06<br>294.873016ㅤㅤ 0.06<br>116.484127ㅤㅤ 0.06<br><br>Valores únicos: **673**<br>Número de registros: **1678**|
-
+|    dtype: float64  |   Tarifa diaria estimada para clientes, calculada en base al salario    |
+|-----------|---------------|
+||
+||**Top 5:**
+||556.2566609977324  19.43%
+||290.03550973654063  18.36%
+||1032.4872861766066  8.94%
+||1582.7713464696226  3.28%
+||1973.9841269841268  2.26%
+||<br>
+||**Bottom 5:**
+||531.452380952381  0.06%
+||295.3888888888889  0.06%
+||294.8730158730159  0.06%
+||116.484126984127  0.06%
+||1108.920634920635  0.06%
+||<br>
+||**Media:** 668.07
+||**Mediana:** 556.25
+||**Moda:** 556.25
+||<br>
+||Valores únicos: **673**
+||Número de registros: **1678**
+||Valores nulos: **0**
+||Registros duplicados: **1005**|
 ---
 ㅤ
 **Propuesta de mejora:**
@@ -219,18 +259,20 @@ Asegurarse de aplicar el mismo criterio a todas las columnas numéricas relativa
 
 ### department
 
-Cambios ejecutados:
-
-|    Tipo  |  Departamento donde trabaja el empleado   |
-| ----------- | ----------- |
-| dtype: object | Sales ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ 28.43<br>Human Resourcesㅤㅤㅤㅤㅤ3.53<br>Unknownㅤㅤㅤㅤㅤㅤ  ㅤ      6.8<br>Research & Developmentㅤ   61.15<br><br>Valores únicos: **4**<br>Número de registros: **1678**|
-
+|    dtype: object  |   Departamento donde trabaja el empleado   |
+|-----------|---------------|
+||
+|| NaNㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ81.41
+|| Research & Developmentㅤ12.1
+|| Salesㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ5.54
+|| Human Resourcesㅤㅤㅤㅤ 0.95
+||<br>
+||<br>
+||Valores únicos: **3**
+||Número de registros: **1678**
+||Valores nulos: **1366**
+||Registros duplicados: **1675**|
 ---
-Datos originales:
-
-|    Tipo  |  Departamento donde trabaja el empleado   |
-| ----------- | ----------- |
-| dtype: object | NaNㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ 81.41<br>Research & Developmentㅤ12.10<br>Sales ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ 5.54<br>Human Resourcesㅤㅤㅤㅤㅤ0.95<br><br>Valores únicos: **3**<br>Número de registros: **1678**|
 
 ---
 ㅤ
@@ -240,11 +282,11 @@ Datos originales:
  
        > Comparar los valores nulos con las columnas que incluyen datos aparentemente reiterados, pueden contener este valor en ausencia de estar presentes en esta columna.
 
-Columna referenciada: [roledepartament](#roledepartment)
+Ir a columna de referencia: [roledepartament](#roledepartment)
 
        > Sustituir espacios innecesarios al inicio, final y entre las palabras del valor (' Human Resources ') por valores estandarizados y sin espacios innecesarios.
 ㅤ
-Dados los pocos departamentos que hay, inferiremos el valor de los nulos de la relación entre los valores presentes y los valores de la columna [jobrole](#jobrole).
+Dados los pocos departamentos que hay, podemos inferir el valor de los nulos de la relación entre los valores presentes y los valores de la columna [jobrole](#jobrole).
 
 **Propuesta ejecutada:**
 
@@ -258,10 +300,32 @@ Dados los pocos departamentos que hay, inferiremos el valor de los nulos de la r
 
 ### distancefromhome
 
-|    Tipo  |   Distancia en millas o kilómetros desde el hogar al trabajo   |
-| ----------- | ----------- |
-| dtype: int64 | 2 ㅤ 13.59<br>1 ㅤ 12.46<br>9ㅤㅤ5.30<br>10 ㅤ 5.13<br>8ㅤㅤ5.07<br>-21ㅤ0.12<br>-43ㅤ0.12<br>-28ㅤ0.12<br>-39ㅤ0.06<br>-40ㅤ0.06 <br><br> Valores únicos: **69**<br>Número de registros: **1678**|
-
+|    dtype: int64  |   Distancia desde el hogar al trabajo  |
+|-----------|---------------|
+||
+||**Top 5:**
+||2ㅤㅤ13.59%
+||1ㅤㅤ12.46%
+||9ㅤ ㅤ 5.3%
+||10ㅤㅤ5.13%
+||8  ㅤ ㅤ5.07%
+||<br>
+||**Bottom 5:**
+||-21  ㅤ 0.12%
+||-43  ㅤ 0.12%
+||-28  ㅤ 0.12%
+||-39  ㅤ 0.06%
+||-40  ㅤ 0.06%
+||<br>
+||**Media:** 4.50
+||**Mediana:** 5
+||**Moda:** 2
+||<br>
+||Valores únicos: **69**
+||Número de registros: **1678**
+||Valores nulos: **0**
+||Registros duplicados: **1609**|
+---
 ---
 ㅤ
 **Propuesta de mejora:**
@@ -279,13 +343,24 @@ Dados los pocos departamentos que hay, inferiremos el valor de los nulos de la r
 
 ### education
 
-(dtype: int64)
-*Nivel educativo del empleado en escala numérica*
-
-|    Tipo   |   Nivel educativo del empleado en escala numérica  |
-| ----------- | ----------- |
-| dtype: int64| 3ㅤ38.68<br>4ㅤ27.47<br>2ㅤ19.19<br>1ㅤ11.08<br>5ㅤ3.58<br><br> Valores únicos: **5**<br>Número de registros: **1678**|
-
+|    dtype: int64  |   Nivel Educativo (Escala Numérica)  |
+|-----------|---------------|
+||
+||3ㅤㅤ38.68
+||4ㅤㅤ27.47
+||2ㅤㅤ19.19
+||1ㅤㅤ11.08
+||5ㅤㅤ 3.58
+||<br>
+||**Media:** 2.93
+||**Mediana:** 3
+||**Moda:** 3
+||<br>
+||Valores únicos: **5**
+||Número de registros: **1678**
+||Valores nulos: **0**
+---
+ㅤ     
 Sin anomalías. Mantener sin cambios.
 
 ⚑ Incluir en un glosario el significado de la escala de valores.
@@ -300,10 +375,11 @@ Sin anomalías. Mantener sin cambios.
 | dtype: object | NaNㅤㅤㅤㅤㅤㅤㅤ46.13<br>Life Sciences ㅤㅤㅤ 21.87<br>Medical ㅤㅤㅤㅤㅤ 17.04<br>Marketing ㅤㅤ ㅤㅤ  6.32<br>Technical Degreeㅤㅤ4.17<br>Otherㅤㅤㅤㅤㅤㅤㅤ3.75<br>Human Resources ㅤ 0.72 <br><br> Valores únicos: **6**<br>Número de registros: **1678**|
 
 ---
-ㅤ
+
+ㅤ     
 **Propuesta de mejora:**
 
-       > Estandarizar a minúculas todos los nombres.
+       > Estandarizar a formato minúculas todos los nombres.
 
        > Comparar los valores nulos con las columnas que incluyen datos aparentemente reiterados, pueden contener este valor en ausencia de estar presentes en esta columna.
 
@@ -311,7 +387,7 @@ Sin anomalías. Mantener sin cambios.
 
 - Estandarización: formato letras minúsculas.
 - El espaciado extra ha sido eliminado.
-- Imputar ``unknown`` en los nulos.
+- Imputar por ``unknown`` los valores nulos.
 
 ---
 ---
@@ -323,46 +399,97 @@ Sin anomalías. Mantener sin cambios.
 | dtype: int64| 1ㅤㅤ100.0 <br><br> Valores únicos: **1**<br>Número de registros: **1678**|
 
 ---
-ㅤ
+
+ㅤ     
 Este campo es redundante, cada registro corresponde a un único empleado (valor siempre igual a 1).
 
+ㅤ     
 **Propuesta de mejora:**
 
-       Eliminar columna
-
+       > Eliminar columna
+ㅤ     
 **Propuestas ejecutadas:**
 
 - La columna ha sido eliminada.
+
+ㅤ     
 
 ---
 ---
 
 ### employeenumber
 
-|    Tipo   |   Identificación del empleaㅤㅤdo   |
-| ----------- | ----------- |
-| dtype: int64 |528ㅤㅤ0.12<br>300ㅤㅤ0.12<br>168ㅤㅤ0.12<br>644ㅤㅤ0.12<br>271ㅤㅤ0.12<br>(...)<br>1594ㅤㅤ0.06<br>1595ㅤㅤ0.06<br>1596ㅤㅤ0.06<br>1597ㅤㅤ0.06<br>1614ㅤㅤ0.06 <br><br>Valores únicos: **1614**<br>Número de registros: **1678**<br><br>Registros duplicados: **64**|
-
+|    dtype: int64  |   Número de Identificación del empleado  |
+|-----------|---------------|
+||
+||**Top 5:**
+||528ㅤㅤ0.12%
+||300ㅤㅤ0.12%
+||168ㅤㅤ0.12%
+||644ㅤㅤ0.12%
+||271ㅤㅤ0.12%
+||<br>
+||**Bottom 5:**
+||1594ㅤㅤ0.06%
+||1595ㅤㅤ0.06%
+||1596ㅤㅤ0.06%
+||1597ㅤㅤ0.06%
+||1614ㅤㅤ0.06%
+||<br>
+||**Media:** 809.85
+||**Mediana:** 813.5
+||**Moda:** 9
+||<br>
+||Valores únicos: **1614**
+||Número de registros: **1678**
+||Valores nulos: **0**
+||Registros duplicados: **64**|
 ---
 
-ㅤㅤ
+ㅤ     
+
 **Propuesta de mejora:**
 
-       > Consultar la presencia de valores nulos al PO.
-
        > Gestión de duplicados.
-
+ㅤ     
 **Propuestas ejecutadas:**
 
-- Se han eliminado los registros duplicados, que también presentaban duplicidades en las filas asociadas del resto de columnas: han sido elimnados también.
+- Se han eliminado los (**64**) registros duplicados en los identificadores únicos.
+
+- También presentaban duplicidades en las filas asociadas del resto de columnas: han sido elimnadas también.
+
+ㅤ     
 
 ---
 
 ### environmentsatisfaction
 
-|    Tipo   |   Nivel de satisfacción con el ambiente laboral   |
-| ----------- | ----------- |
-| dtype: int64 |4ㅤㅤ28.50<br>3ㅤㅤ28.44<br>1ㅤㅤ18.46<br>2ㅤㅤ18.40<br>12ㅤㅤ0.43<br>35ㅤㅤ0.37<br>13ㅤㅤ0.37<br>24ㅤㅤ0.31<br>47ㅤㅤ0.31<br>14ㅤㅤ0.31<br>41ㅤㅤ0.25<br>42ㅤㅤ0.25<br>46ㅤㅤ0.25<br>36ㅤㅤ0.25<br>48ㅤㅤ0.25<br>20ㅤㅤ0.19<br>22ㅤㅤ0.19<br>11ㅤㅤ0.19<br>18ㅤㅤ0.19<br>45ㅤㅤ0.19<br>(...)<br>10ㅤㅤ0.06<br>26ㅤㅤ0.06<br>43ㅤㅤ0.06<br><br> Valores únicos: **38**<br>Número de registros: **1614** |
+|    dtype: int64  |   environmentsatisfaction   |
+|-----------|---------------|
+||
+||**Top 5:**
+||4ㅤㅤ28.78%
+||3ㅤㅤ28.07%
+||2ㅤㅤ18.83%
+||1ㅤㅤ18.24%
+||12ㅤㅤ0.42%
+||<br>
+||**Bottom 5:**
+||39ㅤㅤ0.06%
+||49ㅤㅤ0.06%
+||10ㅤㅤ0.06%
+||26ㅤㅤ0.06%
+||43ㅤㅤ0.06%
+||<br>
+||**Media:** 4.26
+||**Mediana:** 3
+||**Moda:** 4
+||<br>
+||Valores únicos: **38**
+||Número de registros: **1678**
+||Valores nulos: **0**
+||Registros duplicados: **1640**|
+---
 
 ---
 ㅤㅤ
@@ -372,7 +499,7 @@ Este campo es redundante, cada registro corresponde a un único empleado (valor 
        
        Decidir acortar las distancias entre 0 y 50 pasándolos a float entre 0-5 (0.1, 0.3, 0.4... 3.3, 4.5, 4.9)
 
-       Tratar los datos altos como si hubieran imputado con decimas, es decir, 24 será un 2,4 y para homogeneizar con la mayoría de respuestas (93,8%) lo imputaremos a 2.
+       Tratar los datos altos imputandolos como valores con décimas, es decir, 24 será un 2,4 y para estandarizar con la mayoría de respuestas (93,8%) lo imputaremos a 2.
 
 **Propuestas ejecutadas:**
 
