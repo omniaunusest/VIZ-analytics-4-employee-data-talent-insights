@@ -1180,12 +1180,6 @@ Análisis de outliers (valores atípicos) por variable:
 - Variable 'salary': Se encontraron 15 outliers.
 
 
-`jobsatisfaction` (satisfacción en el trabajo) es la variable que mejor representa la satisfacción de los empleados en relación con su decisión de marcharse de la empresa.
-
-La correlación entre jobsatisfaction y attrition es de -0.0895. Aunque este número no es extremadamente alto, es la correlación negativa más fuerte entre todas las variables de
-  satisfacción.
-
-
 ## 7. Próximos Pasos (Next Steps)
 
 1. Optimización Técnica
