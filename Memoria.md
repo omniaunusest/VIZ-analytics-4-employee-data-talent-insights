@@ -510,10 +510,16 @@ Este campo es redundante, cada registro corresponde a un único empleado (valor 
 
 ### gender
 
-|    Tipo   |   Género asignado del empleado   |
-| ----------- | ----------- |
-| dtype: int64 | 0ㅤㅤ60.13<br>1ㅤㅤ9.87<br><br> Valores únicos: **2**<br>Número de registros: **1678** |
-
+|    dtype: int64  |   gender   |
+|-----------|---------------|
+||
+||0ㅤㅤ60.13
+||1ㅤㅤ39.87
+||<br>
+||<br>
+||Valores únicos: **2**
+||Número de registros: **1678**
+||Valores nulos: **0**|
 ---
 ㅤㅤ
 No está documentado qué significa cada valor (ej: 0 = Femenino, 1 = Masculino)
