@@ -4,7 +4,7 @@
 
 ### Índice
 
-- [1. Estructura/Etiquetas](#1-estructura-y-etiquetas)
+- [1. Campos y categorías](#1-campos-y-categorías)
 
 - [2. Patrones generales](#2-patrones)
 
@@ -16,7 +16,11 @@
 
 - [6. Visualización como respuesta](#6-visualización-como-respuesta:)
 
-## 1. Estructura y etiquetas
+- [7. Próximos pasos: vistas a futuro](#7-próximos-pasos-next-steps)
+
+- [8. Glosario de definiciones](#8-glosarios)
+
+## 1. Campos y categorías
 
 Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para el proyecto de análisis presenta índices como columnas:
 
@@ -111,6 +115,9 @@ Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para 
 ㅤ     
 
 ## 3. Análisis Exploratorio de Datos (EDA)
+
+<details>
+<summary> (Para expandir la exploración completa: click aquí)</summary>
 
 ### age
 
@@ -543,10 +550,31 @@ No incluye opciones no binarias o diversidad de género, podría ser interesante
 
 ### hourlyrate
 
-|    Tipo   |   Tarifa por hora calculada   |
-| ----------- | ----------- |
-| dtype: float64 | NaNㅤㅤㅤㅤ75.51<br>36.254439ㅤㅤ4.53<br>69.532083ㅤㅤ4.47<br>129.060911 ㅤ 2.44<br>197.846418     0.83<br>(...)<br>108.230159     0.06<br>247.477183     0.06<br>67.424603      0.06<br>34.821429      0.06||133.159722     0.06 <br><br> Valores únicos: **194**<br>Número de registros: **1678** |
-
+|    dtype: float64  |   Salario/hora   |
+|-----------|---------------|
+||
+||**Top 5:**
+||nan  75.51%
+||36.25443871706758  4.53%
+||69.53208262471655  4.47%
+||129.06091077207583  2.44%
+||197.8464183087028  0.83%
+||<br>
+||**Bottom 5:**
+||108.23015873015872  0.06%
+||247.47718253968256  0.06%
+||67.42460317460318  0.06%
+||34.82142857142857  0.06%
+||133.15972222222223  0.06%
+||<br>
+||**Media:** 83.14076792768908
+||**Mediana:** 69.53208262471655
+||**Moda:** 36.25443871706758
+||<br>
+||Valores únicos: **194**
+||Número de registros: **1678**
+||Valores nulos: **1267**
+||Registros duplicados: **1484**|
 ---
 
 ㅤㅤ
@@ -573,12 +601,22 @@ Los valores tienen hasta 10 decimales (ej: 69.53208262).
 
 ### jobinvolvement
 
-|    Tipo   |   Nivel de compromiso del empleado en el trabajo   |
+|    dtype: int64  |   Nivel de compromiso del empleado en el trabajo   |
 |-----------|---------------|
-| dtype: int64 |3ㅤㅤ59.3||2ㅤㅤ25.09||4ㅤㅤ10.13||1ㅤㅤ5.48<br><br>Valores únicos: **4**<br>Número de registros: **1678**
-
+||
+||3  59.3
+||2  25.09
+||4  10.13
+||1  5.48
+||<br>
+||**Media:** 2.74
+||**Mediana:** 3
+||**Moda:** 3
+||<br>
+||Valores únicos: **4**
+||Número de registros: **1678**
+||Valores nulos: **0**|
 ---
-
 ㅤㅤ
 Escala de valoración.
 
@@ -602,14 +640,22 @@ Sin anomalías. Mantener sin cambios.
 
 ### joblevel
 
-|    Tipo   |   Nivel jerárquico del puesto del empleado   |
+|    dtype: int64  |   Rango de   |
 |-----------|---------------|
-| dtype: int64 |2ㅤㅤ36.83
-||1ㅤㅤ36.47
-||3ㅤㅤ15.2
-||4 ㅤㅤ 6.79
-||5 ㅤㅤ 4.71<br><br>Valores únicos: **5**<br>Número de registros: **1678**|
-
+||
+||2  36.83
+||1  36.47
+||3  15.2
+||4  6.79
+||5  4.71
+||<br>
+||**Media:** 2.06
+||**Mediana:** 2
+||**Moda:** 2
+||<br>
+||Valores únicos: **5**
+||Número de registros: **1678**
+||Valores nulos: **0**|
 ---
 
 ㅤㅤ
@@ -626,12 +672,30 @@ Sin anomalías. Mantener sin cambios.
 
 ### jobrole
 
-|    Tipo   |   jobrole   |
+|    dtype: object  |   jobrole   |
 |-----------|---------------|
-| dtype: object | mANager ㅤㅤ0.3<br><br> mAnageR ㅤㅤ0.18<br> ManagEr ㅤㅤ0.18<br> mAnaGeR ㅤㅤ0.18<br> ManageR ㅤㅤ0.18<br> MANAgER ㅤㅤ0.18<br>maNaGeR ㅤㅤ0.18<br> SALes RePREsEntAtivE ㅤㅤ0.12<br>SALes exeCUtiVE ㅤㅤ0.12<br> LAboRaTorY teChniCiaN ㅤㅤ0.12<br> reseaRCH DIrectOr ㅤㅤ0.12<br> ManUFaCtURInG dIReCToR ㅤㅤ0.12<br> MaNAgeR ㅤㅤ0.12<br> mANAgER ㅤㅤ0.12<br> ManAgEr ㅤㅤ0.12<br>(...)<br> hEAltHCarE REpreSentaTiVe ㅤㅤ0.06<br> mANUFacTURInG DIREctoR ㅤㅤ0.06<br>heALtHCArE RepRESENTATIVE ㅤㅤ0.06<br> maNUFacturing DiRector ㅤㅤ0.06<br><br>Valores únicos: **1579**<br>Número de registros: **1678**<br>Registros duplicados: **99**|
-
+||
+||**Top 5:**
+|| mANagerㅤㅤㅤㅤㅤㅤ0.3%
+|| mAnageRㅤㅤㅤㅤㅤㅤ0.18%
+|| ManagErㅤㅤㅤㅤㅤㅤ0.18%
+|| mAnaGeRㅤㅤㅤㅤㅤㅤ0.18%
+|| ManageRㅤㅤㅤㅤㅤㅤ0.18%
+||<br>
+||**Bottom 5:**
+|| SaleS eXeCuTIVEㅤㅤㅤㅤㅤㅤ 0.06%
+|| hEAltHCarE REpreSentaTiVe ㅤ  0.06%
+|| mANUFacTURInG DIREctoR  ㅤ 0.06%
+|| heALtHCArE RepRESENTATIVE 0.06%
+|| maNUFacturing DiRectorㅤ ㅤ 0.06%
+||<br>
+||<br>
+||Valores únicos: **1579**
+||Número de registros: **1678**
+||Valores nulos: **0**
+||Registros duplicados: **99**|
 ---
-
+---
  ㅤㅤ  
 Registros con valores de escritura irregular que no se agrupan como debieran: aparecen como 1579 registros únicos.
 
@@ -656,324 +720,494 @@ Tras una estandarización el resultado es que los registros únicos son 9:
 
 ### jobsatisfaction
 
-|    Tipo   |   Satisfacción general en el puesto   |
+|    dtype: int64  |   Satisfacción con el empleo  |
 |-----------|---------------|
-| dtype: int64 |4ㅤㅤ32.06
+||
+||4ㅤㅤ32.06
 ||3ㅤㅤ29.62
 ||1ㅤㅤ19.43
-||2ㅤㅤ18.89<br><br>Valores únicos: **4**<br>Número de registros: **1678**|
-
+||2ㅤㅤ18.89
+||<br>
+||**Media:** 2.74
+||**Mediana:** 3
+||**Moda:** 4
+||<br>
+||Valores únicos: **4**
+||Número de registros: **1678**
+||Valores nulos: **0**|
 ---
-
-       Valores = array([3, 4, 1, 2])
+---
 
 Mantener sin cambios.  
 
-O:
-
-       NOTA: como next steps, poder definir y documentar explícitamente el significado de cada valor: 
+**Nota:**     
+Poder definir y documentar explícitamente el significado de cada valor: 
        ej: 1: 'Insatisfecho',
        2: 'Poco satisfecho',
        3: 'Satisfecho',
        4: 'Muy satisfecho'
 
-¿Incluimos 0 y 5 en la escala aunque no aparezcan en la recolección de puntuaciones?
+Incluimos 0 y 5 en la escala aunque no aparezcan en la recolección de puntuaciones.
 
-Podemos dejarlo perfectamente como está e incluir un GLOSARIO en el que se indiquen las equivalencias.
+⚑ Incluir en un glosario el significado de la escala.
 
 ---
 
 ### maritalstatus
 
-(dtype: object) **PENDIENTE**
-*Estado civil (e.g., Single, Married)*
-
-       Values total 1678 | Unique 5 + NaN | dtype - objects. (incluye NaN - 675 - muchos) Null - TBD
-
-              NaN         675
-              Married     419
-              Single      343
-              Divorced    194
-              Marreid      36
-              divorced     11
+|    dtype: object  |  Estado Civil   |
+|-----------|---------------|
+||
+||NaNㅤㅤㅤ40.23
+||Married ㅤ 24.97
+||Singleㅤㅤ 20.44
+||Divorcedㅤ11.56
+||Marreidㅤㅤ2.15
+||divorced ㅤ 0.66
+||<br>
+||<br>
+||Valores únicos: **5**
+||Número de registros: **1678**
+||Valores nulos: **675**|
+---
 
 Propuesta de mejora:
 
-- lower() todos
-´´df["maritalstatus"] = df["maritalstatus"].str.lower()´´
-- replace ``Marrieid`` por ``Married``
-``df["maritalstatus"] = df["maritalstatus"].str.replace("marreid", "married")``
-- Null - TBD
+       > Estandarizar a letras minúsculas y registros con entrada erronea.
+       > Gestión de nulos.
 
 Propuestas ejecutadas:
 
 - Estandarización: formato letras minúsculas.
 - Sustituidas incorrecciones ortográficas.
+- Los nulos han sido sustituidos por ``insértese aquí lo propio``.
 
 ---
 
 ### monthlyincome
 
-(dtype: object) **PENDIENTE**
-*Ingreso mensual estimado en base al salario anual*
+|    dtype: object  |   Ingreso mensual estimado por el salario anual   |
+|-----------|---------------|
+||
+||**Top 5:**
+||NaNㅤㅤㅤㅤ29.14%
+||2342,59$ㅤㅤ13.59%
+||4492,84$ㅤㅤ13.53%
+||8339,32$ㅤㅤ 6.26%
+||12783,92$ㅤㅤ2.5%
+||
+||**Bottom 5:**
+||1980,00$ㅤㅤ0.06%
+||2115,83$ㅤㅤ0.06%
+||1923,33$ㅤㅤ0.06%
+||2241,67$ㅤㅤ0.06%
+||15034,17$ㅤ 0.06%
+||<br>
+||<br>
+||Valores únicos: **493**
+||Número de registros: **1678**
+||Valores nulos: **489**|
+---
+---
 
-       Values U1678 | Unique 493 + NaN | dtype - int. (incluye NaN - 498 - muchos) |  **Null - TBD**
+**Propuesta de mejora:**
 
-              muestra de valores:
-              NaN          489
-              2342,59$     228
-              4492,84$     227
+- Gestión de valores nulos: calcular el salario mensual dividiendo el valor existente de la columna ``salary`` /12.
 
-Propuesta de mejora:
+**Propuestas ejecutadas:**
 
-- Usar ``replace()`` ``,`` por ``.`` y usar ``replace()`` ``$`` por ``""``:
-``df["monthlyincome"] = df["monthlyincome"].str.replace("$", "", regex=False).str.replace(",", ".", regex=False)``
-
-       -->regex false - pandas puede pensar que es una funcion regex
-- Cambiar a numérico de tipo float:
-``df["monthlyincome"] = df["monthlyincome"] = pd.to_numeric(df["monthlyincome"], errors="coerce")``
-
-       --> errors="coerce" asegura que, si no se cumple, convierte en NaN
-       
-       ie. 40 esta como 'forty'
-              muestra monthlyincome limpio:
-              0       16280.83
-              1            NaN
-              2            NaN
-              3       14307.50
-              4       12783.92
-
-- Relleno de nulos = 'monthlyincome = salary / 12'
-
-Propuestas ejecutadas:
-
-- Calculo de valores faltantes
+- Calculo de valores faltantes.
 
 ---
 
 ### monthlyrate
 
-(dtype: object) **PENDIENTE**
-*Tarifa mensual estimada en función de la tarifa diaria*
+|    dtype: object  |   Tarifa mensual estimada en función de la tarifa diaria   |
+|-----------|---------------|
+||
+||**Top 5:**
+||11681,39$ㅤㅤ19.43%
+||6090,75$ ㅤㅤ 18.36%
+||21682,23$ ㅤㅤ 8.94%
+||33238,20$ ㅤㅤ 3.28%
+||41453,67$ㅤㅤ 2.26%
+||<br>
+||**Bottom 5:**
+||11160,50$  0.06%
+||6203,17$  0.06%
+||6192,33$  0.06%
+||2446,17$  0.06%
+||23287,33$  0.06%
+||<br>
+||<br>
+||Valores únicos: **673**
+||Número de registros: **1678**
+||Valores nulos: **0**|
+---
 
-       Values 1678 | Unique 673 | NaN 0 | dtype Object  
+ㅤ     
+**Propuesta de mejora:**
 
-Propuesta de mejora:
+        > Reemplazar ',' por '.'.
 
-- Mismo que en ``monthlyincome``
-``df["monthlyrate"] = df["monthlyrate"].str.replace("$", "", regex=False).str.replace(",", ".", regex=False)``
+       > Convertir valores a tipo 'float'.
 
-       -->regex false - pandas puede pensar que es una funcion regex
-- ``df["monthlyrate"] = df["monthlyrate"] = pd.to_numeric(df["monthlyrate"], errors="coerce")``
+**Propuestas ejecutadas:**
 
-       --> errors="coerce" asegura que si no se cumple convierte en NaN
-       
-       
+- Se han reemplazado las comas y la columna ahora contiene valores 'float'.
+
+
+---
+---
 
 ### numcompaniesworked
 
-(dtype: int64) **PENDIENTE**
-*Número de empresas previas en las que ha trabajado*
-
-       Valores = array([7, 0, 1, 3, 2, 4, 8, 9, 5, 6])
-
-       Values 1678 | Unique 10 (0-9) | NaN 0 | dtype int
+|    dtype: int64  |   Número de empresas previas en las que ha trabajado   |
+|-----------|---------------|
+||
+||1ㅤㅤ35.58
+||0ㅤㅤ13.95
+||3ㅤㅤ10.37
+||4ㅤㅤ 9.89
+||2ㅤㅤ 9.71
+||7ㅤㅤ 5.24
+||6ㅤㅤ 4.47
+||5ㅤㅤ 3.99
+||9ㅤㅤ 3.52
+||8ㅤㅤ 3.28
+||<br>
+||**Media:** 2.67
+||**Mediana:** 2
+||**Moda:** 1
+||<br>
+||Valores únicos: **10**
+||Número de registros: **1678**
+||Valores nulos: **0**|
+---
 
 - Entendemos que son empleos en compañías anteriores.
 
 De cara al volcado a SQL:
 
-- ¿Igual podemos llamarlo experiencia previa en empresas? ¿Score empleos previos?
+- Podemos llamarlo experiencia previa en empresas o score de empleos previos.
 
+Sin anomalías. Mantener sin cambios.
+
+
+---
 ---
 
 ### over18
 
-(dtype: object) **PENDIENTE**
-*columna no definida*
-
-       Valores = array(['Y', nan], dtype=object)
-
-       Values 1678 | dtype Object | Unique 1 | NaN 1 (938 valores NaN -- muchos, la mayoria)
+|    dtype: object  |  *columna no definida*  |
+|-----------|---------------|
+||
+||NaNㅤㅤㅤ55.9
+||Yㅤㅤㅤㅤ44.1
+||<br>
+||<br>
+||Valores únicos: **1**
+||Número de registros: **1678**
+||Valores nulos: **938**|
+---
 
 No existe valor N (No), solo Y (Yes) o NaN.
 
-Interpreto que es muy incompleto, con 56% NaN, para darle peso en el analysis global.
-
-       Muestra de valores y counts:
-       NaN    938
-       Y      740
+Es muy incompleto, con 55.9% de valores nulos, para darle peso en el analisis global.
 
 Propuesta de mejora:
 
 - Gestión de nulos.
 - Inferir que los nulos, en ausencia de No, pueden tener ese valor.
-- Consultar con nuestro enlace de proyecto, Pilar.
+- Consultar con nuestro enlace de proyecto, Product Owner: Pilar.
 
+ㅤㅤ   
+
+---
 ---
 
 ### overtime
 
-(dtype: object) **PENDIENTE**
-*Indica si el empleado trabaja horas extras (Yes/No)*
-
-       Valores = array(['No', nan, 'Yes'], dtype=object)
-
-Propuesta de mejora:
-
-- Gestión de nulos.
-- ¿Atribuir ``NaN`` como ``Desconocido`` y darle valor a la información de quien tiene un claro Yes?
-- Consultar con nuestro enlace de proyecto, Pilar.
-
-Propuestas ejecutadas:
-
-- Cambio ``nan`` por ``unknown``
-
+|    dtype: object  |   Indica si el empleado trabaja horas extras (Yes/No)   |
+|-----------|---------------|
+||
+||No  42.55
+||NaN  41.48
+||Yes  15.97
+||<br>
+||**Media:** nan
+||**Mediana:** nan
+||**Moda:** nan
+||<br>
+||Valores únicos: **2**
+||Número de registros: **1678**
+||Valores nulos: **696**
+||Registros duplicados: **1676**|
 ---
 
-### percentsalaryhike **PENDIENTE**
+**Propuesta de mejora:**
 
-(dtype: int64)
-*Incremento porcentual en el salario*
+       > Gestión de nulos: atribuir 'NaN' como 'Desconocido' y darle valor a la información de quien tiene un claro 'Yes'.
 
-       Valores = array([13, 14, 11, 19, 12, 25, 16, 17, 22, 23, 20, 15, 21, 24, 18])
+       > Consultar con Product Owner.
 
+
+**Propuestas ejecutadas:**
+
+- Se ha sustituido ``NaN`` por ``unknown``
+
+---
+---
+
+### percentsalaryhike
+
+|    dtype: int64  |   Incremento porcentual en el salario   |
+|-----------|---------------|
+||
+||11ㅤㅤ14.36
+||13ㅤㅤ14.24
+||12ㅤㅤ14.18
+||14ㅤㅤ13.65
+||15ㅤㅤ 6.67
+||18ㅤㅤ 6.08
+||17ㅤㅤ 5.48
+||16ㅤㅤ 5.3
+||19ㅤㅤ 5.13
+||22ㅤㅤ 3.64
+||20ㅤㅤ 3.58
+||21ㅤㅤ 3.04
+||23ㅤㅤ 1.97
+||24ㅤㅤ 1.55
+||25ㅤㅤ 1.13
+||<br>
+||**Media:** 15.15
+||**Mediana:** 14
+||**Moda:** 11
+||<br>
+||Valores únicos: **15**
+||Número de registros: **1678**
+||Valores nulos: **0**|
+
+---
 Propuesta de mejora:
 Mantener sin cambios.
 
 ---
+---
 
-### performancerating **PENDIENTE**
+### performancerating
 
-(dtype: object)
-*Evaluación de desempeño en una escala numérica*
+|    dtype: object  |   Evaluación de desempeño en una escala numérica   |
+|-----------|---------------|
+||
+||3,0ㅤ 74.91
+||4,0ㅤ 13.17
+||NaN  11.92
+||<br>
+||<br>
+||Valores únicos: **2**
+||Número de registros: **1678**
+||Valores nulos: **200**|
+---
 
-       Valores = array(['3,0', '4,0', nan], dtype=object)
+ㅤ     
+**Propuesta de mejora:**
 
-Propuesta de mejora:
+       > Reemplazar ',' por '.'
 
-- Reemplazar ``,`` por ``.``:
-``df["performancerating"] = df["performancerating"].str.replace(',', '.')``
-- Rellenar los vacíos con 0:
-``df["performancerating"] = df["performancerating"].fillna(0)``
-- Convertir a float:
-``df["performancerating"] = df["performancerating"].astype(float)``
+       > Convertir a float.
 
-       Ejemplo:
-       array([3., 4., 0.]) // dtype('float64')
+       > Para evitar que un valor baje la media del *performance rating*, sustituir por ``Desconocido``.
 
-- Otra sugerencia: para evitar que el nuevo valor ``0`` baje la media del *performance rating*, sustituir por ``Desconocido``.
 
+**Propuestas ejecutadas:**
+
+- Se han reemplazado las comas y la columna ahora contiene valores 'float'.
+
+---
 ---
 
 ### relationshipsatisfaction
 
-(dtype: int64) **PENDIENTE**
-*Satisfacción con relaciones interpersonales en el trabajo*
+|    dtype: int64  |   Satisfacción con relaciones interpersonales en el trabajo   |
+|-----------|---------------|
+||
+||3ㅤ 31.41
+||4ㅤ 28.78
+||2ㅤ 20.86
+||1ㅤ 18.95
+||<br>
+||**Media:** 2.7
+||**Mediana:** 3
+||**Moda:** 3
+||<br>
+||Valores únicos: **4**
+||Número de registros: **1678**
+||Valores nulos: **0**|
+---
 
-       Valores = array([3, 1, 4, 2])
+Sin anomalías. Mantener sin cambios.  
 
-Propuesta de mejora:
-Mantener sin cambios.  
-
-O:
-
-       NOTA: como next steps, poder definir y documentar explícitamente el significado de cada valor: 
+**Nota:**     
+Definir y documentar explícitamente el significado de cada valor: 
        1: 'Insatisfecho',
        2: 'Poco satisfecho',
        3: 'Satisfecho',
        4: 'Muy satisfecho'
 
-¿Incluimos 0 y 5 en la escala aunque no aparezcan en la recolección de puntuaciones?
+Incluimos 0 y 5 en la escala aunque no aparezcan en la recolección de puntuaciones.
 
-Podemos dejarlo perfectamente como está e incluir un GLOSARIO en el que se indiquen las equivalencias.
+⚑ Incluir en un glosario el significado de la escala.
 
+---
 ---
 
 ### standardhours
 
-(dtype: object) **PENDIENTE**
-*Clasificación de jornada (Full Time/Part Time)*
+|    dtype: object  |   Clasificación de jornada (Full Time/Part Time)   |
+|-----------|---------------|
+||
+||Part Timeㅤ 55.24
+||Full Timeㅤ 23.84
+||NaNㅤ ㅤㅤ20.92
+||<br>
+||<br>
+||Valores únicos: **2**
+||Número de registros: **1678**
+||Valores nulos: **351**|
+---
 
-       Valores = array(['Full Time', nan, 'Part Time'], 
-       dtype=object)
+Hay 927 valores atribuidos a *Part Time*, 400 *Full Time* y **351** nulos.
 
-Faltan valores: ``NaN``.
-standardhours tiene 927 'part time', 400 full time y 351 nulos
--por qué faltan las horas estándar a 351 registros?
--error de registro? categoría ausente para alguna trabajadora?
--dependiendo de lo que sea: 1)Reemplazar nulos por otra catergoría 'desconocido'; 2)Eliminar nulos
 
-Propuesta de mejora:
+**Propuesta de mejora:**
 
-- Mirar la relacion con otras columnas para asegurarnos si el nulo es por falta de informacion, o por otro tipo de clasificacion de jornada (ej: 'Freelance'?, 'Otro', 'No Especificado'). EJ:
- ``df['standardhours'] = df['standardhours'].replace(np.nan, 'No especificado')``
- ``df['standardhours'] = df['standardhours'].str.lower()`` # convertir todo a minúsculas para normalizar todas categorías
+       > Averiguar si hay categorías ausentes.
 
-Propuestas ejecutadas:
+       > En base a la información que obtengamos podemos proceder a reemplazar nulos por otra catergoría o reasignarlos.
 
-- Cambio de ``nan`` a ``full time``
+       > Explorar la relacion con otras columnas para asegurarnos si el valor nulo se da por falta de información o por otro tipo de clasificacion de jornada (ej: 'Freelance', 'Otro', 'No Especificado').
+       
+       > Convertir todo a minúsculas para normalizar todas las categorías.
 
+
+**Propuestas ejecutadas:**
+
+- Se han reemplazado valores ``NaN`` por ``full time``, información facilitada por Product Owner.
+
+---
 ---
 
 ### stockoptionlevel
 
-(dtype: int64) **PENDIENTE**
-*Nivel de opciones sobre acciones asignadas.*
+|    dtype: int64  |   Nivel de opciones sobre acciones asignadas.   |
+|-----------|---------------|
+||
+||0ㅤㅤ42.85
+||1ㅤㅤ41.06
+||2ㅤㅤ10.55
+||3ㅤㅤ 5.54
+||<br>
+||**Media:** 0.78
+||**Mediana:** 1.0
+||**Moda:** 0.0
+||<br>
+||Valores únicos: **4**
+||Número de registros: **1678**
+||Valores nulos: **0**|
+---
 
-       Valores numéricos ([0, 1, 2, 3])
+Sin anomalías. Mantener sin cambios.
 
-Propuesta de mejora:
-Mantener sin cambios.
 
+---
 ---
 
 ### totalworkingyears
 
-(dtype: object) **PENDIENTE**
-*Años totales de experiencia laboral*
+|    dtype: object  |   Años totales de experiencia laboral   |
+|-----------|---------------|
+||
+||**Top 5:**
+||NaNㅤㅤ32.72%
+||10,0 ㅤ ㅤ9.0%
+||6,0ㅤㅤㅤ5.24%
+||8,0ㅤㅤㅤ5.13%
+||9,0ㅤㅤㅤ4.23%
+||<br>
+||**Bottom 5:**
+||32,0ㅤㅤ0.18%
+||30,0ㅤㅤ0.18%
+||35,0ㅤㅤ0.18%
+||34,0ㅤㅤ0.12%
+||38,0ㅤㅤ0.06%
+||<br>
+||<br>
+||Valores únicos: **40**
+||Número de registros: **1678**
+||Valores nulos: **549**|
+---
 
-       Valores = array([nan, '34,0', '22,0', '28,0', '20,0', '21,0', '33,0', '40,0',
-       '18,0', '25,0', '15,0', '17,0', '26,0', '16,0', '24,0', '14,0',
-       '23,0', '27,0', '19,0', '11,0', '38,0', '37,0', '13,0', '12,0',
-       '29,0', '10,0', '36,0', '35,0', '9,0', '31,0', '32,0', '8,0',
-       '7,0', '30,0', '6,0', '5,0', '4,0', '3,0', '2,0', '1,0', '0,0'],
-      dtype=object)
+**Propuesta de mejora:**
 
-Propuesta de mejora:
+       > Reemplazar ',' por '.'
 
-- Reemplazar ``,`` por ``.``
-``df["totalworkingyears"] = df["totalworkingyears"].str.replace(',', '.')``
-- Posibilidad de cambiar a 0 Gestión de nulos:
-``df["totalworkingyears"] = df["totalworkingyears"].fillna(0)``
-- Convertir a float:
-``df["totalworkingyears"] = df["totalworkingyears"].astype(float)``
+       > Convertir a valores tipo 'float'.
 
-       Resultado: array([ 0, 34, 22, 28, 20, 21, 33, 40, 18, 25, 15, 17, 26, 16, 24, 14, 23, 27, 19, 11, 38, 37, 13, 12, 29, 10, 36, 35,  9, 31, 32,  8,  7, 30, 6,  5,  4,  3,  2,  1])
+Comprobar si el nulo en años de experiencia laboral es dispar con la columna [numcompaniesworked](#numcompaniesworked), una vez comprobado se ha concluido dejar los valores nulos y convertir los datos a tipo ``float``.
 
-- Comprobar si el nulo en años de experiencia laboral es dispar con la columna [numcompaniesworked](#numcompaniesworked). Está comprobado y la conclusión es: dejar los valores nulos y los datos float
+**Propuestas ejecutadas:**
 
+- Se ha reemplazado ``,`` por ``.``.
+- Los valores ahora son ``float``.
+- Se han mantenido los nulos.
+
+---
 ---
 
 ### trainingtimeslastyear
 
-(dtype: int64) **PENDIENTE**
-*Número de sesiones de entrenamiento en el último año.*
+|    dtype: int64  |   Número de sesiones de entrenamiento en el último año.   |
+|-----------|---------------|
+||
+||2  37.25
+||3  33.19
+||4  8.52
+||5  8.16
+||1  4.83
+||6  4.29
+||0  3.75
+||<br>
+||**Media:** 2.79
+||**Mediana:** 3
+||**Moda:** 2
+||<br>
+||Valores únicos: **7**
+||Número de registros: **1678**
+||Valores nulos: **0**|
+---
 
-       Valores numéricos ([5, 3, 2, 0, 1, 4, 6])
+Sin anomalías. Mantener sin cambios.
 
-Sin anomalías.
-
+---
 ---
 
 ### worklifebalance
 
-|    Tipo   |   worklifebalance   |
+|    dtype: object  |   worklifebalance   |
 |-----------|---------------|
-| dtype: object |3,0ㅤㅤ56.38<br>2,0ㅤㅤ22.29<br>4,0 ㅤㅤ 9.65<br>NaNㅤㅤ6.79<br>1,0 ㅤㅤ 4.89<br><br>Valores únicos: **4**<br>Número de registros: **1678**
-
+||
+||3,0ㅤㅤ56.38
+||2,0ㅤㅤ22.29
+||4,0ㅤㅤ9.65
+||NaNㅤㅤ6.79
+||1,0ㅤㅤ4.89
+||<br>
+||<br>
+||Valores únicos: **4**
+||Número de registros: **1678**
+||Valores nulos: **114**|
 ---
-
 ㅤㅤ
 **Propuesta de mejora:**
 
@@ -995,31 +1229,69 @@ Sin anomalías.
 
 ### yearsatcompany
 
-|    Tipo   |   Años en la empresa actual  |
+|    dtype: int64  |   Años en la empresa actual   |
 |-----------|---------------|
-| dtype: int64 |5ㅤㅤ12.75<br>1ㅤㅤ10.79<br>3 ㅤㅤ 8.88<br>2 ㅤㅤ 8.64<br>10ㅤㅤ8.28<br>4 ㅤㅤ 6.91<br>7 ㅤㅤ 6.85<br>8 ㅤㅤ 6.73<br>9 ㅤㅤ 5.84<br>6 ㅤㅤ 5.01<br>0 ㅤㅤ 2.8<br>11ㅤㅤ2.21<br>20ㅤㅤ1.79<br>13ㅤㅤ1.61<br>15ㅤㅤ1.31<br>14ㅤㅤ1.13<br>22ㅤㅤ1.07<br>18ㅤㅤ0.95<br>12ㅤㅤ0.89<br>(...)<br>30ㅤㅤ0.06<br>34ㅤㅤ0.06<br><br>Valores únicos: **37**<br>Número de registros: **1678**
-
+||
+||**Top 5:**
+||5ㅤㅤ12.75%
+||1ㅤㅤ10.79%
+||3 ㅤㅤ 8.88%
+||2 ㅤㅤ 8.64%
+||10ㅤㅤ8.28%
+||**Bottom 5:**
+||<br>
+||23ㅤㅤ0.12%
+||29ㅤㅤ0.12%
+||37ㅤㅤ0.06%
+||30ㅤㅤ0.06%
+||34ㅤㅤ0.06%
+||<br>
+||**Media:** 7.12
+||**Mediana:** 5
+||**Moda:** 5
+||<br>
+||Valores únicos: **37**
+||Número de registros: **1678**
+||Valores nulos: **0**|
 ---
 
+ㅤ     
 ㅤㅤ
 Sin anomalías. Mantener sin cambios.
 
 Puede ser interesante comparar los años en la empresa actual con los valores nulos en la columna ``totalworkingyears`` para comprobar qué relato/perfil nos devuelve.
 
-Ir a **[totalworkingyears](#numcompaniesworked)**.
+Ir a **[totalworkingyears](#totalworkingyears)**.
 
+---
 ---
 
 ### yearsincurrentrole
 
-|   Tipo   |   yearsincurrentrole   |
+|    dtype: object  |   Años en el puesto actual   |
 |-----------|---------------|
-| dtype: object |NaNㅤㅤ97.91<br>2,0ㅤㅤ0.72<br>7,0ㅤㅤ0.3<br>0,0ㅤㅤ0.24<br>4,0ㅤㅤ0.18<br>1,0ㅤㅤ0.18<br>11,0ㅤㅤ0.12<br>6,0ㅤㅤ0.12<br>3,0ㅤㅤ0.12<br>12,0ㅤㅤ0.06<br>13,0ㅤㅤ0.06<br><br>Valores únicos: **10**<br>Número de registros: **1678**
-
+||
+||NaNㅤㅤ97.91
+||2,0ㅤㅤㅤ0.72
+||7,0ㅤㅤㅤ0.3
+||0,0ㅤㅤㅤ0.24
+||4,0ㅤㅤㅤ0.18
+||1,0ㅤㅤㅤ0.18
+||11,0ㅤ ㅤ 0.12
+||6,0ㅤㅤㅤ0.12
+||3,0ㅤㅤㅤ0.12
+||12,0ㅤㅤ 0.06
+||13,0ㅤㅤ 0.06
+||<br>
+||<br>
+||Valores únicos: **10**
+||Número de registros: **1678**
+||Valores nulos: **1643**|
 ---
 
-ㅤㅤ
-Hay 1643 nulos en una columna con 1678 registros, casi el 98%
+ㅤ     
+
+Hay 1643 nulos en una columna con 1678 registros, casi el 98%.
 
 **Propuesta de mejora:**
 
@@ -1031,15 +1303,38 @@ Hay 1643 nulos en una columna con 1678 registros, casi el 98%
 
 ㅤㅤ
 ---
-
 ---
 
 ### yearssincelastpromotion
 
-|    Tipo   |   yearssincelastpromotion   |
+|    dtype: int64  |   Años desde el último ascenso   |
 |-----------|---------------|
-| dtype: int64 |0ㅤㅤ39.03<br>1ㅤㅤ23.66<br>2ㅤㅤ10.91<br>7ㅤㅤ5.66<br>4ㅤㅤ4.11<br>3ㅤㅤ3.87<br>5ㅤㅤ3.16<br>6ㅤㅤ2.26<br>11ㅤㅤ1.61<br>8ㅤㅤ1.31<br>9ㅤㅤ1.13<br>15ㅤㅤ0.95<br>14ㅤㅤ0.66<br>12ㅤㅤ0.66<br>13ㅤㅤ0.6<br>10ㅤㅤ0.42<br><br>Valores únicos: **16**<br>Número de registros: **1678**
-
+||
+||0ㅤㅤ39.03
+||1ㅤㅤ23.66
+||2ㅤㅤ10.91
+||7ㅤㅤ 5.66
+||4ㅤㅤ 4.11
+||3ㅤㅤ 3.87
+||5ㅤㅤ 3.16
+||6 ㅤㅤ2.26
+||11 ㅤ 1.61
+||8ㅤㅤ 1.31
+||9ㅤㅤ 1.13
+||15ㅤㅤ0.95
+||14ㅤㅤ0.66
+||12ㅤㅤ0.66
+||13ㅤㅤ0.6
+||10ㅤㅤ0.42
+||<br>
+||**Media:** 2.24
+||**Mediana:** 1
+||**Moda:** 0
+||<br>
+||Valores únicos: **16**
+||Número de registros: **1678**
+||Valores nulos: **0**|
+---
 ---
 
 ㅤㅤ
@@ -1052,12 +1347,38 @@ Sin anomalías. Mantener sin cambios.
 
 ### yearswithcurrmanager
 
-|    Tipo   |   Años bajo el mismo manager   |
+|    dtype: int64  |   Años con el mismo jefe   |
 |-----------|---------------|
-| dtype: int64 |2ㅤㅤ23.54<br>0ㅤㅤ16.98<br>7ㅤㅤ16.39<br>3 ㅤㅤ 9.06<br>8 ㅤㅤ 7.27<br>4 ㅤㅤ 6.44<br>1 ㅤㅤ 5.18<br>9 ㅤㅤ 4.23<br>5 ㅤㅤ 2.32<br>10ㅤㅤ1.97<br>6 ㅤㅤ 1.85<br>11ㅤㅤ1.31<br>12ㅤㅤ1.19<br>13ㅤㅤ1.01<br>17ㅤㅤ0.48<br>15ㅤㅤ0.3<br>14ㅤㅤ0.3<br>16ㅤㅤ0.18<br><br>Valores únicos: **18**<br>Número de registros: **1678**
-
+||
+||2ㅤㅤ23.54
+||0ㅤㅤ16.98
+||7ㅤㅤ16.39
+||3ㅤㅤ9.06
+||8ㅤㅤ7.27
+||4ㅤㅤ6.44
+||1ㅤㅤ5.18
+||9ㅤㅤ4.23
+||5ㅤㅤ2.32
+||10 ㅤ 1.97
+||6ㅤㅤ1.85
+||11 ㅤ 1.31
+||12 ㅤ 1.19
+||13 ㅤ 1.01
+||17 ㅤ 0.48
+||15 ㅤ 0.3
+||14 ㅤ 0.3
+||16 ㅤ 0.18
+||<br>
+||**Media:** 4.2
+||**Mediana:** 3
+||**Moda:** 2
+||<br>
+||Valores únicos: **18**
+||Número de registros: **1678**
+||Valores nulos: **0**|
 ---
 
+ ㅤ    
 ㅤㅤ
 Es una horquilla de años entre 0 a 17.
 
@@ -1068,13 +1389,31 @@ Sin anomalías. Mantener sin cambios.
 
 ### sameasmonthlyincome
 
-|    Tipo   |   *columna sin especificar*  |
+|    dtype: object  |   *Columna sin especificar*  |
 |-----------|---------------|
-| dtype: object |NaNㅤㅤ29.14<br>2342,59$ㅤㅤ13.59<br>4492,84$ㅤㅤ13.53<br>8339,32$ㅤㅤ6.26<br>12783,92$ㅤㅤ2.5<br>15943,72$ㅤㅤ1.49<br>4420,00$ㅤㅤ0.3<br>3612,50$ㅤㅤ0.18<br>2949,17$ㅤㅤ0.18<br>(...)<br>2241,67$ㅤㅤ0.06<br>15034,17$ㅤㅤ0.06<br><br>Valores únicos: **493**<br>Número de registros: **1678**
-
+||
+||**Top 5:**
+||NaNㅤㅤㅤ29.14%
+||2342,59$ㅤ13.59%
+||4492,84$ㅤ13.53%
+||8339,32$ㅤ 6.26%
+||12783,92$ㅤ2.5%
+||**Bottom 5:**
+||<br>
+||1980,00$ㅤ 0.06%
+||2115,83$ㅤ 0.06%
+||1923,33$ㅤ 0.06%
+||2241,67$ㅤ 0.06%
+||15034,17$ㅤ0.06%
+||<br>
+||<br>
+||Valores únicos: **493**
+||Número de registros: **1678**
+||Valores nulos: **489**
+||Registros duplicados: **1185**|
 ---
 
-ㅤㅤ
+ㅤ     
 
 Los registros presentan coma decimal e incluyen en el dato el simbolo ``$``.
 
@@ -1096,36 +1435,73 @@ Ir a **[monthlyincome](#monthlyincome)**
 
 - La columna ha sido eliminada.
 
-ㅤ
+ㅤ     
 
 ---
 ---
 
 ### datebirth
 
-|    Tipo   |   Año de nacimiento  |
+|    dtype: int64  |   Año de nacimiento  |
 |-----------|---------------|
-| dtype: int64 |1992ㅤㅤ5.3<br>1988ㅤㅤ5.24<br>1989ㅤㅤ5.13<br>1994ㅤㅤ4.89<br>1987ㅤㅤ4.77<br>1991ㅤㅤ3.99<br>1993ㅤㅤ3.93<br>1985ㅤㅤ3.81<br>1990ㅤㅤ3.75<br>1983ㅤㅤ3.58<br>1986ㅤㅤ3.34<br>1996ㅤㅤ3.22<br>1995ㅤㅤ3.22<br>1978ㅤㅤ2.98<br>1981ㅤㅤ2.98<br>(...)<br>1964ㅤㅤ0.66<br>2003ㅤㅤ0.66<br>2005ㅤㅤ0.54<br>2004ㅤㅤ0.54<br>1966ㅤㅤ0.36<br>1963ㅤㅤ0.3<br><br>Valores únicos: **43**<br>Número de registros: **1678**
-
+||ㅤㅤ
+||**Top 5:**
+||1992ㅤㅤ5.3%
+||1988ㅤㅤ5.24%
+||1989ㅤㅤ5.13%
+||1994ㅤㅤ4.89%
+||1987ㅤㅤ4.77%
+||<br>
+||**Bottom 5:**
+||2003ㅤㅤ0.66%
+||2005ㅤㅤ0.54%
+||2004ㅤㅤ0.54%
+||1966ㅤㅤ0.36%
+||1963ㅤㅤ0.3%
+||<br>
+||**Media:** 1986
+||**Mediana:** 1987
+||**Moda:** 1992
+||<br>
+||Valores únicos: **43**
+||Número de registros: **1678**
+||Valores nulos: **0**|
 ---
 
-ㅤ
+ㅤ     
 Presenta el formato para un año de nacimiento.
 
 Sin anomalías. Mantener sin modificaciones.
 
 ---
+---
 
 ### salary
 
-|    Tipo   |   Salario anual calculado para el empleado   |
+|    dtype: object  |   salary   |
 |-----------|---------------|
-| dtype: object |NaNㅤㅤㅤㅤㅤ16.98<br>53914,11$ ㅤㅤ 16.09<br>28111,13$ㅤ   ㅤ 15.2<br>100071,84$ ㅤㅤ 7.27<br>153407,07$ ㅤㅤ 2.68<br>191324,62$ ㅤㅤ 1.67<br>63470,00$ㅤㅤㅤ 0.18<br>20330,00$ㅤㅤㅤ 0.18<br>53040,00$ㅤㅤㅤ 0.18<br>(...)<br>134020,00$ ㅤㅤ 0.06<br>195370,00$ ㅤㅤ 0.06<br>199990,00$ ㅤㅤ 0.06<br>49600,00$ㅤㅤㅤ0.06<br>27410,00$ㅤㅤㅤ0.06<br>24390,00$ㅤㅤㅤ0.06<br>28040,00$ㅤㅤㅤ0.06<br>46480,00$ㅤㅤㅤ0.06<br>29560,00$ㅤㅤㅤ0.06<br><br>Valores únicos: **583**<br>Número de registros: **1678**
-
+||
+||**Top 5:**
+||NaN ㅤㅤㅤ 16.98%
+||53914,11$ㅤ16.09%
+||28111,13$ㅤ15.2%
+||100071,84$ㅤ7.27%
+||153407,07$ㅤ2.68%
+||
+||**Bottom 5:**
+||27410,00$ㅤ 0.06%
+||24390,00$ㅤ 0.06%
+||28040,00$ㅤ 0.06%
+||46480,00$ㅤ 0.06%
+||29560,00$ㅤ 0.06%
+||<br>
+||<br>
+||Valores únicos: **583**
+||Número de registros: **1678**
+||Valores nulos: **285**|
 ---
 
-ㅤㅤ
-
+ㅤ     
 Los registros presentan coma decimal e incluyen en el dato el simbolo ``$``.
 
 ㅤ
@@ -1135,29 +1511,47 @@ Los registros presentan coma decimal e incluyen en el dato el simbolo ``$``.
 
        > Eliminar también el símbolo '$'.
        
-       > Modificar valor tipo ``objeto`` a ``float``.
+       > Modificar valor tipo 'objeto' a 'float'.
 
-       > Relleno de nulos calculando 'salary = monthlyincome * 12'
+       > Inferior el valor de los nulos calculando el salario como ''monthlyincome' multiplicado por 12.
 
 ㅤ
 **Propuestas ejecutadas:**
 
 - Todas las propuestas han sido ejecutadas.
 
-ㅤ
+ㅤ     
 
 ---
 ---
 
 ### roledepartament
 
-|    Tipo   |   Combinación de rol y departamento   |
+|    dtype: object  |   Combinación de rol y departamento   |
 |-----------|---------------|
-| dtype: object |NaNㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ81.41<br>Sales exECutIVE  -  Salesㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ0.12<br> humAN resoURCEs  -  Human Resources ㅤㅤㅤㅤㅤ ㅤㅤ 0.12<br> labORAtoRy tEcHNICIAN  -  Research & Developmentㅤㅤ0.12<br> hEalthCaRe reprEseNTaTiVe  -  Research & Developmentㅤ0.12<br> LaBoratory TECHnICIAn  -  Research & Development ㅤ ㅤ 0.12<br> LaborAtorY Technician  -  Research & Developmentㅤㅤㅤ 0.12<br> LABOrATOrY TEchnIcIAn  -  Research & Development ㅤㅤ 0.12<br>(...)<br> SALEs REpRESentatIve  -  Sales ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ0.06<br> heaLtHcArE repResENtATiVe  -  Research & Developmentㅤ0.06<br><br>Valores únicos: **301**<br>Número de registros: **1678**
-
+||
+||**Top 5:**
+||NaNㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 81.41%
+|| Sales exECutIVE  -  Salesㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 0.12%
+|| humAN resoURCEs  -  Human Resourcesㅤㅤㅤㅤ ㅤ 0.12%
+|| labORAtoRy tEcHNICIAN  -  Research & Development 0.12%
+|| hEalthCaRe reprEseNTaTiVe  -  Research & Development 0.12%
+||<br>
+||**Bottom 5:**
+|| RESEArCH sCIenTIst  -  Research & Developmentㅤㅤ0.06%
+|| hUMAn reSoUrCES  -  Human Resources ㅤ ㅤㅤㅤㅤ 0.06%
+|| HUmAN rESOuRceS  -  Human Resources ㅤ ㅤㅤㅤㅤ 0.06%
+|| SALEs REpRESentatIve  -  Sales ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ 0.06%
+|| heaLtHcArE repResENtATiVe  -  Research & Development   0.06%
+||<br>
+||<br>
+||Valores únicos: **301**
+||Número de registros: **1678**
+||Valores nulos: **1366**|
 ---
 
-ㅤㅤ
+ㅤ     
+
 Registros de escritura irregular que no pueden agruparse debidamente y 81.41% de valores nulos.
 
 ㅤㅤ
@@ -1177,19 +1571,23 @@ Ir a **[jobrole](#jobrole)**
 
 - La columna ha sido eliminada.
 
-ㅤㅤ
+ㅤ     
 
 ---
 ---
 
 ### numberchildren
 
-|    Tipo   |   Número de hijos   |
+|    dtype: float64  |   Número de hijos   |
 |-----------|---------------|
-| dtype: float64 |NaNㅤㅤ100.0<br><br>Valores únicos: **0**<br>Número de registros: **1678**
-
+||
+||NaN  100.0
+||<br>
+||<br>
+||Valores únicos: **0**
+||Número de registros: **1678**
+||Valores nulos: **1678**|
 ---
-
 ㅤㅤ
 No hay datos recogidos para este campo.
 
@@ -1211,29 +1609,49 @@ No hay datos recogidos para este campo.
 
 ### remotework
 
-|    Tipo   |   El empleado trabaja de forma remota (Yes/No)   |
+|    dtype: object  |   Indica si el empleado trabaja a distancia   |
 |-----------|---------------|
-| dtype: object |1ㅤㅤㅤ 22.3<br>trueㅤㅤ21.38<br>0ㅤㅤㅤ 19.14<br>falseㅤㅤ18.9<br>yes ㅤㅤ 18.28<br><br>Valores únicos: **5**<br>Número de registros: **1614**
-
+||
+||1ㅤㅤㅤㅤ22.35
+||True ㅤㅤ 21.57
+||Falseㅤㅤ 18.95
+||0ㅤㅤㅤㅤ18.95
+||Yesㅤㅤㅤ18.18
+||<br>
+||**Media:** 0.54
+||**Mediana:** 1
+||**Moda:** 1
+||<br>
+||Valores únicos: **5**
+||Número de registros: **1678**
+||Valores nulos: **0**
+||Registros duplicados: **1673**|
 ---
 
-ㅤㅤ
-Quizás el 0 signifique Sí/Yes y el 1 signifique No. También es posible que el True sea igual a Sí/Yes y el False sea No.
+No hay un formato concreto para el registro de la información de estas entradas. Presencia heterogénea de valores que no esclarecen, en una relación donde sólo necesita 2.
 
 **Propuesta de mejora:**
 
+       > Averiguar qué valor tiene 1 respecto a Yes/No, y 0 respectivamente.
+
        > Consultar con PO información respecto a las entradas de registro.
+
        > Estandarizar formato.
 
 ㅤㅤ
 **Propuestas ejecutadas**:
 
-- Sin ejecutar.
+- Se han normalizado y estandarizado valores que no entraban en la norma. No obstante, ha subido la presencia de nulos.
+
+ㅤ     
+</details>
+
 
 ## 4. Cambios ejecutados
 
-       Hipervínculo + parte crucial del código que soluciona
-       Y así sucesivamente
+Propuestas ejecutadas generales y particulares a columnas concretas:
+
+[Transformaciones]('Transformación.ipynb') | [Resultados, datos limpios]('files/raw_data_limpio.csv')
 
 ---
 
@@ -1247,71 +1665,70 @@ Quizás el 0 signifique Sí/Yes y el 1 signifique No. También es posible que el
 
 **A continuación, la información que hemos obtenido en consecuencia:**
 
-Aqui mostramos correlaciones positivas fuertes (con un valor mayor a 0.5) que he encontrado en tus datos. Parece que hay varias variables con una correlación perfecta o casi perfecta (1.0000 o 0.9701), lo que podría indicar que son dependientes entre sí o redundantes.
+Hay evidencias de correlaciones positivas fuertes (con un valor mayor a 0.5) en varias variables. 
 
- Correlaciones positivas fuertes (> 0.5) encontradas:
+Muestran una correlación perfecta o casi perfecta (1.0000 o 0.9701), lo que podría indicar que son dependientes entre sí o, en su defecto, redundantes.
 
-- monthlyrate y dailyrate: 1.0000
-- hourlyrate y monthlyrate: 1.0000  
-- dailyrate y hourlyrate: 1.000
-- hourlyrate y joblevel: 0.9701
-- joblevel y dailyrate: 0.9701
-- joblevel y monthlyrate: 0.9701
-- salary y hourlyrate: 0.8528
-- monthlyrate y salary: 0.8528  
-- dailyrate y salary: 0.8528
-- salary y joblevel: 0.8295
-- performancerating y percentsalaryhike: 0.7751  
-- joblevel y totalworkingyears: 0.7727
-- totalworkingyears y hourlyrate: 0.7634
-- totalworkingyears y monthlyrate: 0.7634
-- dailyrate y totalworkingyears: 0.7634  
-- yearsatcompany y yearswithcurrmanager: 0.7571  
-- monthlyincome y salary: 0.7453
-- totalworkingyears y age: 0.6687
-- yearsatcompany y totalworkingyears: 0.6367  
-- monthlyrate y monthlyincome: 0.6270
-- hourlyrate y monthlyincome: 0.6270
-- monthlyincome y dailyrate: 0.6270
-- monthlyincome y joblevel: 0.6151  
-- yearsatcompany y yearssincelastpromotion: 0.6118
-- totalworkingyears y monthlyincome: 0.5979  
-- salary y totalworkingyears: 0.5979
-- joblevel y yearsatcompany: 0.5324
-- yearsatcompany y dailyrate: 0.5221
-- yearsatcompany y hourlyrate: 0.5221
-- yearsatcompany y monthlyrate: 0.5221
-- age y joblevel: 0.5074
-- yearssincelastpromotion y yearswithcurrmanager: 0.5009
-- hourlyrate y age: 0.5007
-- age y monthlyrate: 0.5007
-- dailyrate y age: 0.5007
+| Campo A                | Campo B                     | Coeficiente de correlación |
+|---------------------------|--------------------------------|-------------|
+| monthlyrate               | dailyrate                      | 1.0000      |
+| hourlyrate                | monthlyrate                    | 1.0000      |
+| dailyrate                 | hourlyrate                     | 1.0000      |
+| hourlyrate                | joblevel                       | 0.9701      |
+| joblevel                  | dailyrate                      | 0.9701      |
+| joblevel                  | monthlyrate                    | 0.9701      |
+| salary                    | hourlyrate                     | 0.8528      |
+| monthlyrate               | salary                         | 0.8528      |
+| dailyrate                 | salary                         | 0.8528      |
+| salary                    | joblevel                       | 0.8295      |
+| performancerating         | percentsalaryhike              | 0.7751      |
+| joblevel                  | totalworkingyears             | 0.7727      |
+| totalworkingyears         | hourlyrate                     | 0.7634      |
+| totalworkingyears         | monthlyrate                    | 0.7634      |
+| dailyrate                 | totalworkingyears             | 0.7634      |
+| yearsatcompany            | yearswithcurrmanager           | 0.7571      |
+| monthlyincome             | salary                         | 0.7453      |
+| totalworkingyears         | age                            | 0.6687      |
+| yearsatcompany            | totalworkingyears             | 0.6367      |
+| monthlyrate               | monthlyincome                  | 0.6270      |
+| hourlyrate                | monthlyincome                  | 0.6270      |
+| monthlyincome             | dailyrate                      | 0.6270      |
+| monthlyincome             | joblevel                       | 0.6151      |
+| yearsatcompany            | yearssincelastpromotion        | 0.6118      |
+| totalworkingyears         | monthlyincome                  | 0.5979      |
+| salary                    | totalworkingyears             | 0.5979      |
+| joblevel                  | yearsatcompany                 | 0.5324      |
+| yearsatcompany            | dailyrate                      | 0.5221      |
+| yearsatcompany            | hourlyrate                     | 0.5221      |
+| yearsatcompany            | monthlyrate                    | 0.5221      |
+| age                       | joblevel                       | 0.5074      |
+| yearssincelastpromotion   | yearswithcurrmanager           | 0.5009      |
+| hourlyrate                | age                            | 0.5007      |
+| age                       | monthlyrate                    | 0.5007      |
+| dailyrate                 | age                            | 0.5007      |
+---
+---
 
-Aquí mostramos un resumen de las variables que presentan un número considerable de valores atípicos, lo que indica una alta dispersión:
+### Resumen de valores atípicos (outliers)
 
-- trainingtimeslastyear: 268 outliers
-- performancerating: 214 outliers
-- yearssincelastpromotion: 116 outliers
-- yearsatcompany: 114 outliers
-
-Estas variables son las que tienen los datos más dispersos.
-Análisis de outliers (valores atípicos) por variable:
-
-- Variable 'dailyrate': Se encontraron 18 outliers.
-- Variable 'distancefromhome': Se encontraron 40 outliers.
-- Variable 'hourlyrate': Se encontraron 18 outliers.  
-- Variable 'monthlyincome': Se encontraron 11 outliers.
-- Variable 'monthlyrate': Se encontraron 18 outliers.
-- Variable 'numcompaniesworked': Se encontraron 59 outliers.
-- Variable 'performancerating': Se encontraron 214 outliers.
-- Variable 'stockoptionlevel': Se encontraron 89 outliers.
-- Variable 'totalworkingyears': Se encontraron 42 outliers.
-- Variable 'trainingtimeslastyear': Se encontraron 268 outliers.
-- Variable 'yearsatcompany': Se encontraron 114 outliers.
-- Variable 'yearssincelastpromotion': Se encontraron 116 outliers.
-- Variable 'yearswithcurrmanager': Se encontraron 16 outliers.
-- Variable 'salary': Se encontraron 15 outliers.
-
+Las siguientes variables presentan un número considerable de valores atípicos, indicando alta dispersión:
+ | Variable                  | Nº de outliers |
+ |---------------------------|----------------|
+ | trainingtimeslastyear     | 268            |
+ | performancerating         | 214            |
+ | yearssincelastpromotion   | 116            |
+ | yearsatcompany            | 114            |
+ | numcompaniesworked        | 59             |
+ | totalworkingyears         | 42             |
+ | distancefromhome          | 40             |
+ | dailyrate                 | 18             |
+ | hourlyrate                | 18             |
+ | monthlyrate               | 18             |
+ | yearswithcurrmanager      | 16             |
+ | salary                    | 15             |
+ | monthlyincome             | 11             |
+---
+---
 
 ## 7. Próximos Pasos (Next Steps)
 
@@ -1339,3 +1756,10 @@ Análisis de outliers (valores atípicos) por variable:
 6. Visualizaciones
 
 - Mejorar la presentación de datos mediante gráficos y dashboards interactivos, facilitando la interpretación y toma de decisiones. (editado)
+
+---
+---
+
+## 8. Glosarios
+
+
