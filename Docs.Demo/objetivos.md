@@ -1,4 +1,19 @@
-# OBJETIVOS:
+(PATRICIA) # PRESENTACIÓN: 
+
+Buenos días a todos. ABC Corporation invierte en tecnología de talento, y nuestro equipo, Adalabers, ha sido convocado para revisar un elemento fundamental: el bienestar de esa inversión, que para nosotras empieza con el bienestar del dato."
+
+"Nuestra misión no es solo técnica, sino también ética. Buscamos asegurar la retención del talento y la satisfacción del personal mirando una realidad crítica: ¿Estamos fallando en ver las señales de infelicidad que nos dan los datos? ¿La IA que se construye hoy creará mañana un ambiente de trabajo justo y equitativo?"
+
+"Nosotras somos el equipo de Investigación y Desarrollo y Auditoría de Bienestar de Adalabers." 
+(Presento a cada una)
+
+"Hemos auditado rigurosamente los entornos laborales de ABC, usando metodologías robustas y Python para asegurar la limpieza y optimización de las bases de datos. Nuestro objetivo es que ABC Corporation pueda liderar la retención de talento e incrementar su valor al conocer sus puntos críticos."
+
+"La conclusión es crítica: si el dato que nutre a los sistemas es defectuoso, la Inteligencia Artificial que se construya sobre él nacerá inevitablemente con sesgos y fallos de rendimiento. Un algoritmo sesgado pone en riesgo la equidad y la inversión."
+
+_____
+
+(ANDREA) # OBJETIVOS:
 
 Nuestro proyecto se orientó bajo un enfoque dual: Abordar la necesidad estratégica de retención de ABC Corporation mientras sentamos las bases técnicas y éticas para su futura plataforma de talento.
 
