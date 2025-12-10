@@ -27,7 +27,7 @@
 
 ## 1. Campos y categorías
 
-Los [datos proporcionados](Análisis_y_transformación_datos\raw_data.csv) para el proyecto de análisis presenta índices como columnas:
+Los [datos proporcionados](files\raw_data.csv) para el proyecto de análisis presenta índices como columnas:
 
 - [Age](#age)
 - [Attrition](#attrition)
@@ -1656,7 +1656,9 @@ No hay un formato concreto para el registro de la información de estas entradas
 
 Propuestas ejecutadas generales y particulares a columnas concretas:
 
-[Transformaciones]('ETL/Transformación.ipynb') | [Resultados, datos limpios]('files/raw_data_limpio.csv')
+| [Transformaciones](ETL/transformación.ipynb)
+
+| [Resultados, datos limpios](files/raw_data_limpio.csv)
 
 ---
 
@@ -1773,14 +1775,14 @@ Las siguientes variables presentan un número considerable de valores atípicos,
 ---
 ## 7. Visualización como respuesta
 
-       .
+El [trabajo de visualización](ETL/visualizaciones.ipynb) ha utilizado ``seaborn`` y ``matplotlib`` para extraer insights y explorar patrones en los datos.
 
 
 ---
 ---
 
 
-## 8. NEXT STEPS: pasos a futuro
+## 8. Next steps: pasos a futuro
 
 La **Auditoría de Bienestar** ha revelado que la baja calidad de los datos tiene un impacto **ético y económico** directo:
 
@@ -1790,9 +1792,7 @@ Una sucesión de errores tipográficos en una jornada o el dato nulo en escalas 
 
 Por todo esto, concluimos que **la precisión técnica es un imperativo ético**.
 
-### Propuesta de valor: 
-
-### La fiabilidad del Modelo (I+D):
+### Nuestra propuesta de valor es la fiabilidad del Modelo I+D
 
 Al limpiar y estandarizar la fuente, la estructura de código está preparada para una escalabilidad de procesos completos ETL, con fin a la carga de la información transformada en bases de datos.
 
@@ -1802,9 +1802,9 @@ Es una arquitectura de código escalable y replicable en otras localizaciones, l
 
 Un ejemplo es nuestra visualización del campo ``worklifebalance``:
 
->Muestra que el 60% de los empleados se concentra en los niveles 1 y 2. 
+       Muestra que el 60% de los empleados se concentra en los niveles 1 y 2. 
 
-Una IA solo puede optimizar el talento si sabe que el problema principal no es el salario, sino el desgaste. 
+Las Inteligencias Artificiales solo pueden optimizar el talento si sabe que el problema principal no es el salario, sino el desgaste. 
 
 Esto es el insight humano que el dato limpio nos permite ver.
 		
@@ -1812,10 +1812,10 @@ Esto es el insight humano que el dato limpio nos permite ver.
 
 Enlaza la limpieza de datos con la fiabilidad de futuras implementaciones de IA. 
 
-> “La IA es tan ética como los datos que la entrenan. 
+       La IA es tan ética como los datos que la entrenan. 
 
     
-Proponemos blindar validaciones estrictas en el sistema back-end en el formulario de recogida de datos para evitar las anomalías encontradas y así entrenar modelos de retención más justos.
+Proponemos **blindar validaciones estrictas en el sistema back-end** en el formulario de recogida de datos para evitar las anomalías encontradas y así entrenar modelos de retención más justos.
 
 ### Refuerzo de la recolección de datos
 
