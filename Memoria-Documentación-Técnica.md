@@ -1,8 +1,12 @@
-# Memoria de Proyecto ABC Corporation: Gestión del Talento
+# Memoria de Proyecto ABC Corporation: Gestión del Talento en Ecosistemas Empresariales
 
-       . breve descripción
+*ABC Corporation* invierte en tecnología de talento, la misión con esta simulación de proyecto completo no es solo optimizar costes sino **Auditar el Bienestar** de la empresa mediante un proyecto de I+D, para maximizar diferentes grados de beneficio: implementando guías para un crecimiento estable y responsable basadas en el gobierno del dato.
 
-### Índice
+
+#### Nuestro objetivo: Calidad del dato = Calidad de vida
+
+
+## Índice
 
 - [1. Campos y categorías](#1-campos-y-categorías)
 
@@ -1651,19 +1655,55 @@ No hay un formato concreto para el registro de la información de estas entradas
 
 Propuestas ejecutadas generales y particulares a columnas concretas:
 
-[Transformaciones]('Transformación.ipynb') | [Resultados, datos limpios]('files/raw_data_limpio.csv')
+[Transformaciones]('ETL/Transformación.ipynb') | [Resultados, datos limpios]('files/raw_data_limpio.csv')
 
 ---
 
 ## 5. Nuestras cuestiones sobre los datos
 
-*Presentación de preguntas de Patri + enfoque de Andrea*
+Nuestras primeras preguntas para enfocar el análisis del proyecto: 
+
+1. Rotación por Departamento y Rol:
+
+       > ¿Hay roles críticos con alta rotación que requieran atención?
+
+Identificar qué departamentos o roles tienen la mayor tasa de rotación.
+
+2. Satisfacción Laboral y Rotación:
+
+
+       > ¿Los empleados insatisfechos tienen mayor probabilidad de irse?
+ 
+       > ¿Cómo afecta el equilibrio vida-trabajo en la rotación?
+
+3. Compensación y Rotación:
+
+       > ¿Los empleados con salarios más bajos tienen mayor rotación?
+
+       > ¿Los empleados con menos opciones de acciones se van más?
+
+4. Experiencia y Estabilidad Laboral:
+
+       > ¿Los empleados con menos tiempo en la empresa tienen mayor rotación?
+
+       > ¿Los empleados sin promociones recientes se van más?
+
+5. Demografía y Rotación
+
+       > ¿Los empleados más jóvenes tienen mayor rotación?
+
+       > ¿Existen diferencias por género o estado civil?
+
+6. Flexibilidad Laboral y Rotación:
+
+       > ¿Los empleados que viajan con frecuencia tienen mayor rotación?
+
+       > ¿El trabajo remoto reduce la rotación?
 
 ---
 
-## 6. Visualización como respuesta
+### 6. Pasos previos a la visualización de datos:
 
-**A continuación, la información que hemos obtenido en consecuencia:**
 
 Hay evidencias de correlaciones positivas fuertes (con un valor mayor a 0.5) en varias variables. 
 
@@ -1709,7 +1749,7 @@ Muestran una correlación perfecta o casi perfecta (1.0000 o 0.9701), lo que pod
 ---
 ---
 
-### Resumen de valores atípicos (outliers)
+#### Resumen de valores atípicos (outliers)
 
 Las siguientes variables presentan un número considerable de valores atípicos, indicando alta dispersión:
  | Variable                  | Nº de outliers |
@@ -1727,39 +1767,90 @@ Las siguientes variables presentan un número considerable de valores atípicos,
  | yearswithcurrmanager      | 16             |
  | salary                    | 15             |
  | monthlyincome             | 11             |
+
+---
+---
+## 7. Visualización como respuesta
+
+       .
+
+
 ---
 ---
 
-## 7. Próximos Pasos (Next Steps)
 
-1. Optimización Técnica
+## 8. NEXT STEPS: pasos a futuro
 
-- Dinamización de Datos: Investigar la posibilidad de convertir una cifra estática clave en un valor dinámico, calculado automáticamente a partir de la fecha de nacimiento
+La **Auditoría de Bienestar** ha revelado que la baja calidad de los datos tiene un impacto **ético y económico** directo:
 
-2. Validación y Calidad de Datos
+Nos impide ver la inestabilidad en los ecosistemas empresariales y las grietas en el rendimiento de los trabajadores. 
 
-- Refuerzo del Back-end: Implementar validaciones estrictas para prevenir la entrada de datos erróneos o inconsistentes.
+Una sucesión de errores tipográficos en una jornada o el dato nulo en escalas de satisfacción críticas, puede ser alguien de nuestro personal al que estamos dejando de prestar atención, puede que sea incluso recíproco.
 
-3. Normalización y Documentación
+Por todo esto, concluimos que **la precisión técnica es un imperativo ético**.
 
-- Glosario de Valores: Crear un glosario que defina explícitamente el significado de cada valor en las escalas utilizadas (ej. ‘1: Insatisfecho’, ‘4: Muy satisfecho’).
+### Propuesta de valor: 
+
+### La fiabilidad del Modelo (I+D):
+
+Al limpiar y estandarizar la fuente, la estructura de código está preparada para una escalabilidad de procesos completos ETL, con fin a la carga de la información transformada en bases de datos.
+
+Esto significa que si *ABC Corporation* utiliza este dataset saneado para entrenar un modelo de retención, ese modelo será más justo y preciso, reduciendo el riesgo de sesgo algorítmico.
+
+Es una arquitectura de código escalable y replicable en otras localizaciones, lista para optimizar la gestión del talento.
+
+Un ejemplo es nuestra visualización del campo ``worklifebalance``:
+
+>Muestra que el 60% de los empleados se concentra en los niveles 1 y 2. 
+
+Una IA solo puede optimizar el talento si sabe que el problema principal no es el salario, sino el desgaste. 
+
+Esto es el insight humano que el dato limpio nos permite ver.
+		
+### Plan de Auditoría Continua: 
+
+Enlaza la limpieza de datos con la fiabilidad de futuras implementaciones de IA. 
+
+> “La IA es tan ética como los datos que la entrenan. 
+
+    
+Proponemos blindar validaciones estrictas en el sistema back-end en el formulario de recogida de datos para evitar las anomalías encontradas y así entrenar modelos de retención más justos.
+
+### Refuerzo de la recolección de datos
+
+Recomendamos implementar **validaciones estrictas en el back-end** del sistema de gestión de talento:
+
+- Eliminando la posibilidad de ``input``erróneo. Por ejemplo, que la columna maritalstatus no pueda aceptar 'marreid' y el sistema fuerce el valor a 'Married' o que no permita dejar el valor nulo en categorías fundamentales”.
+
+### Ampliación del marco ético:
+
+Implementar la **propuesta ética** de gender (incluir la opción 'Other' o 'Non-Binary') como estándar.
+
+Este paso y otros no es solo limpieza, es un abanico abierto para un análisis más exhaustivo de parámetros que pueden estar quedándose fuera en la gestión de talento.
+
+### Plan de auditoría continua
+
+La limpieza que hemos realizado en la Fase 2 es vital, pero es **solo el principio**. 
+
+El riesgo de **data drift*** es constante porque **la cultura de una empresa es orgánica**. 
+
+Por eso, proponemos la creación de un *Plan de Auditoría Continua*, para garantizar que los modelos de IA que se desarrollen tengan la garantía de la toma de decisiones basada en la realidad actual de los empleados, no en la historia almacenada. 
+
+Esto transforma nuestra Fase 2 **de ser un "parche" a ser un "sistema de control de calidad" indispensable** para el futuro de la empresa”.
+
+**data drift*: ocurre cuando las propiedades estadísticas de los datos cambian con el tiempo de forma inesperada (el mundo cambia, y los datos por ende. Es la principal razón por la que los modelos de Inteligencia Artificial (IA) y de Machine Learning pierden precisión después de un tiempo, incluso si fueron entrenados perfectamente).
+
+
+### Normalización y Documentación
+
+- Glosario de Valores: Sería necesario un glosario que defina explícitamente el significado de cada valor en las escalas utilizadas (ej. ‘1: Insatisfecho’, ‘4: Muy satisfecho’).
+
 - Convención de Escala: Documentar formalmente el uso de los valores 0 y 5 en las escalas, aunque no aparezcan en los registros actuales.
 
-4. Inclusión y Diversidad
+### Futuras visualizaciones 
 
-- Ampliación de Género: Incorporar opciones de género no binario y diversidad de género en los campos correspondientes para mejorar la representatividad e inclusividad del proyecto.
+- Mejorar la presentación de datos mediante gráficos y dashboards interactivos, facilitando la interpretación y toma de decisiones. 
 
-5. Comentarios de la Empresa
-
-- Recopilar y analizar feedback directo de la empresa para alinear las mejoras con sus expectativas y necesidades.
-
-6. Visualizaciones
-
-- Mejorar la presentación de datos mediante gráficos y dashboards interactivos, facilitando la interpretación y toma de decisiones. (editado)
-
----
----
-
-## 8. Glosarios
+Usando tecnologías como *PowerBI* y *Tableau+*.
 
 
