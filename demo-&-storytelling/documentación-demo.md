@@ -271,14 +271,16 @@ Como comentamos en la anterior gráfica la empresa valora y recompensa el desemp
 SLIDE15: "En esta visualización, no estamos viendo una sola variable, sino la interacción de tres factores críticos: la satisfacción laboral, el equilibrio entre la vida laboral y personal, y su impacto combinado en la rotación de personal.
 
 Cada uno de los cuatro gráficos representa un nivel distinto de equilibrio vida-trabajo. Dentro de cada uno, las barras nos muestran cuántos empleados, para cada nivel de satisfacción, decidieron quedarse o irse. El análisis de estos gráficos nos lleva a una conclusión estratégica fundamental para la empresa:
-   1. La insatisfacción laboral es el principal predictor de rotación. 
-   2. El equilibrio vida-trabajo (WLB) actúa como un 'multiplicador de riesgo'. Un mal WLB acelera la rotación en todos los frentes, incluso entre el talento que está contento con sus tareas. 
+
+   1. La insatisfacción laboral es el principal predictor de rotación.
+
+   2. El equilibrio vida-trabajo (WLB) actúa como un 'multiplicador de riesgo'. Un mal WLB acelera la rotación en todos los frentes, incluso entre el talento que está contento con sus tareas.
 
 Por tanto, para reducir la rotación de manera efectiva, la empresa no solo debe enfocarse en aumentar la satisfacción, sino que debe tratar las políticas de equilibrio vida-trabajo con la misma urgencia y prioridad.
 
 Y con esta última reflexión doy paso a mi compañera Ona que nos hablará de los siguientes pasos que vamos a tomar".
 
-SLIDE16: "Tomando el relevo de todo este trabajo, tenemos propuestas de futuro: 
+SLIDE16: "Tomando el relevo de todo este trabajo, tenemos propuestas de futuro:
 
 El futuro son procesos automatizados.
 
@@ -304,7 +306,7 @@ SLIDE18: "Al estandarizar los datos garantizamos el camino a dinámicas de mejor
 
 Con un Plan de ETL automatizado de principio a fin.
 
-Con niveles avanzados de visualización, sumando dinamismo a la representación de datos complejos, entendible y efectista por cualquier potencial audiencia.
+Con niveles avanzados de visualización, sumando dinamismo a la representación de datos complejos, entendible y con impacto para cualquier potencial audiencia.
 
 Con un plan de auditoría continua:
 
@@ -312,11 +314,12 @@ Que garantiza blindar la plataforma de gestión de talento contra el error human
 
 Y asimismo, tenemos la capacidad de acompañar tu negocio en su expansión con escalabilidad, replicando este mismo sistema en otras localizaciones globales.
 
-Dicho esto, vamos con el cierre".
+Dicho esto, vamos con el cierre, con mi compañera Patricia y SCRUM master".
 
 SLIDE19-20: "Muchas gracias Ona y a todo el equipo. 
 
 Para cerrar, quiero dejarles con un pensamiento que resume el corazón de este proyecto:
+
 Cada dato no es solo un registro; es una historia, una trayectoria y, sobre todo, una oportunidad.
 
 Hemos demostrado que la calidad de los datos es la base de la justicia empresarial.
@@ -324,13 +327,16 @@ Hemos demostrado que la calidad de los datos es la base de la justicia empresari
 **Hemos saneado el dato; ahora,* ABC Corporation* puede sanar el talento.**
 
 Pero nuestro compromiso no termina aquí. Seguiremos creando soluciones que conviertan los datos en herramientas para construir equipos más sanos, estables y más competentes.
+
 Y abrimos ahora el turno de preguntas. Muchas gracias a todas".
 
 ______________________
 
 
 
-### Para finalizar  con objeto de llevar un registro del proceso de trabajo en lo relativo a la presentación, desatacar que experimentamos como el proceso de EDA pasaba de ser un modo de trabajo a una filosfía que vertebraba todo nuestro desempeño, volviendo sobre nuestros pasos cuando se requería y cuidando al detalle cada uno de los mismos. Cada decisión justificada, cada paso, con significado. 
+### Para finalizar  con objeto de llevar un registro del proceso de trabajo en lo relativo a la presentación, desatacar que experimentamos como el proceso de EDA pasaba de ser un modo de trabajo a una filosfía que vertebraba todo nuestro desempeño, volviendo sobre nuestros pasos cuando se requería y cuidando al detalle cada uno de los mismos.
 
-### Ésto lo denotamos cuando a raíz de la fase de las visualizaciones, modificando las gráficas y sus colores, asumimos una paleta cromática para unificar todo y evitar ruido visual extra. Así, lo que fue una elección casual de colores, se convirtió en el color corporativo, del cual quisimos hacer gala uniformándonos para la presentación. Lo que redundó en terminar de armar nuestro relato y dotarlo de una personalidad especial y diferenciada. 
+### Cada decisión justificada, cada paso, con significado.
+
+### Ésto lo denotamos cuando a raíz de la fase de las visualizaciones, modificando las gráficas y sus colores, asumimos una paleta cromática para unificar todo y evitar ruido visual extra. Así, lo que fue una elección casual de colores, se convirtió en el color corporativo, del cual quisimos hacer gala uniformándonos para la presentación. Lo que redundó en terminar de armar nuestro relato y dotarlo de una personalidad especial y diferenciada.
 

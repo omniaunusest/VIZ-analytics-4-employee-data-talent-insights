@@ -18,11 +18,12 @@
 
 - [5. Nuestras cuestiones sobre los datos](#5-nuestras-cuestiones-sobre-los-datos)
 
-- [6. Visualización como respuesta](#6-visualización-como-respuesta:)
+- [7. Visualización como respuesta](#7-visualización-como-respuesta:)
 
-- [7. Próximos pasos: vistas a futuro](#7-próximos-pasos-next-steps)
+- [8. Next Steps: vistas a futuro](#8-next-steps-pasos-a-futuro)
 
-- [8. Glosario de definiciones](#8-glosarios)
+---
+---
 
 ## 1. Campos y categorías
 
